@@ -1,0 +1,143 @@
+/* ganti sandi */
+.text-center label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 340px; /* Ini adalah contoh tinggi, sesuaikan sesuai kebutuhan Anda */
+    font-family: Inter;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.text-center img{
+    width: 150px;
+top: 102px;
+    transform: translate(-50%, -50%);
+position: absolute;
+}
+  
+.login {
+    background: rgb(229, 229, 229);
+    background-size: cover;
+  }
+
+#catas {
+    top: 30%;
+    left: 50%;
+    position: absolute;
+  }
+  
+#bbatas {
+    width: 400px;
+    height: 73px;
+    transform: translate(-50%, -50%);
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #FFFEFE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  #bsandi {
+    display: flex; /* Menjadikan elemen flex container */
+    justify-content: center; /* Mengatur teks di tengah horizontal */
+    align-items: center; /* Mengatur teks di tengah vertikal */
+  }
+  
+  
+  .title {
+    text-align: center;
+    color: black;
+    font-size: 15px;
+    font-family: Inter;
+    margin-top: 12px;
+  }
+  
+  .description {
+    top: 36px;
+    position: absolute;
+    color: black;
+    font-size: 13px;
+    font-family: Inter;
+    font-style: italic;
+    text-align: center;
+  }
+  
+  .border {
+    width: 5px;
+    height: 73px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #3B6584;
+  }
+  
+  /* kedua */
+  #cbawah {
+    width: 400;
+    top: 53%;
+    left: 50%;
+    position: absolute;
+  }
+  
+  #bbawah {
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 250px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #FFFEFE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  
+  .button {
+    left: 60px;
+    top: 188px;
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    font-family: Inter;
+    font-weight: 400;
+    width: 280px;
+    height: 30px ;
+    word-wrap: break-word;
+    border: none;
+  }
+  .btn-inti {
+    background-color: #487190 !important;
+    border-radius: 3px;
+  }
+  
+  .input-container {
+    position: absolute;
+    font-size: 15px;
+    font-family: Inter;
+    font-weight: 600;
+}
+
+.label-pass {
+    position: relative; /* Tambahkan ini */
+    top: 12px;
+    left: 60px;
+    color: black;
+}
+
+  #inputpass {
+    width: 280px;
+    height: 36px;
+    top: 45px;
+    left: 60px;
+    position: absolute;
+    background: rgba(159, 158, 158, 0.25);
+    backdrop-filter: blur(4px);
+  }
+  
+  .input-container:nth-child(2) {
+    top: 81px;
+  }
+  
+
+  /* end ganti sandi */
