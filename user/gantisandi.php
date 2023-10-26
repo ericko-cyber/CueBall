@@ -1,6 +1,3 @@
-<?php
-require "../functions.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 
