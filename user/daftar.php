@@ -33,20 +33,28 @@ if (isset($_POST["daftar"])) {
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
   <style>
     .alert-success {
-    text-align: center; /* Pusatkan teks dalam pesan sukses */
-    position: absolute; /* Posisikan elemen secara absolut */
-    top: 10%; /* Posisikan elemen di tengah vertikal */
-    left: 50%; /* Posisikan elemen di tengah horizontal */
-    transform: translate(-50%, -50%); /* Pusatkan elemen tepat di tengah layar */
-    background-color: rgb(53, 206, 60); /* Warna latar belakang pesan sukses */
-    padding: 20px; /* Padding untuk elemen pesan sukses */
-    z-index: 2;
-  }
+      text-align: center;
+      /* Pusatkan teks dalam pesan sukses */
+      position: absolute;
+      /* Posisikan elemen secara absolut */
+      top: 10%;
+      /* Posisikan elemen di tengah vertikal */
+      left: 50%;
+      /* Posisikan elemen di tengah horizontal */
+      transform: translate(-50%, -50%);
+      /* Pusatkan elemen tepat di tengah layar */
+      background-color: rgb(53, 206, 60);
+      /* Warna latar belakang pesan sukses */
+      padding: 20px;
+      /* Padding untuk elemen pesan sukses */
+      z-index: 2;
+    }
   </style>
 </head>
+
 <body>
   <div class="wrapper">
-    <form method="POST"  enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
       <h1>Register</h1>
       <div class="input-box mt-3">
         <input type="text" name="nama" placeholder="Nama Lengkap" required>
@@ -79,15 +87,16 @@ if (isset($_POST["daftar"])) {
         </div>
       </div>
       <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Foto</label>
-          <input type="file" name="foto" class="form-control" id="exampleInputPassword1" required>
-        </div>
-      <button type="submit" name="daftar" id="daftar" class="btn">Daftar</button>
+        <label for="exampleInputPassword1" class="form-label">Foto</label>
+        <input type="file" name="foto" class="form-control" id="exampleInputPassword1" required>
+      </div>
+      <button type="submit" name="login" id="login" class="btn">Daftar</button>
       <div class="register-link">
         <p>have an account? <a href="../login.php">Login</a></p>
       </div>
     </form>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>
