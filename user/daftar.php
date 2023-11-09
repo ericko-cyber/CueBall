@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 require "../functions.php";
 
 
@@ -14,7 +14,7 @@ if (isset($_POST["daftar"])) {
 }
 
 
-?>
+?> -->
 
 
 <!doctype html>
@@ -52,9 +52,9 @@ if (isset($_POST["daftar"])) {
   </style>
 </head>
 
-<body>
+<body> 
   <div class="wrapper">
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="../procces-signup.php" enctype="multipart/form-data">
       <h1>Register</h1>
       <div class="input-box mt-3">
         <input type="text" name="nama" placeholder="Nama Lengkap" required>

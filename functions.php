@@ -51,6 +51,10 @@ function daftar($data)
 {
   global $conn;
 
+  $activation_token = bin2hex(random_bytes(16));
+  $activation_token_hash = hash("sha256", $activation_token);
+  $mysqli = require __DIR__ . "/database.php";
+
   $username = strtolower(stripslashes($data["email"]));
   $password = password_hash($data["password"], PASSWORD_DEFAULT);
   $nama = $data["nama"];
@@ -70,43 +74,18 @@ function daftar($data)
         </script>";
     return false;
   }
-  mysqli_query($conn, "INSERT INTO user (email,password,hp,jenis_kelamin,nama_lengkap,alamat,foto) VALUES ('$username','$password','$hp','$gender','$nama','$alamat','$upload')");
+
+$sql= "INSERT INTO user (email,password,hp,jenis_kelamin,nama_lengkap,alamat,foto,account_activation_hash) VALUES ('?','?','?','?','?','?','?','?')";
+
+  $stmt->bind_param("ssss",
+                  $_POST["name"],
+                  $_POST["email"],
+                  $password_hash,
+                  $activation_token_hash);
+
+  // mysqli_query($conn, "INSERT INTO user (email,password,hp,jenis_kelamin,nama_lengkap,alamat,foto,account_activation_hash) VALUES ('$username','$password','$hp','$gender','$nama','$alamat','$upload','$activation_token_hash')");
   return mysqli_affected_rows($conn);
 }
-
-// function registrasi(){
-//     global $conn;
-//     $this->load->view("templates");
-// }
-
-// function _sendemail(){
-//   global $conn;
-
-//   $config = [
-//     'protocol' => 'smtp',
-//     'smtp_host' => 'ssl://smtp.googlemail.com',
-//     'smtp_user' => 'ulumuddini585@gmail.com',
-//     'smtp_pass' => 'ihya130504',
-//     'smtp_port' => 465,
-//     'mailtype' => 'html',
-//     'charset' => 'utf-8',
-//     'newline' => "\r\n"
-//   ];
-
-//   $this->load->library('email', $config);
-
-//   $this->email->from('ulumuddini585@gmail.com', 'Web Billiard');
-//   $this->email->to('ihyau855@gmail.ocm');
-//   $this->email->subject('testing');
-//   $this->email->message('hello world');
-
-//   if($this->email->send()) {
-//     return true;
-//   } else {
-//     echo $this->email->print_debugger();
-//     die;
-//   }
-// }
 
 function edit($data)
 {
