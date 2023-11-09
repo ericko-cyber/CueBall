@@ -319,7 +319,7 @@ function tambahAdmin($data)
   global $conn;
 
   $username = $data["username"];
-  $password = $data["password"];
+  $password = password_hash($data["password"], PASSWORD_DEFAULT);
   $nama = $data["nama"];
   $hp = $data["hp"];
   $email = $data["email"];
