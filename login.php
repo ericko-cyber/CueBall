@@ -13,34 +13,40 @@ if (isset($_SESSION["role"])) {
 }
 
 // Store $hashedPassword in the database along with other user/admin details
-if (isset($_POST["login"])) {
-  $username = $_POST["username"];
-  $password = $_POST["password"];
 
-  // Query the database to retrieve the hashed password
-  $adminRow = query("SELECT * FROM admin WHERE email = '$username'");
-  $userRow = query("SELECT * FROM user WHERE email = '$username'");
+  if (isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $adminRow = query("SELECT * FROM admin WHERE email = '$username'");
+    // Query untuk mengambil data pengguna
+$userRow = query("SELECT * FROM user WHERE email = '$username'");
 
-  if ($adminRow && password_verify($password, $adminRow[0]['password'])) {
-    // set session
-    $_SESSION['username'] = $adminRow[0]['nama'];
-    $_SESSION['role'] = "Admin";
-    header("Location: admin/admin.php");
-  } else if ($userRow && password_verify($password, $userRow[0]['password'])) {
-    // set session
-    $_SESSION['email'] = $userRow[0]['email'];
-    $_SESSION['id_user'] = $userRow[0]['id_user'];
-    $_SESSION['role'] = "User";
-    header("Location: index.php");
-  } else {
-    echo "<div class='alert alert-warning'>Username atau Password salah</div>
-    <meta http-equiv='refresh' content='2'>";
-  }
+// Periksa login dan verifikasi
+if ($adminRow) {
+    if (password_verify($password, $adminRow[0]['password'])) {
+        // set session untuk admin
+        $_SESSION['username'] = $adminRow[0]['nama'];
+        $_SESSION['role'] = "Admin";
+        header("Location: admin/admin.php");
+    } else {
+        echo "<div class='alert alert-warning'>Username atau Password salah</div>";
+    }
+} elseif ($userRow && $userRow[0]["account_activation_hash"] === NULL) {
+    if (password_verify($password, $userRow[0]['password'])) {
+        // set session untuk user
+        $_SESSION['email'] = $userRow[0]['email'];
+        $_SESSION['id_user'] = $userRow[0]['id_user'];
+        $_SESSION['role'] = "User";
+        header("Location: index.php");
+    } else {
+        echo "<div class='alert alert-warning'>Username atau Password salah</div>";
+    }
+} else {
+    echo "<div class='alert alert-warning'>Verifikasi Terlebih Dahulu atau Email Tidak Ditemukan</div>";
 }
-
-
-
+  }
 ?>
+
 
 <!DOCTYPE html>
 
