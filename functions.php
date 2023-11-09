@@ -52,7 +52,7 @@ function daftar($data)
   global $conn;
 
   $username = strtolower(stripslashes($data["email"]));
-  $password = $data["password"];
+  $password = password_hash($data["password"], PASSWORD_DEFAULT);
   $nama = $data["nama"];
   $hp = $data["hp"];
   $alamat = $data["alamat"];
@@ -64,7 +64,6 @@ function daftar($data)
   }
 
   $result = mysqli_query($conn, "SELECT email FROM user WHERE email = '$username'");
-
   if (mysqli_fetch_assoc($result)) {
     echo "<script>
             alert('Username sudah terdaftar!');

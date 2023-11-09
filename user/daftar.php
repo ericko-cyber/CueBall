@@ -54,7 +54,7 @@ if (isset($_POST["daftar"])) {
 
 <body>
   <div class="wrapper">
-    <form method="POST" enctype="multipart/form-data">
+    <form method="post" action="" enctype="multipart/form-data">
       <h1>Register</h1>
       <div class="input-box mt-3">
         <input type="text" name="nama" placeholder="Nama Lengkap" required>
@@ -90,7 +90,7 @@ if (isset($_POST["daftar"])) {
         <label for="exampleInputPassword1" class="form-label">Foto</label>
         <input type="file" name="foto" class="form-control" id="exampleInputPassword1" required>
       </div>
-      <button type="submit" name="login" id="login" class="btn">Daftar</button>
+      <button type="submit" name="daftar" id="daftar" class="btn">Daftar</button>
       <div class="register-link">
         <p>have an account? <a href="../login.php">Login</a></p>
       </div>

@@ -12,22 +12,24 @@ if (isset($_SESSION["role"])) {
   }
 }
 
+// Store $hashedPassword in the database along with other user/admin details
 if (isset($_POST["login"])) {
   $username = $_POST["username"];
   $password = $_POST["password"];
 
-  $cariadmin = query("SELECT * FROM admin WHERE email = '$username' AND password = '$password'");
-  $cariuser = query("SELECT * FROM user WHERE email = '$username' AND password = '$password'");
+  // Query the database to retrieve the hashed password
+  $adminRow = query("SELECT * FROM admin WHERE email = '$username'");
+  $userRow = query("SELECT * FROM user WHERE email = '$username'");
 
-  if ($cariadmin) {
+  if ($adminRow && password_verify($password, $adminRow[0]['password'])) {
     // set session
-    $_SESSION['username'] = $cariadmin[0]['nama'];
+    $_SESSION['username'] = $adminRow[0]['nama'];
     $_SESSION['role'] = "Admin";
     header("Location: admin/admin.php");
-  } else if ($cariuser) {
+  } else if ($userRow && password_verify($password, $userRow[0]['password'])) {
     // set session
-    $_SESSION['email'] = $cariuser[0]['email'];
-    $_SESSION['id_user'] = $cariuser[0]['id_user'];
+    $_SESSION['email'] = $userRow[0]['email'];
+    $_SESSION['id_user'] = $userRow[0]['id_user'];
     $_SESSION['role'] = "User";
     header("Location: index.php");
   } else {
@@ -35,6 +37,7 @@ if (isset($_POST["login"])) {
     <meta http-equiv='refresh' content='2'>";
   }
 }
+
 
 
 ?>
