@@ -36,7 +36,7 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <link rel="stylesheet" href="reset-password.css">
+    <link rel="stylesheet" href="/css/reset-password.css">
 
     <script>
         function checkPasswordMatch() {

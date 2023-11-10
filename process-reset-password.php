@@ -7,7 +7,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./send.css">
+    <link rel="stylesheet" href="/css/send.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 </head>
 
@@ -76,7 +76,7 @@
 
         $stmt->execute();
 
-        echo "Password updated. You can now login.";
+        echo "Kata sandi diperbarui. Anda sekarang dapat masuk.";
         echo '<script>
             setTimeout(function(){
                 window.location.href = "login.php";
