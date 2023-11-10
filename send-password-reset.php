@@ -40,8 +40,8 @@
                     $mail->addAddress($email);
                     $mail->Subject = "Password Reset";
                     $mail->Body = <<<END
-                    Click <a href="http://localhost:3000/reset-password.php?token=$token">here</a>
-                    to reset your password.
+                    Klik <a href="http://localhost:3000/reset-password.php?token=$token">disini</a>
+                    untuk mengatur ulang kata sandi.
                     END;
                     try {
                         $mail->send();

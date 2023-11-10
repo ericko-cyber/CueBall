@@ -1,5 +1,48 @@
 <?php
-require "functions.php";
+
+function upload()
+{
+  $namaFile = $_FILES['foto']['name'];
+  $ukuranFile = $_FILES['foto']['size'];
+  $error = $_FILES['foto']['error'];
+  $tmpName = $_FILES['foto']['tmp_name'];
+
+  // Cek apakah tidak ada gambar yang di upload
+  if ($error === 4) {
+    echo "<script>
+    alert('Pilih gambar terlebih dahulu');
+    </script>";
+    return false;
+  }
+
+  // Cek apakah gambar
+  $extensiValid = ['jpg', 'png', 'jpeg'];
+  $extensiGambar = explode('.', $namaFile);
+  $extensiGambar = strtolower(end($extensiGambar));
+
+  if (!in_array($extensiGambar, $extensiValid)) {
+    echo "<script>
+    alert('Yang anda upload bukan gambar!');
+    </script>";
+    return false;
+  }
+
+  if ($ukuranFile > 1000000) {
+    echo "<script>
+    alert('Ukuran Gambar Terlalu Besar!');
+    </script>";
+    return false;
+  }
+
+  $namaFileBaru = uniqid();
+  $namaFileBaru .= '.';
+  $namaFileBaru .= $extensiGambar;
+  // Move File
+  move_uploaded_file($tmpName, './img/' . $namaFileBaru);
+  return $namaFileBaru;
+}
+
+
 
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
@@ -39,15 +82,15 @@ if ($stmt->execute()) {
     $mail->addAddress($_POST["email"]);
     $mail->Subject = "Account Activation";
     $mail->Body = <<<END
-    Click <a href="http://localhost:3000/activate-account.php?token=$activation_token">here</a>
-    to activate your account.
+    Klik <a href="http://localhost:3000/activate-account.php?token=$activation_token">disini</a>
+    untuk mengaktifkan akun Anda.
     END;
     try {
         $mail->send();
     } catch (Exception $e) {
         echo "Messege could not be sent. Mailer error: {$mail->ErrorInfo}";
     }
-    header("Location: signup-success.html");
+    header("Location: signup-success.php");
     exit;
 }else{
     if ($mysqli->errno === 1062) {

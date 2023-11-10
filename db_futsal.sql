@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 03:47 PM
+-- Generation Time: Nov 10, 2023 at 12:40 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_user`, `username`, `password`, `nama`, `phone`, `email`) VALUES
-(1, 'admin@admin', 'admin', 'Admin Rojak', '0895', 'admin@admin');
+(8, 'admin@admin', '$2y$10$Ee/xV6om2Lb.vbXQluZdgu60PXZGQteLEf/05pxQBGr.zGzeqM4AW', 'Admin Rojak', '0895', 'admin@admin');
 
 -- --------------------------------------------------------
 
@@ -181,22 +181,24 @@ INSERT INTO `sewa` (`idsewa`, `iduser`, `idlap`, `tgl_pesan`, `lama`, `jmulai`, 
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `hp` varchar(20) NOT NULL,
   `jenis_kelamin` varchar(10) NOT NULL,
   `nama_lengkap` varchar(60) NOT NULL,
   `alamat` text NOT NULL,
   `foto` text NOT NULL,
   `reset_token_hash` varchar(64) DEFAULT NULL,
-  `reset_token_expires_at` datetime DEFAULT NULL
+  `reset_token_expires_at` datetime DEFAULT NULL,
+  `account_activation_hash` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `email`, `password`, `hp`, `jenis_kelamin`, `nama_lengkap`, `alamat`, `foto`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(98, 'ihyau855@gmail.com', '$2y$10$uLIpLKwYFtUSukBHYof3we.35', '08972423', 'Laki-laki', 'Rizky', 'Bekasi', '645229918b946.jpg', NULL, NULL);
+INSERT INTO `user` (`id_user`, `email`, `password`, `hp`, `jenis_kelamin`, `nama_lengkap`, `alamat`, `foto`, `reset_token_hash`, `reset_token_expires_at`, `account_activation_hash`) VALUES
+(98, 'ihyau855@gmail.com', '$2y$10$AxfrevgowqmOsS0gJnOA3O.um', '08972423', 'Laki-laki', 'Rizky', 'Bekasi', '645229918b946.jpg', NULL, NULL, NULL),
+(124, 'ulumuddini585@gmail.com', '$2y$10$cIBvqPIbWmM21zX6YTJA1OV5J2oJ6GQn0MFSLtQlX6J6niZTdDeQ6', '0895765679876', 'Laki-Laki', 'erick', 'tidar', '654e153d1ce8e.png', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -249,7 +251,8 @@ ALTER TABLE `sewa`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `reset_token_hash` (`reset_token_hash`);
+  ADD UNIQUE KEY `reset_token_hash` (`reset_token_hash`),
+  ADD UNIQUE KEY `account_activation_hash` (`account_activation_hash`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -259,7 +262,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `bayar`
@@ -301,7 +304,7 @@ ALTER TABLE `sewa`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
