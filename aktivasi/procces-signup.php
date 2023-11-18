@@ -38,7 +38,7 @@ function upload()
   $namaFileBaru .= '.';
   $namaFileBaru .= $extensiGambar;
   // Move File
-  move_uploaded_file($tmpName, './img/' . $namaFileBaru);
+  move_uploaded_file($tmpName, '../img/' . $namaFileBaru);
   return $namaFileBaru;
 }
 

@@ -118,7 +118,7 @@ if (isset($_POST["simpan"])) {
           <div class="modal-body">
             <div class="row">
               <div class="col-4 my-5">
-                <img src="img/<?= $profil["foto"]; ?>" alt="Foto Profil" class="img-fluid ">
+                <img src="/img/<?= $profil["foto"]; ?>" alt="Foto Profil" class="img-fluid ">
               </div>
               <div class="col-8">
                 <h5 class="mb-3"><?= $profil["nama_lengkap"]; ?></h5>
@@ -150,7 +150,7 @@ if (isset($_POST["simpan"])) {
           <div class="modal-body">
             <div class="row justify-content-center align-items-center">
               <div class="mb-3">
-                <img src="img/<?= $profil["foto"]; ?>" alt="Foto Profil" class="img-fluid ">
+                <img src="/img/<?= $profil["foto"]; ?>" alt="Foto Profil" class="img-fluid ">
               </div>
               <div class="col">
                 <div class="mb-3">
