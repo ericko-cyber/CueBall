@@ -94,7 +94,7 @@ if (isset($_POST["login"])) {
       </div>
 
       <div class="remember-forgot">
-        <a href="send-email.php">Forgot password ?</a>
+        <a href="aktivasi/send-email.php">Forgot password ?</a>
       </div>
       <button type="submit" name="login" id="login" class="btn">Login</button>
       <div class="register-link">
