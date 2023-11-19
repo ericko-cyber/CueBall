@@ -1,5 +1,4 @@
 <?php
-
 require "../functions.php";
 
 if (isset($_POST['update_quantity_btn'])) {
@@ -15,20 +14,20 @@ if (isset($_POST['update_quantity_btn'])) {
    }
 }
 
-
 if (isset($_GET['remove'])) {
    $remove_id = $_GET['remove'];
    mysqli_query($conn, "DELETE FROM `keranjang` WHERE idkeranjang = '$remove_id'");
    header('location:keranjang.php');
-};
+}
 
 if (isset($_GET['delete_all'])) {
-   mysqli_query($conn, "DELETE FROM `cart`");
+   mysqli_query($conn, "DELETE FROM `keranjang`");
    header('location:cart.php');
 }
 
+$select_cart = mysqli_query($conn, "SELECT * FROM `keranjang`");
+$grand_total = 0;
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,50 +35,35 @@ if (isset($_GET['delete_all'])) {
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>shopping cart</title>
+   <title>Shopping Cart</title>
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
-
-
    <div class="container">
-
       <section class="shopping-cart">
-
-         <h1 class="heading">shopping cart</h1>
-
+         <h1 class="heading">Shopping Cart</h1>
          <table>
-
             <thead>
-               <th>image</th>
-               <th>name</th>
-               <th>price</th>
-               <th>quantity</th>
-               <th>total price</th>
-               <th>action</th>
+               <th>Image</th>
+               <th>Name</th>
+               <th>Price</th>
+               <th>Quantity</th>
+               <th>Total Price</th>
+               <th>Action</th>
             </thead>
-
             <tbody>
                <?php
-               $select_cart = mysqli_query($conn, "SELECT * FROM `keranjang`");
-               $grand_total = 0;
-
                if (mysqli_num_rows($select_cart) > 0) {
                   while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
-                     $sub_total = $fetch_cart['harga'] * $fetch_cart['jumlah'];
-                     $grand_total += $sub_total;
                ?>
                      <tr>
                         <td><img src="../img/<?php echo $fetch_cart['gambar']; ?>" height="100" alt=""></td>
                         <td><?php echo $fetch_cart['nama']; ?></td>
-                        <td>Rp <?php echo number_format($fetch_cart['harga']); ?>/-</td>
+                        <td>Rp <?php echo ($fetch_cart['harga']); ?>/-</td>
                         <td>
                            <div class="card-action">
                               <button class="btn" onclick="handleCounterMin(<?php echo $fetch_cart['idkeranjang']; ?>)">-</button>
@@ -87,73 +71,109 @@ if (isset($_GET['delete_all'])) {
                               <button class="btn" onclick="handleCounterPlus(<?php echo $fetch_cart['idkeranjang']; ?>)">+</button>
                            </div>
                         </td>
-                        <td>Rp <?php echo $sub_total; ?>/-</td>
-                        <td><a href="keranjang.php?remove=<?php echo $fetch_cart['idkeranjang']; ?>" onclick="return confirm('remove item from cart?')" class="delete-btn"> <i class="fas fa-trash"></i> remove</a></td>
+                        <td>Rp <?php echo $fetch_cart['harga'] * $fetch_cart['jumlah']; ?>/-</td>
+                        <td><a href="keranjang.php?remove=<?php echo $fetch_cart['idkeranjang']; ?>" onclick="return confirm('Remove item from cart?')" class="delete-btn"> <i class="fas fa-trash"></i> Remove</a></td>
                      </tr>
                <?php
                   }
                }
-
-               // Display the grand total after the loop
                ?>
                <tr class="table-bottom">
-                  <td><a href="products.php" class="option-btn" style="margin-top: 0;">lanjutkan belanja</a></td>
-                  <td colspan="3">total keseluruhan</td>
-                  <td><i class="fa-solid fa-rotate-right" style="cursor: pointer;" onclick="refreshPage()"></i>
-                     &nbsp;&nbsp;Rp <?php echo $grand_total; ?>/-</td>
-                  <td><a href="cart.php?delete_all" onclick="return confirm('apakah Anda yakin ingin menghapus semua?');" class="delete-btn"> <i class="fas fa-trash"></i> hapus semua </a></td>
+                  <td><a href="products.php" class="option-btn" style="margin-top: 0;">Lanjutkan Belanja</a></td>
+                  <td colspan="3">Total Keseluruhan</td>
+                  <td><span id="grandtotal">Rp 0.00/-</span></td>
+                  <td><a href="cart.php" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn"> <i class="fas fa-trash"></i> Hapus Semua </a></td>
                </tr>
+
             </tbody>
-
-
          </table>
-
          <div class="checkout-btn">
-            <a href="checkout.php" class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>">procced to checkout</a>
+            <a href="checkout.php" class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>">Procced to Checkout</a>
          </div>
-
       </section>
-
    </div>
 
-   <!-- custom js file link  -->
-   <!-- <script src="js/script.js"></script> -->
    <script>
-      function refreshPage() {
-         location.reload(true); // Gunakan 'true' untuk mereload halaman dari server
-      }
-      function handleCounterPlus(itemId) {
-         const counter = document.getElementById(`counter_${itemId}`);
-         let counterValue = parseInt(counter.value);
-         counter.value = ++counterValue;
+      function updateDatabase(itemId, newQuantity) {
+         const formData = new FormData();
+         formData.append('update_quantity_btn', '1');
+         formData.append('update_quantity_id', itemId);
+         formData.append('update_quantity', newQuantity);
 
-         updateDatabase(itemId, counterValue);
+         // Tambahan variabel untuk grand total
+         formData.append('order_total', getGrandTotal());
+
+         $.ajax({
+            type: 'POST',
+            url: 'keranjang.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+               console.log(data);
+               updateTotals();
+            },
+            error: function(error) {
+               console.error('Error during ajax request:', error);
+            }
+         });
+      }
+
+      // Fungsi untuk mendapatkan grand total dari elemen HTML
+      function getGrandTotal() {
+         return parseFloat($('#grandtotal').text().replace('Rp', '').replace('/-', '').replace(',', ''));
+      }
+
+
+      function handleCounterPlus(itemId) {
+         const counter = $(`#counter_${itemId}`);
+         counter.val(Math.max(parseInt(counter.val()) + 1, 1));
+
+         updateDatabase(itemId, counter.val());
       }
 
       function handleCounterMin(itemId) {
-         const counter = document.getElementById(`counter_${itemId}`);
-         let counterValue = parseInt(counter.value);
-         counter.value = counterValue > 1 ? --counterValue : 1;
+         const counter = $(`#counter_${itemId}`);
+         counter.val(Math.max(parseInt(counter.val()) - 1, 1));
 
-         updateDatabase(itemId, counterValue);
+         updateDatabase(itemId, counter.val());
       }
 
-      function updateDatabase(itemId, newQuantity) {
-         // Coba jalankan fungsi Ajax langsung di sini jika Anda memutuskan untuk tetap menggunakan file terpisah
-         const xhr = new XMLHttpRequest();
-         xhr.open("POST", "keranjang.php", true);
-         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      function updateTotals() {
+         let newGrandTotal = 0;
 
-         xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-               console.log(xhr.responseText);
-            }
+         // Iterasi setiap baris item di tabel
+         $('tbody tr').each(function(index, row) {
+            const priceText = $(row).find('td:nth-child(3)').text().trim().replace('Rp', '').replace('/-', '');
+            const price = parseFloat(priceText) || 0; // Pastikan bahwa price adalah angka, jika tidak, gunakan 0
+            const quantity = parseInt($(row).find('.counter').val()) || 0; // Pastikan bahwa quantity adalah angka, jika tidak, gunakan 0
+            const subTotal = price * quantity;
+
+            // Tampilkan subtotal di kolom ke-5 tanpa format desimal
+            $(row).find('td:nth-child(5)').text(`Rp ${subTotal.toFixed(2).replace('.', ',')}/-`);
+
+            newGrandTotal += subTotal;
+         });
+
+         // Tampilkan grand total di elemen dengan id 'grandtotal'
+         const grandtotalElement = $('#grandtotal');
+         if (!isNaN(newGrandTotal) && grandtotalElement.length > 0) {
+            grandtotalElement.text(`Rp ${newGrandTotal.toFixed(2).replace('.', ',')}/-`);
          }
+      }
 
-         xhr.send(`update_quantity_btn=1&update_quantity_id=${itemId}&update_quantity=${newQuantity}`);
+      // Panggil fungsi ini ketika halaman dimuat
+      $(document).ready(function() {
+         updateTotals();
+      });
+
+
+      window.onload = updateTotals;
+
+      function refreshPage() {
+         location.reload(true);
       }
    </script>
-
 </body>
 
 </html>
