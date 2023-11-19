@@ -6,6 +6,32 @@ $id_user = $_SESSION["id_user"];
 
 $profil = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
 
+if (isset($_POST['add_to_cart'])) {
+  $product_name = $_POST['product_name'];
+  $product_price = $_POST['product_price'];
+  $product_image = $_POST['product_image'];
+  $product_quantity = 1;
+
+  // Ambil id_user dari sesi
+  $id_user = $_SESSION['id_user'];
+
+  // Periksa apakah produk sudah ada dalam keranjang pengguna
+  $select_cart = mysqli_query($conn, "SELECT * FROM `keranjang` WHERE iduser = '$id_user' AND nama = '$product_name'");
+
+  if (mysqli_num_rows($select_cart) > 0) {
+    $message[] = 'Product already added to the cart.';
+  } else {
+    // Tambahkan produk ke keranjang pengguna
+    $insert_product = mysqli_query($conn, "INSERT INTO `keranjang` (iduser, nama, harga, gambar, jumlah) VALUES ('$id_user', '$product_name', '$product_price', '$product_image', '$product_quantity')");
+
+    if ($insert_product) {
+      $message[] = 'Product added to the cart successfully.';
+    } else {
+      $message[] = 'Error adding product to the cart.';
+    }
+  }
+}
+
 
 if (isset($_POST["simpan"])) {
   if (edit($_POST) > 0) {
@@ -18,6 +44,9 @@ if (isset($_POST["simpan"])) {
           </script>";
   }
 }
+?>
+<?php
+$select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +68,7 @@ if (isset($_POST["simpan"])) {
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!--font awesome-->
   <script src="https://kit.fontawesome.com/ab6316514a.js" crossorigin="anonymous"></script>
@@ -59,8 +86,7 @@ if (isset($_POST["simpan"])) {
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- FAS-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJ+fcF5t5z2msFb9gfHJCDGpD2be" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJ+fcF5t5z2msFb9gfHJCDGpD2be" crossorigin="anonymous">
 
 </head>
 
@@ -86,19 +112,25 @@ if (isset($_POST["simpan"])) {
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <?php
           if (isset($_SESSION['id_user'])) {
-            // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
-            echo '<a href="#" class="cart-icon" id="keranjang"><i class="bi bi-cart getstarted scrollto"></i></a>';
+            $id_user = $_SESSION['id_user'];
+            // Gunakan prepared statement untuk mencegah SQL injection
+            $stmt = mysqli_prepare($conn, "SELECT * FROM `keranjang` WHERE iduser = ?");
+            // Bind parameter ke prepared statement
+            mysqli_stmt_bind_param($stmt, "i", $id_user);
+            // Eksekusi query
+            mysqli_stmt_execute($stmt);
+            // Ambil hasil query
+            $result = mysqli_stmt_get_result($stmt);
+            // Hitung jumlah baris
+            $row_count = mysqli_num_rows($result);
+            // Tampilkan HTML
+            echo '<a href="#" class="cart-icon" id="keranjang"><i class="bi bi-cart getstarted scrollto"> <span>' . $row_count . '</span></i></a>';
             echo '<a href="user/profil.php" data-bs-toggle="modal" data-bs-target="#profilModal" class="getstarted scrollto"><i data-feather="user"></i></a>';
           } else {
             // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
             echo '<a href="login.php" class="btn btn-inti getstarted scrollto" type="submit" >Login</a>';
           }
           ?>
-          <!-- <div class="social-links mt-3">
-            <a href="#" class="cart-icon" id="keranjang">
-              <i class="bi bi-cart" class="logo"></i></a>
-          </div>
-          <li><a class="getstarted scrollto" href="#">Login</a></li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -200,14 +232,12 @@ if (isset($_POST["simpan"])) {
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-          data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>Basecamp <span>Billiard</span></h1>
           <h2>We are team of talented designers making websites with Bootstrap</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="#about" class="btn-get-started scrollto">Get Started</a>
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i
-                class="bi bi-play-circle"></i><span>Watch Video</span></a>
+            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
@@ -273,24 +303,21 @@ if (isset($_POST["simpan"])) {
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
-            data-aos-delay="200">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="img-area mb-4"><img alt="" class="img-fluid" src="assets/img/sofa.png"></div>
               <h4><a href="">Sofa dan Meja</a></h4>
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-            data-aos-delay="300">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="img-area mb-4"><img alt="" class="img-fluid" src="assets/img/ac.png"></div>
               <h4><a href="">Ruang Ber-AC</a></h4>
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-            data-aos-delay="400">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
             <div class="icon-box">
               <div class="img-area mb-4"><img alt="" class="img-fluid" src="assets/img/parkiran.png"></div>
               <h4><a href="">Tempat Parkir</a></h4>
@@ -376,223 +403,186 @@ if (isset($_POST["simpan"])) {
         <section class="product_section">
           <div class="container">
             <div class="row mx-0">
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="card product-card" data-name="p-1">
-                  <div class="product-img">
-                    <img src="assets/img/CocaCola.png" alt="Tempat Menu" class="img-fluid" />
+              <?php
+              if (mysqli_num_rows($select_products) > 0) {
+                while ($fetch_product = mysqli_fetch_assoc($select_products)) {
+              ?>
+                  <div class="col-lg-3 box">
+                    <form action="" method="post">
+                      <div class="card product-card" data-name="1">
+                        <div class="product-img">
+                          <img src="/img/<?php echo $fetch_product['foto']; ?>" alt="">
+                        </div>
+                        <div class="name-product"><?php echo $fetch_product['nm']; ?></div>
+                        <div class="price-product">Rp <?php echo $fetch_product['harga']; ?>/-</div>
+                        <input type="hidden" name="product_name" value="<?php echo $fetch_product['nm']; ?>">
+                        <input type="hidden" name="product_price" value="<?php echo $fetch_product['harga']; ?>">
+                        <input type="hidden" name="product_image" value="<?php echo $fetch_product['foto']; ?>">
+                        <div class="buttons">
+                          <?php
+                          if (isset($_SESSION['id_user'])) {
+                            // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
+                            echo '<input type="submit" class="btn btn-warning" value="add to cart" name="add_to_cart">';
+                          } else {
+                            // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
+                            echo '<a href="login.php" class="btn btn-warning">Add to Cart</a>';
+                          }
+                          ?>
+                        </div>
+                    </form>
                   </div>
-                  <div class="name-product">Coca-Cola</div>
-                  <div class="price-product">Rp. 5.000</div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="card product-card" data-name="p-2">
-                  <div class="product-img">
-                    <img src="assets/img/esteh.png" alt="Tempat Menu" class="img-fluid" />
-                  </div>
-                  <div class="name-product">Es Teh</div>
-                  <div class="price-product">Rp. 5.000</div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="card product-card" data-name="p-3">
-                  <div class="product-img">
-                    <img src="assets/img/Milo.png" alt="Tempat Menu" class="img-fluid" />
-                  </div>
-                  <div class="name-product">Es Milo</div>
-                  <div class="price-product">Rp. 5.000</div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="card product-card" data-name="p-4">
-                  <div class="product-img">
-                    <img src="assets/img/Lemineral.png" alt="Tempat Menu" class="img-fluid" />
-                  </div>
-                  <div class="name-product">Le Mineral</div>
-                  <div class="price-product">Rp. 5.000</div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="card product-card" data-name="p-5">
-                  <div class="product-img">
-                    <img src="assets/img/kentang.png" alt="Tempat Menu" class="img-fluid" />
-                  </div>
-                  <div class="name-product">Kentang Goreng</div>
-                  <div class="price-product">Rp. 5.000</div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="card product-card" data-name="p-6">
-                  <div class="product-img">
-                    <img src="assets/img/popcorn.png" alt="Tempat Menu" class="img-fluid" />
-                  </div>
-                  <div class="name-product">Popcorn</div>
-                  <div class="price-product">Rp. 5.000</div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="card product-card" data-name="p-7">
-                  <div class="product-img">
-                    <img src="assets/img/popmie.png" alt="Tempat Menu" class="img-fluid" />
-                  </div>
-                  <div class="name-product">Popmie</div>
-                  <div class="price-product">Rp. 5.000</div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="card product-card" data-name="p-8">
-                  <div class="product-img">
-                    <img src="assets/img/tahuwalik.png" alt="Tempat Menu" class="img-fluid" />
-                  </div>
-                  <div class="name-product">Tahu Walik</div>
-                  <div class="price-product">Rp. 5.000</div>
-                </div>
-              </div>
             </div>
+        <?php
+                }
+              }
+        ?>
           </div>
       </div>
     </section>
 
-    <div class="products-preview">
-      <div class="preview active" data-target="p-1">
-        <i class="fas fa-times"></i>
-        <img src="assets/img/CocaCola.png" alt="" />
-        <h3>Coca Cola</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Rp. 5.000</p>
-        <div class="buttons">
-          
-          <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-      <div class="preview" data-target="p-2">
-        <i class="fas fa-times"></i>
-        <img src="assets/img/esteh.png" alt="" />
-        <h3>Es Teh</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Rp. 5.000</p>
-        <div class="buttons">
-        <?php
-          if (isset($_SESSION['id_user'])) {
-            // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
-            echo '<a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>';
-          } else {
-            // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
-            echo '';
-          }
-          ?>
-          <!-- <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a> -->
-        </div>
-      </div>
-      <div class="preview" data-target="p-3">
-        <i class="fas fa-times"></i>
-        <img src="assets/img/Milo.png" alt="" />
-        <h3>Es Milo</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Rp. 5.000</p>
-        <div class="buttons">
-          <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-      <div class="preview" data-target="p-4">
-        <i class="fas fa-times"></i>
-        <img src="assets/img/Lemineral.png" alt="" />
-        <h3>Le Mineral</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Rp. 5.000</p>
-        <div class="buttons">
-          <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-      <div class="preview" data-target="p-5">
-        <i class="fas fa-times"></i>
-        <img src="assets/img/kentang.png" alt="" />
-        <h3>Kentang Goreng</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Rp. 5.000</p>
-        <div class="buttons">
-          <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-      <div class="preview" data-target="p-6">
-        <i class="fas fa-times"></i>
-        <img src="assets/img/popcorn.png" alt="" />
-        <h3>Popcorn</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Rp. 5.000</p>
-        <div class="buttons">
-          <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-      <div class="preview" data-target="p-7">
-        <i class="fas fa-times"></i>
-        <img src="assets/img/popmie.png" alt="" />
-        <h3>Popmie</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Rp. 5.000</p>
-        <div class="buttons">
-          <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-      <div class="preview" data-target="p-8">
-        <i class="fas fa-times"></i>
-        <img src="assets/img/tahuwalik.png" alt="" />
-        <h3>Tahu Walik</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Rp. 5.000</p>
-        <div class="buttons">
-          <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-    </div>
+
+    <!-- <div class="products-preview">
+          <div class="preview active" data-target="1">
+            <i class="fas fa-times"></i>
+            <img src="/img/<?php echo $fetch_product['foto']; ?>" alt="">
+            <h3><?php echo $fetch_product['nm']; ?></h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rp <?php echo $fetch_product['harga']; ?>/-</p>
+            <div class="buttons">
+
+              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+          </div>
+
+
+
+          <div class="preview" data-target="p-2">
+            <i class="fas fa-times"></i>
+            <img src="assets/img/esteh.png" alt="" />
+            <h3>Es Teh</h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rp. 5.000</p>
+            <div class="buttons">
+              <?php
+              if (isset($_SESSION['id_user'])) {
+                // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
+                echo '<a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>';
+              } else {
+                // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
+                echo '';
+              }
+              ?>
+            </div>
+          </div>
+          <div class="preview" data-target="p-3">
+            <i class="fas fa-times"></i>
+            <img src="assets/img/Milo.png" alt="" />
+            <h3>Es Milo</h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rp. 5.000</p>
+            <div class="buttons">
+              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+          </div>
+          <div class="preview" data-target="p-4">
+            <i class="fas fa-times"></i>
+            <img src="assets/img/Lemineral.png" alt="" />
+            <h3>Le Mineral</h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rp. 5.000</p>
+            <div class="buttons">
+              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+          </div>
+          <div class="preview" data-target="p-5">
+            <i class="fas fa-times"></i>
+            <img src="assets/img/kentang.png" alt="" />
+            <h3>Kentang Goreng</h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rp. 5.000</p>
+            <div class="buttons">
+              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+          </div>
+          <div class="preview" data-target="p-6">
+            <i class="fas fa-times"></i>
+            <img src="assets/img/popcorn.png" alt="" />
+            <h3>Popcorn</h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rp. 5.000</p>
+            <div class="buttons">
+              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+          </div>
+          <div class="preview" data-target="p-7">
+            <i class="fas fa-times"></i>
+            <img src="assets/img/popmie.png" alt="" />
+            <h3>Popmie</h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rp. 5.000</p>
+            <div class="buttons">
+              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+          </div>
+          <div class="preview" data-target="p-8">
+            <i class="fas fa-times"></i>
+            <img src="assets/img/tahuwalik.png" alt="" />
+            <h3>Tahu Walik</h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>Rp. 5.000</p>
+            <div class="buttons">
+              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+          </div>
+        </div> -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -627,9 +617,7 @@ if (isset($_POST["simpan"])) {
             </div>
           </div>
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15797.361519891363!2d113.7228033!3d-8.1684213!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd69562bda2e9cd%3A0xe42e8a1c6c620426!2sBilliard%20Basecamp!5e0!3m2!1sen!2sid!4v1699982757064!5m2!1sen!2sid"
-              frameborder="0" style="border:0; width: 100%; height: 320px;" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15797.361519891363!2d113.7228033!3d-8.1684213!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd69562bda2e9cd%3A0xe42e8a1c6c620426!2sBilliard%20Basecamp!5e0!3m2!1sen!2sid!4v1699982757064!5m2!1sen!2sid" frameborder="0" style="border:0; width: 100%; height: 320px;" allowfullscreen></iframe>
           </div>
         </div>
     </section><!-- End Contact Section -->
@@ -714,8 +702,7 @@ if (isset($_POST["simpan"])) {
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
@@ -731,8 +718,8 @@ if (isset($_POST["simpan"])) {
   <script src="assets/js/menu.js" defer></script>
 
 </body>
-  <script>
-    feather.replace();
-  </script>
+<script>
+  feather.replace();
+</script>
 
 </html>

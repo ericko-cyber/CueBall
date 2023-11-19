@@ -319,7 +319,6 @@ function editMkn($data)
 
   $id = $data["idmkn"];
   $makanan = $data["makanan"];
-  $stok = $data["stok"];
   $harga = $data["harga"];
   $gambarLama =  $data["fotoLama"];
 
@@ -333,7 +332,6 @@ function editMkn($data)
 
   $query = "UPDATE makanan SET 
   nm = '$makanan',
-  stok = '$stok',
   harga = '$harga',
   foto = '$gambar' WHERE idmakanan = '$id'
   ";
