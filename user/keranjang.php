@@ -1,5 +1,11 @@
 <?php
+session_start();
 require "../functions.php";
+require "../session.php";
+if ($role !== 'User') {
+   header("location:../login.php");
+}
+$id_user = $_SESSION["id_user"];
 
 if (isset($_POST['update_quantity_btn'])) {
    $update_id = $_POST['update_quantity_id'];
@@ -21,11 +27,11 @@ if (isset($_GET['remove'])) {
 }
 
 if (isset($_GET['delete_all'])) {
-   mysqli_query($conn, "DELETE FROM `keranjang`");
-   header('location:cart.php');
+   mysqli_query($conn, "DELETE FROM `keranjang` WHERE iduser = '$id_user'");
+   header('location:keranjang.php');
 }
 
-$select_cart = mysqli_query($conn, "SELECT * FROM `keranjang`");
+$select_cart = mysqli_query($conn, "SELECT * FROM `keranjang` where iduser = '$id_user'");
 $grand_total = 0;
 ?>
 <!DOCTYPE html>
@@ -39,6 +45,7 @@ $grand_total = 0;
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
    <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -79,101 +86,45 @@ $grand_total = 0;
                }
                ?>
                <tr class="table-bottom">
-                  <td><a href="products.php" class="option-btn" style="margin-top: 0;">Lanjutkan Belanja</a></td>
+                  <td><a href="../indexuser.php" class="option-btn" style="margin-top: 0;">Lanjutkan Belanja</a></td>
                   <td colspan="3">Total Keseluruhan</td>
                   <td><span id="grandtotal">Rp 0.00/-</span></td>
-                  <td><a href="cart.php" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn"> <i class="fas fa-trash"></i> Hapus Semua </a></td>
+                  <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn"> <i class="fas fa-trash"></i> Hapus Semua </a></td>
                </tr>
 
             </tbody>
          </table>
+         <!-- Your Checkout Button -->
          <div class="checkout-btn">
-            <a href="checkout.php" class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>">Procced to Checkout</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#editProfilModal" class="btn btn-inti">Proceed to Checkout</a>
          </div>
+
       </section>
    </div>
+   <!-- Checkout -->
+   <!-- Modal Structure -->
+   <div class="modal fade" id="editProfilModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Checkout Modal</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <!-- Your checkout form or content goes here -->
+               <p>Place your checkout form or content here...</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <!-- Add any other buttons you need in the footer -->
+            </div>
+         </div>
+      </div>
+   </div>
 
-   <script>
-      function updateDatabase(itemId, newQuantity) {
-         const formData = new FormData();
-         formData.append('update_quantity_btn', '1');
-         formData.append('update_quantity_id', itemId);
-         formData.append('update_quantity', newQuantity);
-
-         // Tambahan variabel untuk grand total
-         formData.append('order_total', getGrandTotal());
-
-         $.ajax({
-            type: 'POST',
-            url: 'keranjang.php',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-               console.log(data);
-               updateTotals();
-            },
-            error: function(error) {
-               console.error('Error during ajax request:', error);
-            }
-         });
-      }
-
-      // Fungsi untuk mendapatkan grand total dari elemen HTML
-      function getGrandTotal() {
-         return parseFloat($('#grandtotal').text().replace('Rp', '').replace('/-', '').replace(',', ''));
-      }
-
-
-      function handleCounterPlus(itemId) {
-         const counter = $(`#counter_${itemId}`);
-         counter.val(Math.max(parseInt(counter.val()) + 1, 1));
-
-         updateDatabase(itemId, counter.val());
-      }
-
-      function handleCounterMin(itemId) {
-         const counter = $(`#counter_${itemId}`);
-         counter.val(Math.max(parseInt(counter.val()) - 1, 1));
-
-         updateDatabase(itemId, counter.val());
-      }
-
-      function updateTotals() {
-         let newGrandTotal = 0;
-
-         // Iterasi setiap baris item di tabel
-         $('tbody tr').each(function(index, row) {
-            const priceText = $(row).find('td:nth-child(3)').text().trim().replace('Rp', '').replace('/-', '');
-            const price = parseFloat(priceText) || 0; // Pastikan bahwa price adalah angka, jika tidak, gunakan 0
-            const quantity = parseInt($(row).find('.counter').val()) || 0; // Pastikan bahwa quantity adalah angka, jika tidak, gunakan 0
-            const subTotal = price * quantity;
-
-            // Tampilkan subtotal di kolom ke-5 tanpa format desimal
-            $(row).find('td:nth-child(5)').text(`Rp ${subTotal.toFixed(2).replace('.', ',')}/-`);
-
-            newGrandTotal += subTotal;
-         });
-
-         // Tampilkan grand total di elemen dengan id 'grandtotal'
-         const grandtotalElement = $('#grandtotal');
-         if (!isNaN(newGrandTotal) && grandtotalElement.length > 0) {
-            grandtotalElement.text(`Rp ${newGrandTotal.toFixed(2).replace('.', ',')}/-`);
-         }
-      }
-
-      // Panggil fungsi ini ketika halaman dimuat
-      $(document).ready(function() {
-         updateTotals();
-      });
-
-
-      window.onload = updateTotals;
-
-      function refreshPage() {
-         location.reload(true);
-      }
-   </script>
+   <script src="../keranjang.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
 </html>

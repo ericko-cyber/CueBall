@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "functions.php";
+require "session.php";
 
 $id_user = $_SESSION["id_user"];
 
@@ -124,7 +125,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
             // Hitung jumlah baris
             $row_count = mysqli_num_rows($result);
             // Tampilkan HTML
-            echo '<a href="#" class="cart-icon" id="keranjang"><i class="bi bi-cart getstarted scrollto"> <span>' . $row_count . '</span></i></a>';
+            echo '<a href="user/keranjang.php" class="cart-icon" id="keranjang"><i class="bi bi-cart getstarted scrollto"> <span>' . $row_count . '</span></i></a>';
             echo '<a href="user/profil.php" data-bs-toggle="modal" data-bs-target="#profilModal" class="getstarted scrollto"><i data-feather="user"></i></a>';
           } else {
             // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil

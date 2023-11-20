@@ -98,7 +98,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                          <a href="./controller/konfirmasiPesan.php?id=<?= $row["idsewa"]; ?>" class="btn btn-primary">Konfirmasi</a>
+                          <a href="admin/kontrol/konfirmasiPesan.php?id=<?= $row["idsewa"]; ?>" class="btn btn-primary">Konfirmasi</a>
                         </div>
                       </div>
                     </div>
@@ -118,7 +118,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                          <a href="./controller/hapusPesan.php?id=<?= $row["idsewa"]; ?>" class="btn btn-danger">Hapus</a>
+                          <a href="admin/kontol/hapusPesan.php?id=<?= $row["idsewa"]; ?>" class="btn btn-danger">Hapus</a>
                         </div>
                       </div>
                     </div>

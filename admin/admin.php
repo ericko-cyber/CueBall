@@ -26,7 +26,7 @@ if (isset($_POST["simpan"])) {
   if (tambahAdmin($_POST) > 0) {
     echo "<script>
   alert('Berhasil DiTambahkan');
-  window.location.href = 'index.php'; x
+  window.location.href = 'index.php'; 
 </script>";
   } else {
     echo "<script>
@@ -116,7 +116,7 @@ if (isset($_POST["edit"])) {
           <th> Nama Lengkap <span class="icon-arrow">&UpArrow;</span></th>
           <th> Email <span class="icon-arrow">&UpArrow;</span></th>
           <th> No HP <span class="icon-arrow">&UpArrow;</span></th>
-          <th> aksi <span class="icon-arrow">&UpArrow;</span></th>
+          <!-- <th> aksi <span class="icon-arrow">&UpArrow;</span></th> -->
         </tr>
       </thead>
       <tbody id="dataTable">
@@ -128,10 +128,10 @@ if (isset($_POST["edit"])) {
             <td><?= $row["nama"]; ?></td>
             <td><?= $row["email"]; ?></td>
             <td><?= $row["phone"]; ?> </td>
-            <td>
+            <!-- <td>
               <button class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" data-userid="<?= $row["id_user"]; ?>">Edit</button>
               <a href="admin/kontrol/hapusAdmin.php?id=<?= $row["id_user"]; ?>" class="btn btn-danger">Hapus</a>
-            </td>
+            </td> -->
 
             <!-- Edit Modal -->
 
