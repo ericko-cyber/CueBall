@@ -302,11 +302,11 @@ body.dark .home .text{
 }
 
 .sidebar .menu-bar .menu-links {
-    padding: 0px; /* Atur nilai padding sesuai kebutuhan Anda */
+    padding: 0px; 
 }
 
 .drop a {
-    padding-left: 10px; /* Sesuaikan nilai padding sesuai kebutuhan Anda */
+    padding-left: 10px; 
     color: var(--text-color);
 }
 .drop a:hover{
