@@ -336,7 +336,7 @@ h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(40, 58, 90, 0.9);
+  background: rgba(0, 0, 0, 0.5);
   transition: 0.3s;
   z-index: 999;
 }
@@ -365,7 +365,7 @@ h6 {
 .navbar-mobile a:focus {
   padding: 10px 20px;
   font-size: 15px;
-  color: #37517e;
+  color: #040404;
 }
 
 .navbar-mobile a:hover,
@@ -377,7 +377,7 @@ h6 {
 .navbar-mobile .getstarted,
 .navbar-mobile .getstarted:focus {
   margin: 15px;
-  color: #37517e;
+  color: #040404;
 }
 
 .navbar-mobile .dropdown ul {
@@ -407,7 +407,7 @@ h6 {
 .navbar-mobile .dropdown ul a:hover,
 .navbar-mobile .dropdown ul .active:hover,
 .navbar-mobile .dropdown ul li:hover>a {
-  color: #47b2e4;
+  color: #FFBB35;
 }
 
 .navbar-mobile .dropdown>.dropdown-active {
