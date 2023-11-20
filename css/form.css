@@ -8,12 +8,12 @@
 
 .card-container {
     display: flex;
-    justify-content: space-between; /* Membuat elemen berada di sekitar antara */
+    justify-content: space-between; 
   }
 
   .card {
     /* flex: 1;  */
-    margin-right: 10px; /* Margin antar elemen kartu */
+    margin-right: 10px; 
   }
   #myLineChartCard {
     width: 900px;
