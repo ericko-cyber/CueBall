@@ -18,6 +18,8 @@ if (isset($_POST["edit"])) {
         </script>";
     }
 }
+
+
 ?>
 
 <link rel="stylesheet" href="../css/setting.css">
@@ -61,8 +63,8 @@ if (isset($_POST["edit"])) {
             </div>
         </div>
         <div class="text-right mt-3 p-2">
-            <button type="submit" name="edit" id="edit" class="btn btn-primary">Update akun</button>&nbsp;
-            <button type="submit" class="btn btn-danger">Hapus akun</button>&nbsp;
+            <button type="submit" name="edit" id="edit" class="btn btn-primary">Update akun</button>&nbsp;&nbsp;
+            <a href="admin/kontrol/hapusAdmin.php?id=<?= $_SESSION["id_user"]; ?>" class="btn btn-danger">Hapus akun</a>
         </div>
         </form>
     </div>

@@ -26,7 +26,7 @@ if (isset($_POST["edit"])) {
   if (editMkn($_POST) > 0) {
     echo "<script>
           alert('Berhasil Di Ubah');
-          window.location.href = 'index .php'; // Merefresh halaman ke admin.php
+          window.location.href = 'index.php'; // Merefresh halaman ke admin.php
           </script>";
   } else {
     echo "<script>
@@ -80,7 +80,7 @@ if (isset($_POST["edit"])) {
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Foto</label>
-                    <input type="file" name="foto" class="form-control" id="exampleInputPassword1">
+                    <input type="file" name="fotolama" class="form-control" id="exampleInputPassword1">
                   </div>
                 </div>
               </div>
@@ -109,7 +109,6 @@ if (isset($_POST["edit"])) {
               <tr>
                 <th> No <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Nama Makanan <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Stok <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Harga <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Foto <span class="icon-arrow">&UpArrow;</span></th>
                 <th> aksi <span class="icon-arrow">&UpArrow;</span></th>
@@ -121,7 +120,6 @@ if (isset($_POST["edit"])) {
                 <tr>
                   <th scope="row"><?= $i++; ?></th>
                   <td><?= $row["nm"]; ?></td>
-                  <td><?= $row["stok"]; ?></td>
                   <td><?= $row["harga"]; ?></td>
                   <td><img src="../img/<?= $row["foto"]; ?>" id="imglap" width="100" height="100"></td>
                   <td>
@@ -166,10 +164,6 @@ if (isset($_POST["edit"])) {
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Foto : </label>
                       <input type="file" name="foto" class="form-control" id="exampleInputPassword1" value="<?= $row["harga"]; ?>">
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Stok : </label>
-                      <input type="number" name="stok" class="form-control" id="exampleInputPassword1" value="<?= $row["stok"]; ?>">
                     </div>
                   </div>
                 </div>

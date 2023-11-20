@@ -19,32 +19,32 @@ $sqlBulan = "SELECT MONTHNAME(tgl_pesan) AS bulan FROM sewa GROUP BY MONTH(tgl_p
 $resultBulan = $conn->query($sqlBulan);
 
 // Query untuk mendapatkan total sewa
-  $sqlTotalSewa = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(tot) AS total_sewa FROM sewa GROUP BY MONTH(tgl_pesan) ORDER BY MONTH(tgl_pesan)";
-  $sqlTotalpesan = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(tot) AS total_sewa FROM keranjang GROUP BY MONTH(tgl_pesan) ORDER BY MONTH(tgl_pesan)";
-  $resultTotalSewa = $conn->query($sqlTotalSewa);
-  $resultTotalpesan = $conn->query($sqlTotalpesan);
+  // $sqlTotalSewa = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(tot) AS total_sewa FROM sewa GROUP BY MONTH(tgl_pesan) ORDER BY MONTH(tgl_pesan)";
+  // $sqlTotalpesan = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(tot) AS total_sewa FROM keranjang GROUP BY MONTH(tgl_pesan) ORDER BY MONTH(tgl_pesan)";
+  // $resultTotalSewa = $conn->query($sqlTotalSewa);
+  // $resultTotalpesan = $conn->query($sqlTotalpesan);
 
-  $labels = [];
-  $totalSewa = [];
-  $totalpesan = [];
+  // $labels = [];
+  // $totalSewa = [];
+  // $totalpesan = [];
 
-  while ($rowBulan = $resultBulan->fetch_assoc()) {
-    $bulan = $rowBulan['bulan'];
-    $labels[] = $bulan;
+  // while ($rowBulan = $resultBulan->fetch_assoc()) {
+  //   $bulan = $rowBulan['bulan'];
+  //   $labels[] = $bulan;
 
-    // Inisialisasi total_sewa untuk setiap bulan menjadi 0
-    $totalSewa[$bulan] = 0;
-    $totalpesan[$bulan] = 0;
-  }
+  //   // Inisialisasi total_sewa untuk setiap bulan menjadi 0
+  //   $totalSewa[$bulan] = 0;
+  //   $totalpesan[$bulan] = 0;
+  // }
 
-  while ($rowTotalSewa = $resultTotalSewa->fetch_assoc()) {
-    $bulan = $rowTotalSewa['bulan'];
-    $totalSewa[$bulan] = $rowTotalSewa['total_sewa'];
-  }
-  while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
-    $bulan = $rowTotalpesan['bulan'];
-    $totalpesan[$bulan] = $rowTotalpesan['total_sewa'];
-  }
+  // while ($rowTotalSewa = $resultTotalSewa->fetch_assoc()) {
+  //   $bulan = $rowTotalSewa['bulan'];
+  //   $totalSewa[$bulan] = $rowTotalSewa['total_sewa'];
+  // }
+  // while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
+  //   $bulan = $rowTotalpesan['bulan'];
+  //   $totalpesan[$bulan] = $rowTotalpesan['total_sewa'];
+  // }
 
 ?>
 

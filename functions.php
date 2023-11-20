@@ -319,7 +319,6 @@ function editMkn($data)
 
   $id = $data["idmkn"];
   $makanan = $data["makanan"];
-  $stok = $data["stok"];
   $harga = $data["harga"];
   $gambarLama =  $data["fotoLama"];
 
@@ -333,7 +332,6 @@ function editMkn($data)
 
   $query = "UPDATE makanan SET 
   nm = '$makanan',
-  stok = '$stok',
   harga = '$harga',
   foto = '$gambar' WHERE idmakanan = '$id'
   ";
@@ -380,9 +378,16 @@ function konfirmasi($idsewa)
 
   $id = $idsewa;
 
-  mysqli_query($conn, "UPDATE bayar set konfirmasi = ('Terkonfirmasi') WHERE idsewa = '$id'");
+  // Update table bayar
+  mysqli_query($conn, "UPDATE bayar SET konfirmasi = 'Terkonfirmasi' WHERE idsewa = '$id'");
+
+  // Update table sewa
+  mysqli_query($conn, "UPDATE sewa SET status = 'dikonfirmasi' WHERE idsewa = '$id'");
+
+  // Check and return the affected rows from the first query
   return mysqli_affected_rows($conn);
 }
+
 
 function checkEmailExists($email)
     {

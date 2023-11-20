@@ -6,7 +6,7 @@ if (hapusAdmin($id_user) > 0) {
   echo "
   <script>
     alert('Data Berhasil Dihapus');
-    document.location.href = '../admin.php'; 
+    document.location.href = '../../logout.php'; 
   </script>
   ";
 } else {
