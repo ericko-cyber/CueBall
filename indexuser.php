@@ -106,7 +106,17 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li class="dropdown"><a href="#table"><span>Book</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#table">Book Table</a></li>
+              <div class="buttons">
+                <?php
+                if (isset($_SESSION['id_user'])) {
+                  // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
+                  echo '<li><a href="user/lapangan.php">Book Table</a></li>';
+                } else {
+                  // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
+                  echo '<li><a href="#table">Book Table</a></li>';
+                }
+                ?>
+              </div>
               <li><a href="#fnb">Book Beverage</a></li>
             </ul>
           </li>
@@ -685,7 +695,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
             <div class="social-links mt-3">
               <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
               <a href="#https://wa.me/6285704478791" class="google-plus"><i class="bx bxl-whatsapp"></i></a>
-             
+
             </div>
           </div>
 
