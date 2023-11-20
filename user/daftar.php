@@ -34,19 +34,12 @@ if (isset($_POST["daftar"])) {
   <style>
     .alert-success {
       text-align: center;
-      /* Pusatkan teks dalam pesan sukses */
       position: absolute;
-      /* Posisikan elemen secara absolut */
       top: 10%;
-      /* Posisikan elemen di tengah vertikal */
       left: 50%;
-      /* Posisikan elemen di tengah horizontal */
       transform: translate(-50%, -50%);
-      /* Pusatkan elemen tepat di tengah layar */
       background-color: rgb(53, 206, 60);
-      /* Warna latar belakang pesan sukses */
       padding: 20px;
-      /* Padding untuk elemen pesan sukses */
       z-index: 2;
     }
   </style>
