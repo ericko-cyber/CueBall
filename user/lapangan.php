@@ -47,7 +47,7 @@ if (isset($_POST["pesan"])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daftar Lapangan</title>
+  <title>Book Table</title>
   <link rel="stylesheet" href="../style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://unpkg.com/feather-icons"></script>
@@ -60,7 +60,8 @@ if (isset($_POST["pesan"])) {
     <nav class="navbar fixed-top bg-body-secondary navbar-expand-lg">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="../kon1.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+          <img src="../assets/img/logo.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+          <h1 class="logo me-auto"><a>BASECAMP</a></h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
