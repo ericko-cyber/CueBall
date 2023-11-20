@@ -452,24 +452,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
     </section>
 
 
-    <!-- <div class="products-preview">
-          <div class="preview active" data-target="1">
-            <i class="fas fa-times"></i>
-            <img src="/img/<?php echo $fetch_product['foto']; ?>" alt="">
-            <h3><?php echo $fetch_product['nm']; ?></h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>Rp <?php echo $fetch_product['harga']; ?>/-</p>
-            <div class="buttons">
-
-              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
-          </div>
+   
 
 
 
