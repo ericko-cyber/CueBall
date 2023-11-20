@@ -685,7 +685,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
             <div class="social-links mt-3">
               <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
               <a href="#https://wa.me/6285704478791" class="google-plus"><i class="bx bxl-whatsapp"></i></a>
-              <a href="#" class="cart-icon"><i class="bi bi-cart"></i></a>
+             
             </div>
           </div>
 
