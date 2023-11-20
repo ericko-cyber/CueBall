@@ -124,21 +124,15 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           <?php
           if (isset($_SESSION['id_user'])) {
             $id_user = $_SESSION['id_user'];
-            // Gunakan prepared statement untuk mencegah SQL injection
             $stmt = mysqli_prepare($conn, "SELECT * FROM `keranjang` WHERE iduser = ?");
-            // Bind parameter ke prepared statement
             mysqli_stmt_bind_param($stmt, "i", $id_user);
-            // Eksekusi query
-            mysqli_stmt_execute($stmt);
-            // Ambil hasil query
+            mysqli_stmt_execute($stmt); 
             $result = mysqli_stmt_get_result($stmt);
-            // Hitung jumlah baris
             $row_count = mysqli_num_rows($result);
-            // Tampilkan HTML
             echo '<a href="user/keranjang.php" class="cart-icon" id="keranjang"><i class="bi bi-cart getstarted scrollto"> <span>' . $row_count . '</span></i></a>';
             echo '<a href="user/profil.php" data-bs-toggle="modal" data-bs-target="#profilModal" class="getstarted scrollto"><i data-feather="user"></i></a>';
           } else {
-            // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
+
             echo '<a href="login.php" class="btn btn-inti getstarted scrollto" type="submit" >Login</a>';
           }
           ?>
@@ -274,7 +268,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           <div class="col-lg-6">
             <p>
               Selamat datang di Basecamp Billiard, pilihan yang tepat untuk para pecinta Billiard yang mencari
-              pengalaman bermain yang tak terlupakan. Kami adalah pusat hiburan Billiard yang menyediakan fasilitas
+              pengalaman bermain billiard yang tak terlupakan. Kami adalah pusat hiburan Billiard yang menyediakan fasilitas
               berkualitas tinggi, suasana yang ramah, dan layanan pelanggan terbaik. Dengan koleksi meja Billiard yang
               modern dan nyaman, Basecamp Billiard menjadi tempat ideal untuk bertemu teman, merayakan momen spesial,
               atau sekadar melepaskan stres setelah hari yang sibuk. Kami berkomitmen untuk memberikan pengalaman
