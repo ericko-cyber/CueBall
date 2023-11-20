@@ -625,8 +625,8 @@ section {
   margin-bottom: 0;
   color: #fff;
   text-align: justify;
-  padding-right: 15px; /* Sesuaikan padding kanan sesuai kebutuhan Anda */
-  padding-left: 15px;  /* Sesuaikan padding kiri sesuai kebutuhan Anda */
+  padding-right: 15px; 
+  padding-left: 15px; 
 }
 
 
@@ -1353,17 +1353,17 @@ section {
 }
 
 .product_section {
-  margin-top: -20px; /* Adjust this value to remove the gap between cards and text */
+  margin-top: -20px; 
 }
 
 .product-card {
-  margin-bottom: 20px; /* Adjust this value to add space between cards */
+  margin-bottom: 20px; 
 }
 
 .name-product,
 .price-product {
-  text-align: center; /* Center the text */
-  margin-top: 10px; /* Adjust this value to add space between the text and the card */
+  text-align: center; 
+  margin-top: 10px; 
 }
 
 
