@@ -2,7 +2,7 @@
 
 $autoload["libraries"] = array('email', 'session');
 
-$conn = mysqli_connect("localhost", "root", "", "db_futsal");
+$conn = mysqli_connect("localhost", "root", "", "db_billiard");
 
 function query($query)
 {
