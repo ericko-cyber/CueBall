@@ -55,46 +55,44 @@ if (isset($_POST["pesan"])) {
 </head>
 
 <body>
-  <!-- Navbar -->
-  <div class="container ">
-    <nav class="navbar fixed-top bg-body-secondary navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="../assets/img/logo.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
-          <h1 class="logo me-auto"><a>BASECAMP</a></h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Booking
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="lapangan.php">Meja</a></li>
-            <li><a class="dropdown-item" href="makanan.php">Makanan</a></li>
-          </ul>
-            </li>
-          </ul>
-          <?php
-          if (isset($_SESSION['id_user'])) {
-            // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login'
-            echo '<a href="bayar.php" class="btn btn-inti"><i class="fas fa-shopping-cart"></i></a>';
-            echo '<a href="user/profil.php" data-bs-toggle="modal" data-bs-target="#profilModal" class="btn btn-inti"><i data-feather="user"></i></a>';
-          } else {
-            // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
-            echo '<a href="login.php" class="btn btn-inti" type="submit">Login</a>';
-          }
-          ?>
-        </div>
-      </div>
-    </nav>
-  </div>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+      <a href="index.html" class="logo me-auto"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
+      <h1 class="logo me-auto"><a>BASECAMP</a></h1>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <!--<li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>-->
+          <li class="dropdown"><a href="#table"><span>Book</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#table">Book Table</a></li>
+              <li><a href="#fnb">Book Beverage</a></li>
+            </ul>
+          </li>
+          <!--<li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
+          <!--<div class="social-links mt-3">
+            <a href="#" class="cart-icon" id="keranjang">
+              <i class="bi bi-cart" class="logo"></i></a>
+          </div>
+          <li><a class="getstarted scrollto" href="#">Login</a></li>-->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+      <?php
+      if (isset($_SESSION['id_user'])) {
+        // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login'
+        //echo '<a href="bayar.php" class="btn btn-inti"><i class="fas fa-shopping-cart"></i></a>';
+        echo '<a href="user/profil.php" data-bs-toggle="modal" data-bs-target="#profilModal" class="btn btn-inti"><i data-feather="user"></i></a>';
+      } else {
+        // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
+        echo '<a href="login.php" class="btn btn-inti" type="submit">Login</a>';
+      }
+      ?>
+    </div>
+  </header><!-- End Header -->
   <!-- End Navbar -->
 
   <!-- Modal Profil -->
@@ -189,7 +187,7 @@ if (isset($_POST["pesan"])) {
   <section class="lapangan" id="lapangan">
     <div class="container">
       <main class="contain" data-aos="fade-right" data-aos-duration="1000">
-        <h2 class="text-head">Lapangan di <span>Sport</span> Center </h2>
+        <h2 class="text-head">Book<span> your</span> Table </h2>
         <div class="row row-cols-1 row-cols-md-4">
           <?php foreach ($lapangan as $row) : ?>
             <div class="col">
@@ -277,25 +275,71 @@ if (isset($_POST["pesan"])) {
     </div>
   </section>
 
-  <!-- footer -->
-  <footer class="py-3">
-    <div class="social">
-      <a href="#"><i data-feather="instagram"></i></a>
-      <a href="#"><i data-feather="facebook"></i></a>
-      <a href="#"><i data-feather="twitter"></i></a>
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>BASECAMP BILLIARD</h3>
+            <p>
+              <i class="bi bi-geo-alt"></i>
+              Jalan Riau 15GG <br>
+              Krajan Barat, Sumbersari<br>
+              Jember <br><br>
+              <i class="bi bi-phone"></i>
+              <strong>Phone:</strong><br>
+              <i class="bx bxl-instagram"></i>
+              <strong>Instagram:</strong> @basecampbilliard21<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#table">Book</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#table">Table</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#fnb">Beverage</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#fnb">Snack</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Opening Hours</h4>
+            <p>Everyday | 12:00 PM - 04:00 AM </p>
+            <div class="social-links mt-3">
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#https://wa.me/6285704478791" class="google-plus"><i class="bx bxl-whatsapp"></i></a>
+              <a href="#" class="cart-icon"><i class="bi bi-cart"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <div class="links">
-      <a href="#home">Home</a>
-      <a href="#about">Lapangan</a>
-      <a href="#menu">Pembayaran</a>
-      <a href="#contact">Kontak</a>
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Basecamp Billiard</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+      </div>
     </div>
+  </footer><!-- End Footer -->
 
-    <div class="credit">
-      <p>Created by <a href="#">MuhammadSurya & NurHalizah</a> &copy; 2023</p>
-    </div>
-  </footer>
   <!-- End Footer -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   <script>
