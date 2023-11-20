@@ -1,7 +1,7 @@
 <?php
 
 $host = "localhost";
-$dbname = "db_billiard";
+$dbname = "db_futsal";
 $username = "root";
 $password = "";
 
