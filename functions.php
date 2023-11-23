@@ -4,6 +4,31 @@ $autoload["libraries"] = array('email', 'session');
 
 $conn = mysqli_connect("localhost", "root", "", "db_futsal");
 
+// functions.php
+
+if (!function_exists('query')) {
+  function query($sql, $params = []) {
+      // Lakukan koneksi ke database
+      $dsn = "mysql:host=localhost;dbname=db_futsal";
+      $username = "username";
+      $password = "password";
+
+      try {
+          $pdo = new PDO($dsn, $username, $password);
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          // Lakukan query dan kembalikan hasilnya
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute($params);
+
+          return $stmt->fetchAll(PDO::FETCH_ASSOC);
+      } catch (PDOException $e) {
+          die("Error: " . $e->getMessage());
+      }
+  }
+}
+
+
 function query($query)
 {
   global $conn;

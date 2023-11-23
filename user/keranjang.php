@@ -33,6 +33,9 @@ if (isset($_GET['delete_all'])) {
 
 $select_cart = mysqli_query($conn, "SELECT * FROM `keranjang` where iduser = '$id_user'");
 $grand_total = 0;
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +49,7 @@ $grand_total = 0;
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="../css/keranjang.css">
 </head>
 
 <body>
@@ -79,43 +82,98 @@ $grand_total = 0;
                            </div>
                         </td>
                         <td>Rp <?php echo $fetch_cart['harga'] * $fetch_cart['jumlah']; ?>/-</td>
-                        <td><a href="keranjang.php?remove=<?php echo $fetch_cart['idkeranjang']; ?>" onclick="return confirm('Remove item from cart?')" class="delete-btn"> <i class="fas fa-trash"></i> Remove</a></td>
+                        <td><a href="keranjang.php?remove=<?php echo $fetch_cart['idkeranjang']; ?>" onclick="return confirm('Remove item from cart?')" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Remove</a></td>
+
                      </tr>
                <?php
                   }
                }
                ?>
                <tr class="table-bottom">
-                  <td><a href="../indexuser.php" class="option-btn" style="margin-top: 0;">Lanjutkan Belanja</a></td>
+                  <td><a href="../indexuser.php" class="option-btn btn btn-warning" style="margin-top: 0;">Lanjutkan Belanja</a></td>
                   <td colspan="3">Total Keseluruhan</td>
                   <td><span id="grandtotal">Rp 0.00/-</span></td>
-                  <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn"> <i class="fas fa-trash"></i> Hapus Semua </a></td>
+                  <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Hapus Semua </a></td>
                </tr>
 
             </tbody>
          </table>
          <!-- Your Checkout Button -->
          <div class="checkout-btn">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#editProfilModal" class="btn btn-inti">Proceed to Checkout</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#checkout" class="btn btn-inti btn btn-success">Proceed to Checkout</a>
+         </div>
+         <div class="checkout-btn">
+            <a href="#" class="btn btn-inti btn btn-success" id="refreshBtn">Refresh</a>
          </div>
 
       </section>
    </div>
    <!-- Checkout -->
    <!-- Modal Structure -->
-   <div class="modal fade" id="editProfilModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">Checkout Modal</h5>
+               <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-               <!-- Your checkout form or content goes here -->
-               <p>Place your checkout form or content here...</p>
-            </div>
+            <form action="" method="post">
+               <div class="modal-body">
+                  <div class="display-order">
+                     <?php
+                     $id_user = $_SESSION["id_user"];
+                     $select_cart = mysqli_query($conn, "SELECT * FROM `keranjang` WHERE iduser = '$id_user'");
+                     $total = 0;
+
+                     if (mysqli_num_rows($select_cart) > 0) {
+                        while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
+                           // Calculate the total price for each item
+                           $total_price = $fetch_cart['harga'] * $fetch_cart['jumlah'];
+
+                           // Add the total price to the overall total
+                           $total += $total_price;
+
+                           // Display item details
+                     ?>
+                           <span style="font-size: 15px;"><?= $fetch_cart['nama']; ?>(<?= $fetch_cart['jumlah']; ?>)</span>
+                     <?php
+                        }
+                     } else {
+                        echo "<div class='display-order'><span>Your cart is empty!</span></div>";
+                     }
+                     // Apply number_format to the grand total after the loop
+                     $grand_total = $total;
+                     ?>
+                     <span class="grand-total" style="font-size: 15px;"> Grand Total: Rp<?= number_format($grand_total, 2); ?>/- </span>
+                  </div>
+               </div>
+               <div class="flex" style="font-size: 15px;">
+                  <div class="mb-1">
+                     <label for="exampleInputPassword1" class="form-label">Nama Lengkap</label>
+                     <input type="text" name="nama" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-1">
+                     <label for="exampleInputPassword1" class="form-label">No HP</label>
+                     <input type="text" name="hp" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-1">
+                     <label for="exampleInputPassword1" class="form-label">Ket Meja</label>
+                     <input type="text" name="meja" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <label for="">BRI:</label><br>
+                  <label for="">GOPAY:</label><br>
+                  <label for="">DANA:</label>
+                  <div class="mb-3">
+                     <label for="exampleInputPassword1" class="form-label">Foto : </label>
+                     <input type="file" name="foto" class="form-control" id="exampleInputPassword1">
+                  </div>
+               </div>
+            </form>
+
+
             <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-success">Simpan</button>
+               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                <!-- Add any other buttons you need in the footer -->
             </div>
          </div>
@@ -126,5 +184,64 @@ $grand_total = 0;
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
+<script>
+   // Event listener untuk tombol Refresh
+   document.getElementById('refreshBtn').addEventListener('click', function() {
+      // Nonaktifkan tombol Checkout
+      // document.querySelector('.checkout-btn a').disabled = true;
+
+      // Lakukan reload halaman setelah jeda 1 detik (sesuaikan kebutuhan)
+      setTimeout(function() {
+         location.reload();
+      }, );
+   });
+
+   $(document).ready(function() {
+      // Fungsi ini akan dijalankan setelah halaman selesai dimuat
+
+      // Lakukan pemanggilan asinkron ke fetch_cart.php
+      function updateCart() {
+         $.ajax({
+            url: 'fetch_cart.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+               // Setelah mendapatkan data, tampilkan di dalam div dengan id 'cart-container'
+               displayCartData(data);
+            },
+            error: function() {
+               console.log('Error fetching cart data.');
+            }
+         });
+      }
+
+      // Panggil fungsi untuk pertama kali
+      updateCart();
+
+      // Fungsi untuk menampilkan data di dalam div dengan id 'cart-container'
+      function displayCartData(data) {
+         var cartContainer = $('#cart-container');
+
+         if (data.length > 0) {
+            // Jika ada data, buat elemen HTML untuk setiap item
+            var html = '';
+            for (var i = 0; i < data.length; i++) {
+               html += '<span style="font-size: 15px;">' + data[i].nama + '(' + data[i].jumlah + ')</span>';
+            }
+
+            // Tampilkan data di dalam div
+            cartContainer.html(html);
+         } else {
+            // Jika tidak ada data, tampilkan pesan
+            cartContainer.html('<span>Your cart is empty!</span>');
+         }
+      }
+
+      // Lakukan pembaruan setiap beberapa detik (misalnya, setiap 5 detik)
+      setInterval(updateCart, 5000);
+   });
+</script>
+
+
 
 </html>

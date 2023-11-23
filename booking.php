@@ -20,16 +20,11 @@
         <br>
 
         <label>Jam Mulai:</label>
-        <button type="button" data-start-time="14:00" data-end-time="15:00" onclick="toggleTimeRange(this)"
-            data-date="">14:00-15:00</button>
-        <button type="button" data-start-time="15:00" data-end-time="16:00" onclick="toggleTimeRange(this)"
-            data-date="">15:00-16:00</button>
-        <button type="button" data-start-time="16:00" data-end-time="17:00" onclick="toggleTimeRange(this)"
-            data-date="">16:00-17:00</button>
-        <button type="button" data-start-time="17:00" data-end-time="18:00" onclick="toggleTimeRange(this)"
-            data-date="">17:00-18:00</button>
-        <button type="button" data-start-time="19:00" data-end-time="20:00" onclick="toggleTimeRange(this)"
-            data-date="">19:00-20:00</button>
+        <button type="button" data-start-time="14:00" data-end-time="15:00" onclick="toggleTimeRange(this)" data-date="">14:00-15:00</button>
+        <button type="button" data-start-time="15:00" data-end-time="16:00" onclick="toggleTimeRange(this)" data-date="">15:00-16:00</button>
+        <button type="button" data-start-time="16:00" data-end-time="17:00" onclick="toggleTimeRange(this)" data-date="">16:00-17:00</button>
+        <button type="button" data-start-time="17:00" data-end-time="18:00" onclick="toggleTimeRange(this)" data-date="">17:00-18:00</button>
+        <button type="button" data-start-time="19:00" data-end-time="20:00" onclick="toggleTimeRange(this)" data-date="">19:00-20:00</button>
         <br>
 
         <input type="hidden" id="jmulai" name="jmulai" value="">
@@ -70,7 +65,10 @@
                 selectedTimeRanges.splice(existingRangeIndex, 1);
             } else {
                 // Add the time range to the selection
-                selectedTimeRanges.push({ startTime: startTime, endTime: endTime });
+                selectedTimeRanges.push({
+                    startTime: startTime,
+                    endTime: endTime
+                });
             }
 
             // Update the hidden input fields
@@ -122,20 +120,20 @@
                     startTime: startTime,
                     endTime: endTime
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.success) {
                         alert('Pemesanan berhasil disimpan ke database.');
                     } else {
                         alert('Gagal menyimpan pemesanan. Error: ' + data.error);
                     }
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error('Error saat menyimpan pemesanan:', error);
                 }
             });
         }
 
-        document.getElementById('bookingForm').addEventListener('submit', function (event) {
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
             event.preventDefault();
             submitBookingForm();
         });
@@ -145,7 +143,7 @@
         function updateButtonsForDate() {
             var selectedDate = document.getElementById('bookingDate').value;
             var buttons = document.querySelectorAll('button[data-start-time]');
-            buttons.forEach(function (button) {
+            buttons.forEach(function(button) {
                 button.disabled = false; // enable all buttons
                 button.setAttribute('data-date', selectedDate);
             });
@@ -156,7 +154,7 @@
             var selectedDate = document.getElementById('bookingDate').value;
 
             var buttons = document.querySelectorAll('button[data-start-time]');
-            buttons.forEach(function (button) {
+            buttons.forEach(function(button) {
                 var startTime = button.getAttribute('data-start-time');
 
                 // Check if the time range is booked
@@ -190,10 +188,10 @@
             $.ajax({
                 url: 'backend.php?action=getBookedDates',
                 method: 'GET',
-                success: function (data) {
+                success: function(data) {
                     console.log('Data tanggal yang sudah dipesan:', data.dates);
                     bookedDatesMap = {};
-                    data.dates.forEach(function (date) {
+                    data.dates.forEach(function(date) {
                         bookedDatesMap[date.date] = bookedDatesMap[date.date] || [];
                         bookedDatesMap[date.date].push({
                             start_time: date.start_time,
@@ -202,17 +200,17 @@
                     });
                     updateButtonsForDate();
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error('Error saat mengambil tanggal yang sudah dipesan:', error);
                 }
             });
         }
 
-        document.getElementById('bookingDate').addEventListener('change', function () {
+        document.getElementById('bookingDate').addEventListener('change', function() {
             updateButtonsForDate();
         });
 
-        getBookedDates(function (bookedDates) {
+        getBookedDates(function(bookedDates) {
             // bookedDatesMap = {}; // Remove this line
             // bookedDates.forEach(function (date) {
             //     bookedDatesMap[date.date] = bookedDatesMap[date.date] || [];
@@ -223,7 +221,8 @@
             // });
             // updateButtonsForDate(); // Remove this line
         });
-    // </script>
+        // 
+    </script>
 
 </body>
 

@@ -34,6 +34,7 @@ function updateDatabase(itemId, newQuantity) {
     counter.val(Math.max(parseInt(counter.val()) + 1, 1));
 
     updateDatabase(itemId, counter.val());
+    updateTotals();
  }
 
  function handleCounterMin(itemId) {
@@ -41,6 +42,7 @@ function updateDatabase(itemId, newQuantity) {
     counter.val(Math.max(parseInt(counter.val()) - 1, 1));
 
     updateDatabase(itemId, counter.val());
+    updateTotals();
  }
 
  function updateTotals() {
@@ -77,3 +79,4 @@ function updateDatabase(itemId, newQuantity) {
  function refreshPage() {
     location.reload(true);
  }
+ 
