@@ -146,6 +146,9 @@ if (isset($_POST["pesan"])) {
                 <li><a class="dropdown-item" href="makanan.php">Beverage</a></li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="#">My Order</a>
+            </li>
           </ul>
           <?php
           if (isset($_SESSION['id_user'])) {

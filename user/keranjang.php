@@ -44,7 +44,6 @@ $grand_total = 0;
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Shopping Cart</title>
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -54,8 +53,38 @@ $grand_total = 0;
 
 <body>
    <div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg" style="background-color: black;">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="../assets/img/logo.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler " style="background-color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="../indexuser.php">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Booking
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="lapangan.php">Table</a></li>
+                <li><a class="dropdown-item" href="makanan.php">Beverage</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="#">My Order</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
       <section class="shopping-cart">
-         <h1 class="heading">Shopping Cart</h1>
+         <!--<h1 class="heading">Shopping Cart</h1>-->
          <table>
             <thead>
                <th>Image</th>
@@ -90,17 +119,18 @@ $grand_total = 0;
                }
                ?>
                <tr class="table-bottom">
-                  <td><a href="../indexuser.php" class="option-btn btn btn-warning" style="margin-top: 0;">Lanjutkan Belanja</a></td>
-                  <td colspan="3">Total Keseluruhan</td>
+                  <td colspan="3">Total</td>
+                  <td></td>
                   <td><span id="grandtotal">Rp 0.00/-</span></td>
-                  <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Hapus Semua </a></td>
+                  <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Clear All </a></td>
                </tr>
 
             </tbody>
          </table>
          <!-- Your Checkout Button -->
          <div class="checkout-btn">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#checkout" class="btn btn-inti btn btn-success">Proceed to Checkout</a>
+            <a href="../indexuser.php" class="option-btn btn btn-warning" style="margin-top: 0;">Continue Shopping</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#checkout" class="btn btn-inti btn btn-success">Processed to Checkout</a>
          </div>
       </section>
 

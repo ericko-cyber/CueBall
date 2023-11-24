@@ -27,6 +27,19 @@
     height:30px;
 }
 
+/* Nav  */
+
+.nav-item {
+   margin: 3px !important;
+   padding: 5px;
+ }
+ 
+ .nav-item a:hover {
+   background-color: #FFBB35;
+   border-radius: 12px;
+ }
+ /* End Nav */
+ 
 .counter {
     text-align: center;
     margin: 5px;
