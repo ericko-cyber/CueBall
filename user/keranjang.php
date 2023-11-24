@@ -72,11 +72,11 @@ $grand_total = 0;
                      </a>
                      <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="lapangan.php">Table</a></li>
-                        <li><a class="dropdown-item" href="makanan.php">Beverage</a></li>
+                        <li><a class="dropdown-item" href="keranjang.php">Beverage</a></li>
                      </ul>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link active text-white" aria-current="page" href="#">My Order</a>
+                     <a class="nav-link active text-white" aria-current="page" href="histori.php">My Order</a>
                   </li>
                </ul>
             </div>
@@ -193,6 +193,8 @@ $grand_total = 0;
                      <input type="file" name="foto" class="form-control" id="exampleInputPassword1">
                   </div>
                </div>
+               <!-- Tambahkan input tersembunyi untuk menyimpan idsewa -->
+
                <div class="modal-footer">
                   <button type="submit" name="save" class="btn btn-success">Simpan</button>
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
@@ -208,8 +210,6 @@ $grand_total = 0;
 
 
    <script>
-      
-
       $(document).ready(function() {
          $('#checkout').on('show.bs.modal', function() {
             // Ambil dan perbarui konten dari div "display-order" di sini
@@ -222,7 +222,8 @@ $grand_total = 0;
                url: 'update.php', // Gantilah dengan path aktual ke skrip sisi server Anda
                method: 'POST',
                data: {
-                  action: 'get_order_details'
+                  action: 'get_order_details',
+                  idsewa: $('[name="idsewa"]').val()
                }, // Anda dapat menyertakan data tambahan yang diperlukan
                success: function(response) {
                   // Perbarui konten dari div "display-order" dengan respons dari server

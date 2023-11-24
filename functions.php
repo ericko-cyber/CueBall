@@ -412,6 +412,21 @@ function konfirmasi($idsewa)
   // Check and return the affected rows from the first query
   return mysqli_affected_rows($conn);
 }
+function konfirmasimkn($idpesan)
+{
+  global $conn;
+
+  $id = $idpesan;
+
+  // Update table bayar
+  mysqli_query($conn, "UPDATE bayarmkn SET konfirmasi = 'Terkonfirmasi' WHERE idpesan = '$id'");
+
+  // Update table sewa
+  mysqli_query($conn, "UPDATE pesan SET status = 'dikonfirmasi' WHERE idpesan = '$id'");
+
+  // Check and return the affected rows from the first query
+  return mysqli_affected_rows($conn);
+}
 
 
 function checkEmailExists($email)

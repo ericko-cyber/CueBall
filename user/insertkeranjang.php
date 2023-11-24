@@ -16,6 +16,7 @@ function uploadkeranjang()
   if ($error === 4) {
     echo "<script>
     alert('Pilih gambar terlebih dahulu');
+    window.location.href = 'user/keranjang.php';
     </script>";
     return false;
   }
@@ -82,15 +83,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
   $insert_query = mysqli_prepare($conn, "INSERT INTO `pesan` (iduser, nama, hp, meja, foto, total_products, total_price, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
   // Bind parameter ke prepared statement
-  mysqli_stmt_bind_param($insert_query, "isssssds", $id_user, $nama, $hp, $meja, $upload, $total_product, $price_total,$status);
+  mysqli_stmt_bind_param($insert_query, "isssssds", $id_user, $nama, $hp, $meja, $upload, $total_product, $price_total, $status);
 
   // Eksekusi prepared statement
   if (mysqli_stmt_execute($insert_query)) {
+    $idpesan_baru = mysqli_insert_id($conn);
+
+    // Melakukan INSERT ke tabel bayarmkn dengan idpesan yang baru saja diambil
+    mysqli_query($conn, "INSERT INTO bayarmkn (idpesan, bukti, konfirmasi) VALUES ('$idpesan_baru', '$upload', 'Sudah Bayar')");
     echo "<script>
           alert('Berhasil DiTambahkan');
-          window.location.href = 'keranjang.php'; // Merefresh halaman ke admin.php
+          window.location.href = 'histori.php'; // Merefresh halaman ke admin.php
           </script>";
-
   } else {
     echo "Gagal menyimpan data: " . mysqli_error($conn);
   }

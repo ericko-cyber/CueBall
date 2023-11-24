@@ -7,12 +7,10 @@ if ($role !== 'Admin') {
 
 // Pagination
 
-$pesan = query("SELECT sewa.idsewa,user.nama_lengkap,sewa.tgl_pesan,sewa.jmulai,sewa.jhabis,sewa.lama,sewa.tot,bayar.bukti,bayar.konfirmasi
-FROM sewa
-JOIN user ON sewa.iduser = user.id_user
-JOIN bayar ON sewa.idsewa = bayar.idsewa ");
 
-
+$pesan = query("SELECT pesan.idpesan, pesan.nama, pesan.hp, pesan.meja, pesan.total_products, pesan.total_price, bayarmkn.tgl_upload, bayarmkn.bukti, bayarmkn.konfirmasi
+FROM pesan
+JOIN bayarmkn ON pesan.idpesan = bayarmkn.idpesan ");
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +23,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
   <link rel="stylesheet" href="../css/form.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
@@ -54,13 +53,14 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
                   <th> No <span class="icon-arrow"></span></th>
                   <th> NamaCust <span class="icon-arrow">&UpArrow;</span></th>
                   <th> TglPesan <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> TglMain <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> TglAkhir <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> Lama <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> Total <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> HP <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> Ket Meja <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> TotalProduk <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> TotalHarga <span class="icon-arrow">&UpArrow;</span></th>
                   <th> Bukti <span class="icon-arrow">&UpArrow;</span></th>
                   <th> konfirmasi <span class="icon-arrow">&UpArrow;</span></th>
                   <th> action <span class="icon-arrow">&UpArrow;</span></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -68,26 +68,26 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
                 <?php foreach ($pesan as $row) : ?>
                   <tr>
                     <td><?= $i++; ?></td>
-                    <td><?= $row["nama_lengkap"]; ?></td>
-                    <td><?= $row["tgl_pesan"]; ?></td>
-                    <td><?= $row["jmulai"]; ?></td>
-                    <td><?= $row["jhabis"]; ?></td>
-                    <td><?= $row["lama"]; ?></td>
-                    <td><?= $row["tot"]; ?></td>
+                    <td><?= $row["nama"]; ?></td>
+                    <td><?= $row["tgl_upload"]; ?></td>
+                    <td><?= $row["hp"]; ?></td>
+                    <td><?= $row["meja"]; ?></td>
+                    <td><?= $row["total_products"]; ?></td>
+                    <td><?= $row["total_price"]; ?></td>
                     <td><img src="../img/<?= $row["bukti"]; ?>" id="imglap" width="100" height="100"></td>
                     <td><?= $row["konfirmasi"]; ?></td>
                     <td>
                       <?php
-                      $idsewa = $row["idsewa"];
+                      $idpesan = $row["idpesan"];
                       if ($row["konfirmasi"] == "Terkonfirmasi") {
                         // tampilkan tombol Bayar dan Hapus
                         echo '';
                       } else {
                         // tampilkan tombol Detail
-                        echo ' <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#konfirmasiModal' . $idsewa . '">
-                    Konfir
+                        echo ' <button type="button" class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#konfirmasiModal' . $idpesan . '">
+                    Konfirmaasi
                   </button>
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal' . $idsewa . '">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal' . $idpesan . '">
                     Hapus
                   </button>
                   ';
@@ -97,27 +97,11 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
                   </tr>
 
                   <!-- Modal Konfirmasi -->
-                  <div class="modal fade" id="konfirmasiModal<?= $row["idsewa"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="konfirmasiModalLabel">Konfirmasi Pesanan <?= $row["nama_lengkap"]; ?></h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <p>Anda yakin ingin mengkonfirmasi pesanan ini?</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                          <a href="./controller/konfirmasiPesan.php?id=<?= $row["idsewa"]; ?>" class="btn btn-primary">Konfirmasi</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  
                   <!-- End Modal Konfirmasi -->
-
+                  
                   <!-- Modal Hapus -->
-                  <div class="modal fade" id="hapusModal<?= $row["idsewa"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="hapusModal<?= $row["idpesan"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -140,7 +124,24 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
           </section>
           </table>
         </main>
-
+        
+      </div>
+      <div class="modal fade" id="konfirmasiModal<?= $row["idpesan"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="konfirmasiModalLabel">Konfirmasi Pesanan <?= $row["nama"]; ?></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Anda yakin ingin mengkonfirmasi pesanan ini?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <a href="admin/kontrol/konfirmasiPesanmkn.php?id=<?= $row["idpesan"]; ?>" class="btn btn-primary">Konfirmasi</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

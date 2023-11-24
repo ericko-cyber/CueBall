@@ -9,7 +9,7 @@ if ($role !== 'Admin') {
 // Pagination
 
 
-$pesan = query("SELECT sewa.idsewa,user.nama_lengkap,sewa.tgl_pesan,sewa.jmulai,sewa.jhabis,sewa.lama,sewa.tot,bayar.bukti,bayar.konfirmasi
+$pesan = query("SELECT sewa.idsewa,user.nama_lengkap,sewa.tgl_pesan,sewa.jmulai,sewa.jhabis,sewa.tot,bayar.bukti,bayar.konfirmasi
 FROM sewa
 JOIN user ON sewa.iduser = user.id_user
 JOIN bayar ON sewa.idsewa = bayar.idsewa ");
@@ -74,7 +74,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
                       } else {
                         // tampilkan tombol Detail
                         echo ' <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#konfirmasiModal' . $idsewa . '">
-                    Konfir
+                    Konfirmasi
                   </button>
                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal' . $idsewa . '">
                     Hapus
@@ -118,7 +118,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa ");
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                          <a href="admin/kontol/hapusPesan.php?id=<?= $row["idsewa"]; ?>" class="btn btn-danger">Hapus</a>
+                          <a href="admin/kontrol/hapusPesan.php?id=<?= $row["idsewa"]; ?>" class="btn btn-danger">Hapus</a>
                         </div>
                       </div>
                     </div>
