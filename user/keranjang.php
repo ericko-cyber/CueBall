@@ -85,7 +85,7 @@ $grand_total = 0;
   </div>
       <section class="shopping-cart">
          <!--<h1 class="heading">Shopping Cart</h1>-->
-         <table>
+         <table style="margin-top: 7%;">
             <thead>
                <th>Image</th>
                <th>Name</th>
@@ -119,8 +119,8 @@ $grand_total = 0;
                }
                ?>
                <tr class="table-bottom">
-                  <td colspan="3">Total</td>
                   <td></td>
+                  <td colspan="3" style="text-align: right;">Total</td>
                   <td><span id="grandtotal">Rp 0.00/-</span></td>
                   <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Clear All </a></td>
                </tr>
