@@ -27,6 +27,19 @@
     height:30px;
 }
 
+/* Nav  */
+
+.nav-item {
+   margin: 3px !important;
+   padding: 5px;
+ }
+ 
+ .nav-item a:hover {
+   background-color: #FFBB35;
+   border-radius: 12px;
+ }
+ /* End Nav */
+ 
 .counter {
     text-align: center;
     margin: 5px;
@@ -48,7 +61,7 @@
    padding:1.5rem;
    font-size: 1rem;
    color:var(--white);
-   background-color: var(--black);
+   background-color: #FFBB35;
 }
 
 .shopping-cart table tr td{

@@ -16,7 +16,7 @@ if (isset($_POST["simpan"])) {
     if (tambahpengeluaran($_POST) > 0) {
         echo "<script>
   alert('Berhasil DiTambahkan');
-  window.location.href = 'index.php'; 
+  window.location.href = 'index.php?page=pengeluaran'; 
 </script>";
     } else {
         echo "<script>

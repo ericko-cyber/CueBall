@@ -135,7 +135,7 @@ if (isset($_POST["pesan"])) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="../index.php">Home</a>
+              <a class="nav-link active text-white" aria-current="page" href="../indexuser.php">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -143,8 +143,11 @@ if (isset($_POST["pesan"])) {
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="lapangan.php">Table</a></li>
-                <li><a class="dropdown-item" href="makanan.php">Beverage</a></li>
+                <li><a class="dropdown-item" href="keranjang.php">Beverage</a></li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="#">My Order</a>
             </li>
           </ul>
           <?php
@@ -258,14 +261,14 @@ if (isset($_POST["pesan"])) {
         <h2 class="text-head"> Choose <span>Your</span> Table! </h2>
         <div class="row row-cols-1 row-cols-md-4">
           <?php foreach ($lapangan as $row) : ?>
-            <div class="col">
+            <div class="col" style="padding-bottom: 10px;">
               <div class="card">
                 <img src="../img/<?= $row["foto"]; ?>" alt="gambar lapangan" class="card-img-top">
                 <div class="card-body text-center">
                   <h5 class="card-title"><?= $row["nm"]; ?></h5>
                   <p class="card-text"><?= $row["ket"]; ?></p>
                   <p class="card-price"><?= $row["harga"]; ?></p>
-                  <a href="jadwal.php?id=<?= $row["idlap"]; ?>" type="button" class="btn btn-secondary">Jadwal</a>
+                  <!-- <a href="jadwal.php?id=<?= $row["idlap"]; ?>" type="button" class="btn btn-secondary">Jadwal</a> -->
                   <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#pesanModal<?= $row["idlap"]; ?>" onclick="handlePesanButtonClick(<?= $row["idlap"]; ?>)">Pesan</button>
                 </div>
               </div>
@@ -604,6 +607,8 @@ if (isset($_POST["pesan"])) {
       }
 
 
+
+
       function checkAllTimes(selectedDate, idlap) {
         var buttons = $('#pesanModal' + idlap + ' button[data-start-time]');
         buttons.each(function() {
@@ -623,15 +628,20 @@ if (isset($_POST["pesan"])) {
 
       function isTimeRangeBooked(selectedDate, startTime) {
         var bookedTimeRanges = bookedDatesMap[selectedDate] || [];
+        console.log('Selected Date:', selectedDate);
+        console.log('Start Time:', startTime);
 
         for (var i = 0; i < bookedTimeRanges.length; i++) {
           var bookedStartTime = bookedTimeRanges[i].start_time;
           var bookedEndTime = bookedTimeRanges[i].end_time;
 
+
           // Konversi waktu menjadi objek Date untuk perbandingan yang lebih baik
           var selectedDateTime = new Date(selectedDate + ' ' + startTime);
           var bookedStartDateTime = new Date(selectedDate + ' ' + bookedStartTime);
           var bookedEndDateTime = new Date(selectedDate + ' ' + bookedEndTime);
+          console.log('Booked Start Time:', bookedStartTime);
+          console.log('Booked End Time:', bookedEndTime);
 
           // Periksa apakah waktu yang dipilih berada dalam rentang waktu yang sudah dipesan
           if (selectedDateTime >= bookedStartDateTime && selectedDateTime < bookedEndDateTime) {

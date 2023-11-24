@@ -13,7 +13,7 @@ if (isset($_POST["simpan"])) {
   if (tambahLpg($_POST) > 0) {
     echo "<script>
           alert('Berhasil DiTambahkan');
-          window.location.href = 'index.php'; // Merefresh halaman ke admin.php
+          window.location.href = 'index.php?page=meja'; // Merefresh halaman ke admin.php
           </script>";
   } else {
     echo "<script>
@@ -26,7 +26,7 @@ if (isset($_POST["edit"])) {
   if (editLpg($_POST) > 0) {
     echo "<script>
           alert('Berhasil Di Ubah');
-          window.location.href = 'index.php'; // Merefresh halaman ke admin.php
+          window.location.href = 'index.php?page=meja'; // Merefresh halaman ke admin.php
           </script>";
   } else {
     echo "<script>

@@ -10,7 +10,7 @@ if (isset($_POST["edit"])) {
 
         echo "<script>
             alert('Berhasil DiTambahkan');
-            window.location.href = 'index.php'; // Merefresh halaman ke admin.php
+            window.location.href = 'index.php?page=setting'; // Merefresh halaman ke admin.php
         </script>";
     } else {
         echo "<script>
