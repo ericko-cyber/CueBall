@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2023 at 08:51 AM
+-- Generation Time: Nov 24, 2023 at 04:12 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_user`, `username`, `password`, `nama`, `phone`, `email`) VALUES
-(8, 'admin@admin', '$2y$10$fcZ5k6LK46DqY4LRla.pV.bTHYH/pO7Lk6D.fqkh3PrNPRSmU1lxy', 'Admin Rojak', '089516378624', 'admin@admin');
+(8, 'admin@admin', '$2y$10$RX/YQcs6fO9HVaT7lBrxiOH4jfNBSyezhKXqpyipgLd8HjyAT16fu', 'Erick', '0895765679876', 'admin@admin');
 
 -- --------------------------------------------------------
 
@@ -88,23 +88,22 @@ CREATE TABLE `bayarmkn` (
 --
 
 CREATE TABLE `keranjang` (
-  `idpesanmkn` int(11) NOT NULL,
+  `idkeranjang` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
-  `idmakanan` int(11) NOT NULL,
-  `tgl_pesan` date NOT NULL,
+  `nama` varchar(255) NOT NULL,
   `harga` varchar(255) NOT NULL,
-  `tot` varchar(255) NOT NULL
+  `gambar` text NOT NULL,
+  `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `keranjang`
 --
 
-INSERT INTO `keranjang` (`idpesanmkn`, `iduser`, `idmakanan`, `tgl_pesan`, `harga`, `tot`) VALUES
-(126, 98, 23, '2023-10-16', '30000', '100000'),
-(127, 98, 24, '2023-11-01', '10000', '200000'),
-(128, 98, 23, '2023-12-08', '30000', '300000'),
-(129, 98, 24, '2023-10-26', '10000', '10000');
+INSERT INTO `keranjang` (`idkeranjang`, `iduser`, `nama`, `harga`, `gambar`, `jumlah`) VALUES
+(142, 128, 'aqua', '10000', '6559b1cc669cb.jpg', 1),
+(143, 128, 'coca-cola', '10000', '6558d286c75f0.jpeg', 1),
+(155, 127, 'sprite', '10000', '6559b22759f3f.jpg', 11);
 
 -- --------------------------------------------------------
 
@@ -125,8 +124,11 @@ CREATE TABLE `lapangan` (
 --
 
 INSERT INTO `lapangan` (`idlap`, `nm`, `ket`, `harga`, `foto`) VALUES
-(23, 'Meja Kecil 02', 'meja kecil', 10000, '6545b1010840b.png'),
-(24, 'Meja Besar 01', 'meja besar', 40000, 'futsal.jpg');
+(45, 'Meja Besar 01', '', 25000, '655e08515b96f.jpeg'),
+(46, 'Meja Besar 02', '', 25000, '655e08645d014.jpeg'),
+(47, 'Meja Kecil 01', '', 12000, '655e0913d4abf.jpeg'),
+(49, 'Meja Kecil 02', '', 12000, '655f88280800c.jpeg'),
+(50, 'Meja Kecil 03', '', 12000, '655f883c8e99b.jpeg');
 
 -- --------------------------------------------------------
 
@@ -137,8 +139,7 @@ INSERT INTO `lapangan` (`idlap`, `nm`, `ket`, `harga`, `foto`) VALUES
 CREATE TABLE `makanan` (
   `idmakanan` int(11) NOT NULL,
   `nm` varchar(35) NOT NULL,
-  `stok` text NOT NULL,
-  `harga` int(11) NOT NULL,
+  `harga` varchar(255) NOT NULL,
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -146,9 +147,10 @@ CREATE TABLE `makanan` (
 -- Dumping data for table `makanan`
 --
 
-INSERT INTO `makanan` (`idmakanan`, `nm`, `stok`, `harga`, `foto`) VALUES
-(11, 'Coba1', '10', 10000, '65531c7ed6c95.png'),
-(12, 'Coba1', '', 10000, '65533d81e6672.png');
+INSERT INTO `makanan` (`idmakanan`, `nm`, `harga`, `foto`) VALUES
+(11, 'aqua', '10000', '6559b1cc669cb.jpg'),
+(12, 'sprite', '10000', '6559b22759f3f.jpg'),
+(13, 'coca-cola', '10000', '6558d286c75f0.jpeg');
 
 -- --------------------------------------------------------
 
@@ -193,23 +195,24 @@ CREATE TABLE `sewa` (
   `idsewa` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `idlap` int(11) NOT NULL,
-  `tgl_pesan` date NOT NULL DEFAULT current_timestamp(),
-  `lama` int(11) NOT NULL,
-  `jmulai` datetime NOT NULL,
-  `jhabis` datetime NOT NULL,
+  `tgl_pesan` date NOT NULL,
+  `jmulai` varchar(11) NOT NULL,
+  `jhabis` varchar(11) NOT NULL,
   `harga` int(11) NOT NULL,
-  `tot` int(11) NOT NULL
+  `tot` varchar(11) NOT NULL,
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sewa`
 --
 
-INSERT INTO `sewa` (`idsewa`, `iduser`, `idlap`, `tgl_pesan`, `lama`, `jmulai`, `jhabis`, `harga`, `tot`) VALUES
-(127, 98, 24, '2023-11-01', 2, '2023-10-17 14:06:00', '2023-10-17 16:06:00', 10000, 20000),
-(128, 98, 23, '2023-12-08', 0, '2023-10-26 01:00:00', '2023-10-26 01:00:00', 30000, 30000),
-(129, 98, 24, '2023-10-26', 23, '0000-00-00 00:00:00', '1970-01-02 00:00:00', 10000, 10000),
-(130, 125, 23, '2023-10-16', 2, '2023-10-16 22:59:00', '2023-10-17 00:59:00', 30000, 60000);
+INSERT INTO `sewa` (`idsewa`, `iduser`, `idlap`, `tgl_pesan`, `jmulai`, `jhabis`, `harga`, `tot`, `status`) VALUES
+(231, 127, 45, '2023-11-23', '12:00', '14:00', 25000, '50000', 'menunggu'),
+(232, 127, 45, '2023-11-23', '18:00', '20:00', 25000, '50000', 'menunggu'),
+(233, 127, 46, '2023-11-23', '21:00', '23:00', 25000, '50000', 'menunggu'),
+(234, 127, 46, '2023-11-23', '01:00', '03:00', 25000, '50000', 'menunggu'),
+(235, 128, 45, '2023-11-23', '01:00', '03:00', 25000, '50000', 'menunggu');
 
 -- --------------------------------------------------------
 
@@ -237,8 +240,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `email`, `password`, `hp`, `jenis_kelamin`, `nama_lengkap`, `alamat`, `foto`, `reset_token_hash`, `reset_token_expires_at`, `account_activation_hash`) VALUES
 (127, 'ulumuddini585@gmail.com', '$2y$10$cslAn16v0N1571CYOkTj1uzRC8sB8TQby/Gk7YShh1NFD8NJSjJZy', '0895765679876', 'Laki-Laki', 'p', 'tidar', '65585126add17.jpeg', NULL, NULL, NULL),
-(125, 'ulumuddini585@gmail.com', '$2y$10$0Uxp4b5AuHmte6Eh2VCVpublk51.wMHxZTnd23DeBi3JM92RdF/7m', '0895765679876', 'Laki-laki', 'erick', 'tidar', '655703af2a1cf.png', NULL, NULL, NULL),
-(126, 'ulumuddini585@gmail.com', '$2y$10$3T2RW7848wNi/XWg.ZlQBuQNN6spA2A9s9EnSLf9NYQ7WVxVqUtSa', '0895765679876', 'Laki-Laki', 'erick', 'tidar', '65584fe2eabec.jpeg', NULL, NULL, '76ab5c032ca8b55b9987d8537521bb9386b40b8bcb59a853be20b55a079fdb87');
+(128, 'ihyau855@gmail.com', '$2y$10$EKEzMGmmG138UZW0hmDbKeAiPlH8wyPjtj3eCGl0TC0/XuTHBpZtG', '0895765679876', 'Laki-Laki', 'erick', 'tidar', '6559be8d86c23.jpg', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -266,7 +268,7 @@ ALTER TABLE `bayarmkn`
 -- Indexes for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  ADD PRIMARY KEY (`idpesanmkn`);
+  ADD PRIMARY KEY (`idkeranjang`);
 
 --
 -- Indexes for table `lapangan`
@@ -314,13 +316,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `bayar`
 --
 ALTER TABLE `bayar`
-  MODIFY `idbayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idbayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `bayarmkn`
@@ -332,19 +334,19 @@ ALTER TABLE `bayarmkn`
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `idpesanmkn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `idkeranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT for table `lapangan`
 --
 ALTER TABLE `lapangan`
-  MODIFY `idlap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idlap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `makanan`
 --
 ALTER TABLE `makanan`
-  MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pemasukan`
@@ -362,13 +364,13 @@ ALTER TABLE `pengeluaran`
 -- AUTO_INCREMENT for table `sewa`
 --
 ALTER TABLE `sewa`
-  MODIFY `idsewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `idsewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=236;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
