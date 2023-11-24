@@ -53,161 +53,163 @@ $grand_total = 0;
 
 <body>
    <div class="container">
-    <nav class="navbar fixed-top navbar-expand-lg" style="background-color: black;">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="../assets/img/logo.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
-        </a>
-        <button class="navbar-toggler " style="background-color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="../indexuser.php">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Booking
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="lapangan.php">Table</a></li>
-                <li><a class="dropdown-item" href="makanan.php">Beverage</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">My Order</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-      <section class="shopping-cart">
-         <!--<h1 class="heading">Shopping Cart</h1>-->
-         <table style="margin-top: 6%;">
-            <thead>
-               <th>Image</th>
-               <th>Name</th>
-               <th>Price</th>
-               <th>Quantity</th>
-               <th>Total Price</th>
-               <th>Action</th>
-            </thead>
-            <tbody>
-               <?php
-               if (mysqli_num_rows($select_cart) > 0) {
-                  while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
-               ?>
-                     <tr>
-                        <td><img src="../img/<?php echo $fetch_cart['gambar']; ?>" height="100" alt=""></td>
-                        <td><?php echo $fetch_cart['nama']; ?></td>
-                        <td>Rp <?php echo ($fetch_cart['harga']); ?>/-</td>
-                        <td>
-                           <div class="card-action">
-                              <button class="btn" onclick="handleCounterMin(<?php echo $fetch_cart['idkeranjang']; ?>)">-</button>
-                              <input type="text" id="counter_<?php echo $fetch_cart['idkeranjang']; ?>" class="counter" value="<?php echo $fetch_cart['jumlah']; ?>">
-                              <button class="btn" onclick="handleCounterPlus(<?php echo $fetch_cart['idkeranjang']; ?>)">+</button>
-                           </div>
-                        </td>
-                        <td>Rp <?php echo $fetch_cart['harga'] * $fetch_cart['jumlah']; ?>/-</td>
-                        <td><a href="keranjang.php?remove=<?php echo $fetch_cart['idkeranjang']; ?>" onclick="return confirm('Remove item from cart?')" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Remove</a></td>
-
-                     </tr>
-               <?php
-                  }
-               }
-               ?>
-               <tr class="table-bottom">
-                  <td></td>
-                  <td colspan="3" style="text-align: right;">Total</td>
-                  <td><span id="grandtotal">Rp 0.00/-</span></td>
-                  <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Clear All </a></td>
-               </tr>
-
-            </tbody>
-         </table>
-         <!-- Your Checkout Button -->
-         <div class="checkout-btn">
-            <a href="../indexuser.php" class="option-btn btn btn-warning" style="margin-top: 0;">Continue Shopping</a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#checkout" class="btn btn-inti btn btn-success">Processed to Checkout</a>
+      <nav class="navbar fixed-top navbar-expand-lg" style="background-color: black;">
+         <div class="container">
+            <a class="navbar-brand" href="#">
+               <img src="../assets/img/logo.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler " style="background-color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                     <a class="nav-link active text-white" aria-current="page" href="../indexuser.php">Home</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Booking
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="lapangan.php">Table</a></li>
+                        <li><a class="dropdown-item" href="makanan.php">Beverage</a></li>
+                     </ul>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active text-white" aria-current="page" href="#">My Order</a>
+                  </li>
+               </ul>
+            </div>
          </div>
-      </section>
+      </nav>
+   </div>
+   <section class="shopping-cart">
+      <!--<h1 class="heading">Shopping Cart</h1>-->
+      <table style="margin-top: 6%;">
+         <thead>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Action</th>
+         </thead>
+         <tbody>
+            <?php
+            if (mysqli_num_rows($select_cart) > 0) {
+               while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
+            ?>
+                  <tr>
+                     <td><img src="../img/<?php echo $fetch_cart['gambar']; ?>" height="100" alt=""></td>
+                     <td><?php echo $fetch_cart['nama']; ?></td>
+                     <td>Rp <?php echo ($fetch_cart['harga']); ?>/-</td>
+                     <td>
+                        <div class="card-action">
+                           <button class="btn" onclick="handleCounterMin(<?php echo $fetch_cart['idkeranjang']; ?>)">-</button>
+                           <input type="text" id="counter_<?php echo $fetch_cart['idkeranjang']; ?>" class="counter" value="<?php echo $fetch_cart['jumlah']; ?>">
+                           <button class="btn" onclick="handleCounterPlus(<?php echo $fetch_cart['idkeranjang']; ?>)">+</button>
+                        </div>
+                     </td>
+                     <td>Rp <?php echo $fetch_cart['harga'] * $fetch_cart['jumlah']; ?>/-</td>
+                     <td><a href="keranjang.php?remove=<?php echo $fetch_cart['idkeranjang']; ?>" onclick="return confirm('Remove item from cart?')" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Remove</a></td>
+
+                  </tr>
+            <?php
+               }
+            }
+            ?>
+            <tr class="table-bottom">
+               <td></td>
+               <td colspan="3" style="text-align: right;">Total</td>
+               <td><span id="grandtotal">Rp 0.00/-</span></td>
+               <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Clear All </a></td>
+            </tr>
+
+         </tbody>
+      </table>
+      <!-- Your Checkout Button -->
+      <div class="checkout-btn">
+         <a href="../indexuser.php" class="option-btn btn btn-warning" style="margin-top: 0;">Continue Shopping</a>
+         <a href="#" data-bs-toggle="modal" data-bs-target="#checkout" class="btn btn-inti btn btn-success">Processed to Checkout</a>
+      </div>
+   </section>
 
 
-      <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-               </div>
-               <form id="checkoutForm" action="update.php" method="post" enctype="multipart/form-data">
-                  <div class="modal-body">
-                     <div class="display-order" id="orderDetails">
-                        <?php
-                        $id_user = $_SESSION["id_user"];
-                        $select_cart = mysqli_query($conn, "SELECT * FROM `keranjang` WHERE iduser = '$id_user'");
-                        $total = 0;
+   <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="checkoutForm" action="insertkeranjang.php" method="post" enctype="multipart/form-data">
+               <div class="modal-body">
+                  <div class="display-order" id="orderDetails">
+                     <?php
+                     $id_user = $_SESSION["id_user"];
+                     $select_cart = mysqli_query($conn, "SELECT * FROM `keranjang` WHERE iduser = '$id_user'");
+                     $total = 0;
 
-                        if (mysqli_num_rows($select_cart) > 0) {
-                           while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
-                              // Calculate the total price for each item
-                              $total_price = $fetch_cart['harga'] * $fetch_cart['jumlah'];
+                     if (mysqli_num_rows($select_cart) > 0) {
+                        while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
+                           // Calculate the total price for each item
+                           $total_price = $fetch_cart['harga'] * $fetch_cart['jumlah'];
 
-                              // Add the total price to the overall total
-                              $total += $total_price;
+                           // Add the total price to the overall total
+                           $total += $total_price;
 
-                              // Display item details
-                        ?>
-                              <span style="font-size: 15px;"><?= $fetch_cart['nama']; ?>(<?= $fetch_cart['jumlah']; ?>)</span>
-                        <?php
-                           }
-                        } else {
-                           echo "<div class='display-order'><span>Your cart is empty!</span></div>";
+                           // Display item details
+                     ?>
+                           <span style="font-size: 15px;"><?= $fetch_cart['nama']; ?>(<?= $fetch_cart['jumlah']; ?>)</span>
+                     <?php
                         }
-                        // Apply number_format to the grand total after the loop
-                        $grand_total = $total;
-                        ?>
-                        <span class="grand-total" style="font-size: 15px;"> Grand Total: Rp<?= number_format($grand_total, 2); ?>/- </span>
-                     </div>
+                     } else {
+                        echo "<div class='display-order'><span>Your cart is empty!</span></div>";
+                     }
+                     // Apply number_format to the grand total after the loop
+                     $grand_total = $total;
+                     ?>
+                     <span class="grand-total" style="font-size: 15px;"> Grand Total: Rp<?= number_format($grand_total, 2); ?>/- </span>
                   </div>
-                  <div class="flex" style="font-size: 15px;">
-                     <div class="mb-1">
-                        <label for="exampleInputPassword1" class="form-label">Nama Lengkap</label>
-                        <input type="text" name="nama" class="form-control" id="exampleInputPassword1">
-                     </div>
-                     <div class="mb-1">
-                        <label for="exampleInputPassword1" class="form-label">No HP</label>
-                        <input type="text" name="hp" class="form-control" id="exampleInputPassword1">
-                     </div>
-                     <div class="mb-1">
-                        <label for="exampleInputPassword1" class="form-label">Ket Meja</label>
-                        <input type="text" name="meja" class="form-control" id="exampleInputPassword1">
-                     </div>
-                     <label for="">BRI:</label><br>
-                     <label for="">GOPAY:</label><br>
-                     <label for="">DANA:</label>
-                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Foto : </label>
-                        <input type="file" name="foto" class="form-control" id="exampleInputPassword1">
-                     </div>
+               </div>
+               <div class="flex" style="font-size: 15px;">
+                  <div class="mb-1">
+                     <label for="exampleInputPassword1" class="form-label">Nama Lengkap</label>
+                     <input type="text" name="nama" class="form-control" id="exampleInputPassword1">
                   </div>
-               </form>
+                  <div class="mb-1">
+                     <label for="exampleInputPassword1" class="form-label">No HP</label>
+                     <input type="text" name="hp" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-1">
+                     <label for="exampleInputPassword1" class="form-label">Ket Meja</label>
+                     <input type="text" name="meja" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <label for="">BRI:</label><br>
+                  <label for="">GOPAY:</label><br>
+                  <label for="">DANA:</label>
+                  <div class="mb-3">
+                     <label for="exampleInputPassword1" class="form-label">Foto : </label>
+                     <input type="file" name="foto" class="form-control" id="exampleInputPassword1">
+                  </div>
+               </div>
                <div class="modal-footer">
-                  <button type="button" name="save" class="btn btn-success">Simpan</button>
+                  <button type="submit" name="save" class="btn btn-success">Simpan</button>
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                   <!-- Add any other buttons you need in the footer -->
                </div>
-            </div>
+            </form>
          </div>
       </div>
+   </div>
 
 
    </div>
- 
+
 
    <script>
+      
+
       $(document).ready(function() {
          $('#checkout').on('show.bs.modal', function() {
             // Ambil dan perbarui konten dari div "display-order" di sini
