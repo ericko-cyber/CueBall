@@ -126,7 +126,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
             $id_user = $_SESSION['id_user'];
             $stmt = mysqli_prepare($conn, "SELECT * FROM `keranjang` WHERE iduser = ?");
             mysqli_stmt_bind_param($stmt, "i", $id_user);
-            mysqli_stmt_execute($stmt); 
+            mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             $row_count = mysqli_num_rows($result);
             echo '<a href="user/keranjang.php" class="cart-icon" id="keranjang"><i class="bi bi-cart getstarted scrollto"> <span>' . $row_count . '</span></i></a>';
@@ -373,7 +373,17 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
                 <li><i class="bx bx-check"></i> More Practical </li>
                 <li><i class="bx bx-check"></i> Easy for Beginner </li>
               </ul>
-              <a href="#" class="buy-btn">Book Now!</a>
+              <div class="buttons">
+                <?php
+                if (isset($_SESSION['id_user'])) {
+                  // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
+                  echo '<a href="user/lapangan.php" class="buy-btn">Book Now!</a>';
+                } else {
+                  // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
+                  echo '<a href="#" class="buy-btn">Book Now!</a>';
+                }
+                ?>
+              </div>
             </div>
           </div>
 
@@ -446,131 +456,6 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
     </section>
 
 
-   
-
-
-
-          <div class="preview" data-target="p-2">
-            <i class="fas fa-times"></i>
-            <img src="assets/img/esteh.png" alt="" />
-            <h3>Es Teh</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>Rp. 5.000</p>
-            <div class="buttons">
-              <?php
-              if (isset($_SESSION['id_user'])) {
-                // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
-                echo '<a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>';
-              } else {
-                // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
-                echo '';
-              }
-              ?>
-            </div>
-          </div>
-          <div class="preview" data-target="p-3">
-            <i class="fas fa-times"></i>
-            <img src="assets/img/Milo.png" alt="" />
-            <h3>Es Milo</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>Rp. 5.000</p>
-            <div class="buttons">
-              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
-          </div>
-          <div class="preview" data-target="p-4">
-            <i class="fas fa-times"></i>
-            <img src="assets/img/Lemineral.png" alt="" />
-            <h3>Le Mineral</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>Rp. 5.000</p>
-            <div class="buttons">
-              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
-          </div>
-          <div class="preview" data-target="p-5">
-            <i class="fas fa-times"></i>
-            <img src="assets/img/kentang.png" alt="" />
-            <h3>Kentang Goreng</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>Rp. 5.000</p>
-            <div class="buttons">
-              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
-          </div>
-          <div class="preview" data-target="p-6">
-            <i class="fas fa-times"></i>
-            <img src="assets/img/popcorn.png" alt="" />
-            <h3>Popcorn</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>Rp. 5.000</p>
-            <div class="buttons">
-              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
-          </div>
-          <div class="preview" data-target="p-7">
-            <i class="fas fa-times"></i>
-            <img src="assets/img/popmie.png" alt="" />
-            <h3>Popmie</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>Rp. 5.000</p>
-            <div class="buttons">
-              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
-          </div>
-          <div class="preview" data-target="p-8">
-            <i class="fas fa-times"></i>
-            <img src="assets/img/tahuwalik.png" alt="" />
-            <h3>Tahu Walik</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>Rp. 5.000</p>
-            <div class="buttons">
-              <a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
-          </div>
-        </div> -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">

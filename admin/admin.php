@@ -26,7 +26,7 @@ if (isset($_POST["simpan"])) {
   if (tambahAdmin($_POST) > 0) {
     echo "<script>
   alert('Berhasil DiTambahkan');
-  window.location.href = 'index.php'; 
+  window.location.href = 'index.php?page=admin'; 
 </script>";
   } else {
     echo "<script>
@@ -36,18 +36,18 @@ if (isset($_POST["simpan"])) {
 }
 
 
-if (isset($_POST["edit"])) {
-  if (editAdmin($_POST) > 0) {
-    echo "<script>
-          alert('Berhasil DiTambahkan');
-          window.location.href = 'index.php'; // Merefresh halaman ke admin.php
-      </script>";
-  } else {
-    echo "<script>
-          alert('Gagal DiTambahkan');
-      </script>";
-  }
-}
+// if (isset($_POST["edit"])) {
+//   if (editAdmin($_POST) > 0) {
+//     echo "<script>
+//           alert('Berhasil DiTambahkan');
+//           window.location.href = 'index.php'; // Merefresh halaman ke admin.php
+//       </script>";
+//   } else {
+//     echo "<script>
+//           alert('Gagal DiTambahkan');
+//       </script>";
+//   }
+// }
 
 ?>
 <link rel="stylesheet" href="../css/form.css">

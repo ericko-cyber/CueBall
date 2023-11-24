@@ -80,3 +80,4 @@ function updateDatabase(itemId, newQuantity) {
     location.reload(true);
  }
  
+ 
