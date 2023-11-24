@@ -37,10 +37,12 @@ if (isset($_POST["simpan"])) {
   if (edit($_POST) > 0) {
     echo "<script>
           alert('Berhasil Diubah');
+          window.location.href = 'indexuser.php'; 
           </script>";
   } else {
     echo "<script>
           alert('Gagal Diubah');
+          window.location.href = 'indexuser.php'; 
           </script>";
   }
 }
