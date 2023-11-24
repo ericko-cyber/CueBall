@@ -143,7 +143,7 @@ if (isset($_POST["pesan"])) {
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="lapangan.php">Table</a></li>
-                <li><a class="dropdown-item" href="makanan.php">Beverage</a></li>
+                <li><a class="dropdown-item" href="keranjang.php">Beverage</a></li>
               </ul>
             </li>
             <li class="nav-item">
