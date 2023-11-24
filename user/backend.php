@@ -21,8 +21,10 @@ if ($action === 'getBookedDates') {
 
         $bookedDates = [];
         while ($row = $result->fetch_assoc()) {
+            $date = date('Y-m-d', strtotime($row['tgl_pesan']));
+
             $bookedDates[] = [
-                'date' => $row['tgl_pesan'],
+                'date' => $date,
                 'start_time' => $row['jmulai'],
                 'end_time' => $row['jhabis']
             ];
@@ -33,9 +35,7 @@ if ($action === 'getBookedDates') {
         // Jika idlap kosong, berikan response error
         echo json_encode(['error' => 'Parameter idlap tidak valid']);
     }
-}
-
- elseif ($_GET['action'] === 'saveBooking') {
+} elseif ($_GET['action'] === 'saveBooking') {
 
     error_log("Data yang dikirim: " . print_r($_POST, true));
 
