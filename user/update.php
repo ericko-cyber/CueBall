@@ -5,47 +5,47 @@ require "../functions.php";
 if ($role !== 'User') {
     header("location:../login.php");
 }
-function upload()
-{
-    $namaFile = $_FILES['foto']['name'];
-    $ukuranFile = $_FILES['foto']['size'];
-    $error = $_FILES['foto']['error'];
-    $tmpName = $_FILES['foto']['tmp_name'];
+// function upload()
+// {
+//     $namaFile = $_FILES['foto']['name'];
+//     $ukuranFile = $_FILES['foto']['size'];
+//     $error = $_FILES['foto']['error'];
+//     $tmpName = $_FILES['foto']['tmp_name'];
 
-    // Cek apakah tidak ada gambar yang di upload
-    if ($error === 4) {
-        echo "<script>
-    alert('Pilih gambar terlebih dahulu');
-    </script>";
-        return false;
-    }
+//     // Cek apakah tidak ada gambar yang di upload
+//     if ($error === 4) {
+//         echo "<script>
+//     alert('Pilih gambar terlebih dahulu');
+//     </script>";
+//         return false;
+//     }
 
-    // Cek apakah gambar
-    $extensiValid = ['jpg', 'png', 'jpeg'];
-    $extensiGambar = explode('.', $namaFile);
-    $extensiGambar = strtolower(end($extensiGambar));
+//     // Cek apakah gambar
+//     $extensiValid = ['jpg', 'png', 'jpeg'];
+//     $extensiGambar = explode('.', $namaFile);
+//     $extensiGambar = strtolower(end($extensiGambar));
 
-    if (!in_array($extensiGambar, $extensiValid)) {
-        echo "<script>
-    alert('Yang anda upload bukan gambar!');
-    </script>";
-        return false;
-    }
+//     if (!in_array($extensiGambar, $extensiValid)) {
+//         echo "<script>
+//     alert('Yang anda upload bukan gambar!');
+//     </script>";
+//         return false;
+//     }
 
-    if ($ukuranFile > 1000000) {
-        echo "<script>
-    alert('Ukuran Gambar Terlalu Besar!');
-    </script>";
-        return false;
-    }
+//     if ($ukuranFile > 1000000) {
+//         echo "<script>
+//     alert('Ukuran Gambar Terlalu Besar!');
+//     </script>";
+//         return false;
+//     }
 
-    $namaFileBaru = uniqid();
-    $namaFileBaru .= '.';
-    $namaFileBaru .= $extensiGambar;
-    // Move File
-    move_uploaded_file($tmpName, '../img/' . $namaFileBaru);
-    return $namaFileBaru;
-}
+//     $namaFileBaru = uniqid();
+//     $namaFileBaru .= '.';
+//     $namaFileBaru .= $extensiGambar;
+//     // Move File
+//     move_uploaded_file($tmpName, '../img/' . $namaFileBaru);
+//     return $namaFileBaru;
+// }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
     // Tangkap data formulir

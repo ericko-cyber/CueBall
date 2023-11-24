@@ -85,7 +85,7 @@ $grand_total = 0;
   </div>
       <section class="shopping-cart">
          <!--<h1 class="heading">Shopping Cart</h1>-->
-         <table style="margin-top: 7%;">
+         <table style="margin-top: 6%;">
             <thead>
                <th>Image</th>
                <th>Name</th>
