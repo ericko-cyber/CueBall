@@ -1,7 +1,6 @@
 <?php
 session_start();
 require "functions.php";
-require "session.php";
 
 $id_user = $_SESSION["id_user"];
 
@@ -380,7 +379,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
                   echo '<a href="user/lapangan.php" class="buy-btn">Book Now!</a>';
                 } else {
                   // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
-                  echo '<a href="#" class="buy-btn">Book Now!</a>';
+                  echo '<a href="login.php" class="buy-btn">Book Now!</a>';
                 }
                 ?>
               </div>
@@ -396,7 +395,17 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
                 <li><i class="bx bx-check"></i> The Bigger, The Better</li>
                 <li><i class="bx bx-check"></i> Suitable for Competition </li>
               </ul>
-              <a href="#r" class="buy-btn">Book Now!</a>
+              <div class="buttons">
+                <?php
+                if (isset($_SESSION['id_user'])) {
+                  // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
+                  echo '<a href="user/lapangan.php" class="buy-btn">Book Now!</a>';
+                } else {
+                  // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
+                  echo '<a href="login.php" class="buy-btn">Book Now!</a>';
+                }
+                ?>
+              </div>
             </div>
           </div>
 
@@ -504,7 +513,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <h4>Join Our Family with Click The Button Below</h4>
-            <li><a class="getstarted scrollto" href="#">Subscribe</a></li>
+            <li><a class="getstarted scrollto" href="login.php">Subscribe</a></li>
           </div>
         </div>
       </div>
