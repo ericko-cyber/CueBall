@@ -8,51 +8,25 @@ if ($role !== 'User') {
 
 $id_user = $_SESSION["id_user"];
 
-// Pagination
-$jmlHalamanPerData = 4;
-$jumlahData = count(query("SELECT sewa.*, lapangan.nm, bayar.bukti, bayar.konfirmasi
+
+$sewa = query("SELECT sewa.*, user.nama_lengkap, lapangan.nm, bayar.bukti, bayar.konfirmasi
 FROM sewa
 JOIN lapangan ON sewa.idlap = lapangan.idlap
-left JOIN bayar ON sewa.idsewa = bayar.idsewa
-WHERE sewa.iduser = '$id_user'"));
-$jmlHalaman = ceil($jumlahData / $jmlHalamanPerData);
+JOIN user ON sewa.iduser = user.id_user 
+LEFT JOIN bayar ON sewa.idsewa = bayar.idsewa
+WHERE sewa.iduser = '$id_user'");
 
-if (isset($_GET["halaman"])) {
-  $halamanAktif = $_GET["halaman"];
-} else {
-  $halamanAktif = 1;
-}
-
-$awalData = ($jmlHalamanPerData * $halamanAktif) - $jmlHalamanPerData;
-
-$sewa = query("SELECT sewa.*, lapangan.nm, bayar.bukti, bayar.konfirmasi
-FROM sewa
-JOIN lapangan ON sewa.idlap = lapangan.idlap
-left JOIN bayar ON sewa.idsewa = bayar.idsewa
-WHERE sewa.iduser = '$id_user' LIMIT $awalData, $jmlHalamanPerData");
 // Pagination
 
-$profil = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
 
 
-if (isset($_POST["simpan"])) {
-  if (edit($_POST) > 0) {
-    echo "<script>
-          alert('Berhasil Diubah');
-          </script>";
-  } else {
-    echo "<script>
-          alert('Gagal Diubah');
-          </script>";
-  }
-}
 
 
 if (isset($_POST["bayar"])) {
   if (bayar($_POST) > 0) {
     echo "<script>
           alert('Berhasil Di Bayar!');
-          document.location.href = 'lapangan.php';
+          document.location.href = 'bayar.php';
           </script>";
   } else {
     echo "<script>
@@ -70,176 +44,221 @@ if (isset($_POST["bayar"])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pembayaran</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/keranjang.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://unpkg.com/feather-icons"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
 
   <!-- Navbar -->
-  <div class="container ">
-    <nav class="navbar fixed-top bg-body-secondary navbar-expand-lg">
+  <div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg" style="background-color: black;">
       <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="../kon1.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+        <a class="navbar-brand" href="#"> 
+          <img src="../assets/img/logo.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler " style="background-color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item ">
-              <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="../indexuser.php">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Booking
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="lapangan.php">Table</a></li>
+                <li><a class="dropdown-item" href="keranjang.php">Beverage</a></li>
+              </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="lapangan.php">Lapangan</a>
+              <a class="nav-link active text-white" aria-current="page" href="#">My Order</a>
             </li>
           </ul>
-          <?php
-          if (isset($_SESSION['id_user'])) {
-            // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
-            echo '<a href="bayar.php" class="btn btn-inti"><i class="fas fa-shopping-cart"></i></a>';
-            echo '<a href="" data-bs-toggle="modal" data-bs-target="#profilModal" class="btn btn-inti"><i data-feather="user"></i></a>';
-          } else {
-            // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
-            echo '<a href="login.php" class="btn btn-inti" type="submit">Login</a>';
-          }
-          ?>
         </div>
       </div>
     </nav>
   </div>
-  <!-- End Navbar -->
 
-  <!-- Modal Profil -->
-  <div class="modal fade" id="profilModal" tabindex="-1" aria-labelledby="profilModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="profilModalLabel">Profil Pengguna</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="post">
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-4 my-5">
-                <img src="../img/<?= $profil["foto"]; ?>" alt="Foto Profil" class="img-fluid ">
-              </div>
-              <div class="col-8">
-                <h5 class="mb-3"><?= $profil["nama_lengkap"]; ?></h5>
-                <p><?= $profil["jenis_kelamin"]; ?></p>
-                <p><?= $profil["email"]; ?></p>
-                <p><?= $profil["hp"]; ?></p>
-                <p><?= $profil["alamat"]; ?></p>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
-                <a href="" data-bs-toggle="modal" data-bs-target="#editProfilModal" class="btn btn-inti">Edit Profil</a>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- Modal Profil -->
+  <section class="lapangan mb-5" id="lapangan" style="margin-top: 8%;">
+    <div class="container-fluid">
 
-  <!-- Edit profil -->
-  <div class="modal fade" id="editProfilModal" tabindex="-1" aria-labelledby="editProfilModalLabel" aria-hidden="true">
-    <div class="modal-dialog edit modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editProfilModalLabel">Edit Profil</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="fotoLama" class="form-control" id="exampleInputPassword1" value="<?= $profil["foto"]; ?>">
-          <div class="modal-body">
-            <div class="row justify-content-center align-items-center">
-              <div class="mb-3">
-                <img src="../img/<?= $profil["foto"]; ?>" alt="Foto Profil" class="img-fluid ">
-              </div>
-              <div class="col">
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Nama Lengkap</label>
-                  <input type="text" name="nama_lengkap" class="form-control" id="exampleInputPassword1" value="<?= $profil["nama_lengkap"]; ?>">
-                </div>
-                <div class="mb-3">
-                  <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                  <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
-                    <option value="Laki-laki" <?php if ($profil['jenis_kelamin'] == 'Laki-laki') echo 'selected'; ?>>Laki-laki</option>
-                    <option value="Perempuan" <?php if ($profil['jenis_kelamin'] == 'Perempuan') echo 'selected'; ?>>Perempuan</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col">
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">No Telp</label>
-                  <input type="number" name="hp" class="form-control" id="exampleInputPassword1" value="<?= $profil["hp"]; ?>">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Email</label>
-                  <input type="email" name="email" class="form-control" id="exampleInputPassword1" value="<?= $profil["email"]; ?>">
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">alamat</label>
-                <input type="text" name="alamat" class="form-control" id="exampleInputPassword1" value="<?= $profil["alamat"]; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Foto : </label>
-                <input type="file" name="foto" class="form-control" id="exampleInputPassword1">
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-inti" name="simpan" id="simpan">Simpan</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+      <!-- <h2 class="text-head"><span>Pembayaran</span>Meja </h2> -->
+      <form action="" method="post" enctype="multipart/form-data" class="px-4">
+        <table class="table my-5">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Tanggal Pesan</th>
+              <th scope="col">Nama Pemesan</th>
+              <th scope="col">Nama Meja</th>
+              <th scope="col">Jam Mulai</th>
+              <th scope="col">jam Habis</th>
+              <th scope="col">Total</th>
+              <th scope="col">Status</th>
+              <th scope="col">Konfirmasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $i = 1; ?>
+            <?php foreach ($sewa as $row) : ?>
+              <tr>
+                <th scope="row"><?= $i++; ?></th>
+                <td><?= $row["tgl_pesan"] ?></td>
+                <td><?= $row["nama_lengkap"] ?></td>
+                <td><?= $row["nm"] ?></td>
+                <td><?= $row["jmulai"] ?></td>
+                <td><?= $row["jhabis"] ?></td>
+                <td><?= $row["tot"] ?></td>
+                <td><?= $row["status"] ?></td>
+                <td>
+                  <?php
+                  $idsewa = $row["idsewa"];
+                  if ($row["konfirmasi"] == "Sudah Bayar" || $row["konfirmasi"] == "Terkonfirmasi") {
+                    // tampilkan tombol Bayar dan Hapus
+                    echo '<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailModal' . $row["idsewa"] . '">Detail</button> ';
+                  } else {
+                    // tampilkan tombol Detail
+                    echo '<button type="button" class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#bayarModal' . $row["idsewa"] . '">Bayar</button>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#hapusModal' . $row["idsewa"] . '" class="btn btn-danger">Hapus</a>';
+                  }
+                  ?>
 
-  <!-- Cart -->
-  <div class="row">
-    <div class="col-12">
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th>Foto</th>
-            <th>Nama</th>
-            <th></th>
-          </tr>
+                  <!-- Modal Bayar -->
+                  <div class="modal fade" id="bayarModal<?= $row["idsewa"] ?>" tabindex="-1" role="dialog" aria-labelledby="bayarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Bayar Meja <?= $row["nm"]; ?></h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data">
+                          <input type="hidden" name="idsewa" value="<?= $row["idsewa"]; ?>">
+                          <div class="modal-body">
+                            <!-- konten form modal -->
+                            <div class="row justify-content-center align-items-center">
+                              <div class="col">
+                                <div class="mb-3">
+                                  <label for="exampleInputPassword1" class="form-label">Jam Mulai</label>
+                                  <input type="text" name="tgl_main" class="form-control" id="exampleInputPassword1" value="<?= $row["jmulai"]; ?>" disabled>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputPassword1" class="form-label">Jam Habis</label>
+                                  <input type="text" name="jam_habis" class="form-control" id="exampleInputPassword1" value="<?= $row["jhabis"]; ?>" disabled>
+                                </div>
+                              </div>
+                        
+                                <div class="mb-3">
+                                  <label for="exampleInputPassword1" class="form-label">Harga</label>
+                                  <input type="number" name="harga" class="form-control" id="exampleInputPassword1" value="<?= $row["harga"]; ?>" disabled>
+                                </div>
+                          
+                              <div class="input-group ">
+                                <div class="input-group-prepend border border-danger">
+                                  <span class="input-group-text">Total</span>
+                                </div>
+                                <input type="number" name="total" class="form-control border border-danger" id="exampleInputPassword1" value="<?= $row["tot"]; ?>" disabled>
+                              </div>
+                              <div class="mt-3">
+                                <label for="exampleInputPassword1" class="form-label">Transfer ke : BRI </label>
+                              </div>
+                              <div class="mt-3">
+                                <label for="exampleInputPassword1" class="form-label">Upload Bukti</label>
+                                <input type="file" name="foto" class="form-control" id="exampleInputPassword1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mt-3 mx-3">
+                            <h6 class=" text-center border border-danger">Status : Belum Bayar</h6>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-inti btn btn-success" name="bayar" id="bayar">Bayar</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Modal Bayar -->
+
+                  <!-- Modal Detail -->
+                  <div class="modal fade" id="detailModal<?= $row["idsewa"] ?>" tabindex="-1" role="dialog" aria-labelledby="bayarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Detail Pembayaran <?= $row["nm"]; ?></h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="" method="post">
+                          <div class="modal-body">
+                            <!-- konten form modal -->
+                            <div class="row justify-content-center align-items-center">
+                              <div class="mb-3">
+                                <img src="../img/<?= $row["bukti"]; ?>" alt="gambar lapangan" class="img-fluid">
+                              </div>
+                              <div class="col">
+                                <div class="mb-3">
+                                  <label for="exampleInputPassword1" class="form-label">Jam Mulai</label>
+                                  <input type="text" name="tgl_main" class="form-control" id="exampleInputPassword1" value="<?= $row["jmulai"]; ?>" disabled>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputPassword1" class="form-label">Jam Habis</label>
+                                  <input type="text" name="jam_habis" class="form-control" id="exampleInputPassword1" value="<?= $row["jhabis"]; ?>" disabled>
+                                </div>
+                              </div>
+                                <div class="mb-3">
+                                  <label for="exampleInputPassword1" class="form-label">Harga</label>
+                                  <input type="number" name="harga" class="form-control" id="exampleInputPassword1" value="<?= $row["harga"]; ?>" disabled>
+                                </div>
+                              <div class="input-group ">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">Total</span>
+                                </div>
+                                <input type="number" name="total" class="form-control " id="exampleInputPassword1" value="<?= $row["tot"]; ?>" disabled>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mt-3 mx-3">
+                            <h6 class="text-center border border-danger">Status : <?= $row["konfirmasi"]; ?></h6>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Modal Detail -->
+
+                  <!-- Modal Hapus -->
+                  <div class="modal fade" id="hapusModal<?= $row["idsewa"]; ?>" tabindex="-1" aria-labelledby="profilModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus Data</h5>
+                        </div>
+                        <div class="modal-body">
+                          <p>Anda yakin ingin menghapus data ini?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                          <a href="./controller/hapus.php?id=<?= $row["idsewa"] ?>" class="btn btn-danger">Hapus</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Modal Hapus -->
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
         </table>
-      </div>
+      </form>
     </div>
-  </div>
-
-  <!-- end cart -->
-
-  <!-- footer -->
-  <footer class="fixed-bottom py-3 mt-5">
-    <div class="social">
-      <a href="#"><i data-feather="instagram"></i></a>
-      <a href="#"><i data-feather="facebook"></i></a>
-      <a href="#"><i data-feather="twitter"></i></a>
-    </div>
-
-    <div class="links">
-      <a href="#home">Home</a>
-      <a href="#about">Lapangan</a>
-      <a href="#menu">Pembayaran</a>
-      <a href="#contact">Kontak</a>
-    </div>
-
-    <div class="credit">
-      <p>Created by <a href="#">Kelompok A5</a> &copy; 2023</p>
-    </div>
-  </footer>
-  <!-- End Footer -->
-
-
+  </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   <script>

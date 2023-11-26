@@ -16,8 +16,6 @@ $pesan = query("SELECT pesan.*, bayarmkn.tgl_upload
 
 // $profil = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
 
-
-
 ?>
 
 <!doctype html>

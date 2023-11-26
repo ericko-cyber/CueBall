@@ -7,6 +7,27 @@ require "functions.php";
 if ($role !== 'Admin') {
     header("location:login.php");
 }
+$stmtpp = mysqli_prepare($conn, "
+    (SELECT * FROM `bayar` WHERE konfirmasi = 'Sudah Bayar')
+    UNION
+    (SELECT * FROM `bayarmkn` WHERE konfirmasi = 'Sudah Bayar')
+");
+mysqli_stmt_execute($stmtpp);
+$result = mysqli_stmt_get_result($stmtpp);
+$row_count_total = mysqli_num_rows($result);
+
+
+$stmt = mysqli_prepare($conn, "SELECT * FROM `bayar` WHERE konfirmasi = 'Sudah Bayar'");
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$row_count = mysqli_num_rows($result);
+
+$stmtp = mysqli_prepare($conn, "SELECT * FROM `bayarmkn` WHERE konfirmasi = 'Sudah Bayar'");
+mysqli_stmt_execute($stmtp);
+$result = mysqli_stmt_get_result($stmtp);
+$row_countp = mysqli_num_rows($result);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,22 +95,22 @@ if ($role !== 'Admin') {
                     <li class="nav-link">
                         <a href="#sidemenu2" data-bs-toggle="collapse" aria-current="page">
                             <i class='bx bx-money-withdraw icon'></i>
-                            <span class="text nav-text">Pemesanan</span>
+                            <span class="text nav-text">Pemesanan<i class='bx bxs-bell'></i><span><?= $row_count_total ?></span></span>
                         </a>
                     </li>
                     <ul class="collapse " id="sidemenu2" data-bs-parent="#menu">
                         <li class="nav-link drop">
-                            <a class="nav-text text-white" href="index.php?page=mejapesan">Meja</a>
+                            <a class="nav-text text-white" href="index.php?page=mejapesan">Meja &nbsp;<span><i class='bx bxs-bell'></i><?= $row_count ?></span></a>
                         </li>
                         <li class="nav-link drop">
-                            <a class=" nav-text text-white" href="index.php?page=makanpesan">Minuman</a>
+                            <a class=" nav-text text-white" href="index.php?page=makanpesan">Minuman &nbsp; <i class='bx bxs-bell'></i><span><?= $row_countp ?></span></a>
                         </li>
                     </ul>
 
                     <li class="nav-link down">
                         <a href="#sidemenu" data-bs-toggle="collapse" aria-current="page">
                             <i class='bx bx-clipboard icon'></i>
-                            <span class="text nav-text">Meja & Minuman</span>
+                            <span class="text nav-text">Meja & Minuman </span>
                         </a>
                     </li>
                     <ul class="collapse " id="sidemenu" data-bs-parent="#menu">

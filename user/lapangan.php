@@ -70,7 +70,7 @@ if (isset($_POST["pesan"])) {
   <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
   <!-- FAS-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJ+fcF5t5z2msFb9gfHJCDGpD2be" crossorigin="anonymous">
+
   <style>
     /* CSS untuk mempercantik tombol */
     button:disabled {
@@ -147,7 +147,7 @@ if (isset($_POST["pesan"])) {
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">My Order</a>
+              <a class="nav-link active text-white" aria-current="page" href="bayar.php">My Order</a>
             </li>
           </ul>
           <?php
@@ -279,7 +279,7 @@ if (isset($_POST["pesan"])) {
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="pesanModalLabel<?= $row["idlap"]; ?>">Pesan Lapangan <?= $row["nm"]; ?></h5>
+                    <h5 class="modal-title" id="pesanModalLabel<?= $row["idlap"]; ?>">Pesan <?= $row["nm"]; ?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form id="bookingForm">
@@ -518,6 +518,13 @@ if (isset($_POST["pesan"])) {
       function submitBookingForm() {
         var idlap = clickedButton.idlap;
         var bookingDate = $('#pesanModal' + idlap + ' #bookingDate').val();
+
+        var currentDate = new Date();
+        var currentTime = currentDate.toTimeString().split(' ')[0]; // Ambil jam dari waktu saat ini
+
+        // Gabungkan tanggal dan waktu saat ini
+        var bookingDateTime = bookingDate + ' ' + currentTime;
+
         console.log('Nilai bookingDate:', bookingDate);
         var startTime = $('#jmulai').val();
         var endTime = $('#jhabis').val();
@@ -530,7 +537,7 @@ if (isset($_POST["pesan"])) {
           url: 'backend.php?action=saveBooking',
           method: 'POST',
           data: {
-            bookingDate: bookingDate,
+            bookingDate: bookingDateTime,
             startTime: startTime,
             endTime: endTime,
             harga: harga,
@@ -539,11 +546,10 @@ if (isset($_POST["pesan"])) {
           },
           success: function(data, textStatus, xhr) {
             if (data.success) {
-              alert('Pemesanan berhasil disimpan ke database.');
+              alert('Berhasil Dipesan.');
               console.log('Nilai bookingDate:', bookingDate);
               console.log('Nilai #bookingDate:', $('#bookingDate').val());
-
-
+              window.location.href = 'bayar.php';
             } else {
               alert('Gagal menyimpan pemesanan. Error: ' + data.error);
             }
