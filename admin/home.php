@@ -19,8 +19,20 @@ $sqlBulan = "SELECT MONTHNAME(tgl_pesan) AS bulan FROM sewa GROUP BY MONTH(tgl_p
 $resultBulan = $conn->query($sqlBulan);
 
 // Query untuk mendapatkan total sewa
-$sqlTotalSewa = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(tot) AS total_sewa FROM sewa GROUP BY MONTH(tgl_pesan) ORDER BY MONTH(tgl_pesan)";
-$sqlTotalpesan = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(total_price) AS total_pesan FROM pesan GROUP BY MONTH(tgl_pesan) ORDER BY MONTH(tgl_pesan)";
+// Query total sewa dengan kondisi 'dikonfirmasi'
+$sqlTotalSewa = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(tot) AS total_sewa 
+                FROM sewa 
+                WHERE status = 'dikonfirmasi'
+                GROUP BY MONTH(tgl_pesan) 
+                ORDER BY MONTH(tgl_pesan)";
+
+// Query total pesan dengan kondisi 'dikonfirmasi'
+$sqlTotalpesan = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(total_price) AS total_pesan 
+                FROM pesan 
+                WHERE status = 'dikonfirmasi'
+                GROUP BY MONTH(tgl_pesan) 
+                ORDER BY MONTH(tgl_pesan)";
+
 $resultTotalSewa = $conn->query($sqlTotalSewa);
 $resultTotalpesan = $conn->query($sqlTotalpesan);
 

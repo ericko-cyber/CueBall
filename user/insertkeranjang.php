@@ -16,7 +16,7 @@ function uploadkeranjang()
   if ($error === 4) {
     echo "<script>
     alert('Pilih gambar terlebih dahulu');
-    window.location.href = 'user/keranjang.php';
+    window.location.href = 'keranjang.php';
     </script>";
     return false;
   }
@@ -97,6 +97,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
           </script>";
   } else {
     echo "Gagal menyimpan data: " . mysqli_error($conn);
+   echo "<script>
+   window.location.href = 'histori.php'
+   </script>";
   }
 
   // Tutup prepared statement
