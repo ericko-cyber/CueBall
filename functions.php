@@ -96,6 +96,13 @@ function hapusPesan($id)
 
   return mysqli_affected_rows($conn);
 }
+function hapusPesanmkn($id)
+{
+  global $conn;
+  mysqli_query($conn, "DELETE FROM pesan WHERE idpesan = $id");
+
+  return mysqli_affected_rows($conn);
+}
 
 function daftar($data)
 {

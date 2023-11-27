@@ -100,30 +100,31 @@ JOIN bayarmkn ON pesan.idpesan = bayarmkn.idpesan ");
                   
                   <!-- End Modal Konfirmasi -->
                   
-                  <!-- Modal Hapus -->
-                  <div class="modal fade" id="hapusModal<?= $row["idpesan"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="hapusModalLabel">Hapus Pesanan <?= $row["nama_lengkap"]; ?></h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <p>Anda yakin ingin menghapus pesanan ini?</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                          <a href="./controller/hapusPesan.php?id=<?= $row["idsewa"]; ?>" class="btn btn-danger">Hapus</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                <?php endforeach; ?>
-              </tbody>
-          </section>
-          </table>
-        </main>
+                  
+                  <?php endforeach; ?>
+                </tbody>
+              </section>
+            </table>
+          </main>
+          
+          <!-- Modal Hapus -->
+          <div class="modal fade" id="hapusModal<?= $row["idpesan"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="hapusModalLabel">Hapus Pesanan <?= $row["nama"]; ?></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Anda yakin ingin menghapus pesanan ini?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                  <a href="admin/kontrol/hapusPesanmkn.php?id=<?= $row["idpesan"]; ?>" class="btn btn-danger">Hapus</a>
+                </div>
+              </div>
+            </div>
+          </div>
         
       </div>
       <div class="modal fade" id="konfirmasiModal<?= $row["idpesan"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true" data-bs-backdrop="static">

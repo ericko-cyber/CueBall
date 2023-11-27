@@ -2,7 +2,7 @@
 session_start();
 require "../functions.php";
 require "../session.php";
-require "../expired.php";
+
 if ($role !== 'User') {
   header("location:../login.php");
 }

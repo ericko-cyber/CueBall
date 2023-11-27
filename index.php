@@ -95,15 +95,15 @@ $row_countp = mysqli_num_rows($result);
                     <li class="nav-link">
                         <a href="#sidemenu2" data-bs-toggle="collapse" aria-current="page">
                             <i class='bx bx-money-withdraw icon'></i>
-                            <span class="text nav-text">Pemesanan<i class='bx bxs-bell'></i><span><?= $row_count_total ?></span></span>
+                            <span class="text nav-text">Pemesanan</span>
                         </a>
                     </li>
                     <ul class="collapse " id="sidemenu2" data-bs-parent="#menu">
                         <li class="nav-link drop">
-                            <a class="nav-text text-white" href="index.php?page=mejapesan">Meja &nbsp;<span><i class='bx bxs-bell'></i><?= $row_count ?></span></a>
+                            <a class="nav-text text-white" href="index.php?page=mejapesan">Meja &nbsp;</a>
                         </li>
                         <li class="nav-link drop">
-                            <a class=" nav-text text-white" href="index.php?page=makanpesan">Minuman &nbsp; <i class='bx bxs-bell'></i><span><?= $row_countp ?></span></a>
+                            <a class=" nav-text text-white" href="index.php?page=makanpesan">Minuman &nbsp; </a>
                         </li>
                     </ul>
 

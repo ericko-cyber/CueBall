@@ -75,14 +75,12 @@ if ($action === 'getBookedDates') {
     $totalBiaya = $hours * $harga;
 
     // Set tenggat_pembayaran beberapa menit setelah waktu pemesanan
-    $tenggatPembayaran = date('Y-m-d H:i:s', strtotime($bookingDate. ' +1 minutes')); // Ganti 5 dengan jumlah menit yang diinginkan
-    error_log("Booking Date: " . $bookingDate);
-    error_log("Tenggat Pembayaran: " . $tenggatPembayaran);
+
 
     $status = 'menunggu';
 
-    $stmt = $mysqli->prepare('INSERT INTO sewa (iduser, idlap, tgl_pesan, jmulai, jhabis, harga, tot, status, tenggat_pembayaran) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    $stmt->bind_param('iisssisss', $iduser, $idlap, $bookingDate, $startTime, $endTime, $harga, $totalBiaya, $status, $tenggatPembayaran);
+    $stmt = $mysqli->prepare('INSERT INTO sewa (iduser, idlap, tgl_pesan, jmulai, jhabis, harga, tot, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('iisssiss', $iduser, $idlap, $bookingDate, $startTime, $endTime, $harga, $totalBiaya, $status);
 
     error_log("Data yang dikirim: " . print_r($_POST, true));
 
