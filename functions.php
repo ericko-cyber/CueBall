@@ -229,6 +229,8 @@ function bayar($data)
   }
 
   mysqli_query($conn, "INSERT INTO bayar (idsewa,bukti,konfirmasi) VALUES ('$idsewa','$upload','Sudah Bayar')");
+  
+  mysqli_query($conn, "UPDATE sewa SET status = 'Sudah Bayar' WHERE idsewa = '$idsewa'");
 
   return mysqli_affected_rows($conn);
 }
