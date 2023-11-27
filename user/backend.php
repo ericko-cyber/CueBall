@@ -16,8 +16,8 @@ if ($action === 'getBookedDates') {
 
     // Pastikan idlap tidak kosong
     if ($idlap !== null) {
-        // Query untuk mendapatkan data tanggal yang sudah dipesan berdasarkan idlap
-        $result = $mysqli->query("SELECT tgl_pesan, jmulai, jhabis FROM sewa WHERE idlap = '$idlap'");
+        // Query untuk mendapatkan data tanggal yang sudah dipesan berdasarkan idlap dengan kondisi status "Sudah Bayar" atau "Dikonfirmasi"
+        $result = $mysqli->query("SELECT tgl_pesan, jmulai, jhabis FROM sewa WHERE idlap = '$idlap' AND status IN ('Sudah Bayar', 'Dikonfirmasi')");
 
         if ($result === false) {
             echo json_encode(['error' => 'Error executing SQL query', 'sql_error' => $mysqli->error]);
@@ -40,13 +40,13 @@ if ($action === 'getBookedDates') {
         // Jika idlap kosong, berikan response error
         echo json_encode(['error' => 'Parameter idlap tidak valid']);
     }
-} elseif ($action === 'saveBooking') {
+}
+ elseif ($action === 'saveBooking') {
     $bookingDate = $_POST['bookingDate'];
     $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
     $iduser = $_POST['iduser'];
     $idlap = $_POST['idlap'];
-    $timenow = date('H:i:s');
 
 
     error_log("bookingDate: " . $bookingDate);
@@ -75,7 +75,7 @@ if ($action === 'getBookedDates') {
     $totalBiaya = $hours * $harga;
 
     // Set tenggat_pembayaran beberapa menit setelah waktu pemesanan
-    $tenggatPembayaran = date('Y-m-d H:i:s', strtotime($bookingDate. ' +5 minutes')); // Ganti 5 dengan jumlah menit yang diinginkan
+    $tenggatPembayaran = date('Y-m-d H:i:s', strtotime($bookingDate. ' +1 minutes')); // Ganti 5 dengan jumlah menit yang diinginkan
     error_log("Booking Date: " . $bookingDate);
     error_log("Tenggat Pembayaran: " . $tenggatPembayaran);
 
