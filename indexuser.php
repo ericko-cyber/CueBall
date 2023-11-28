@@ -138,7 +138,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           }
           ?>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        <i class="bi bi-list mobile-nav-toggle"></i> 
       </nav><!-- .navbar -->
 
     </div>
@@ -214,7 +214,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
                 </div>
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">alamat</label>
+                <label for="exampleInputPassword1" class="form-label">Alamat</label>
                 <input type="text" name="alamat" class="form-control" id="exampleInputPassword1" value="<?= $profil["alamat"]; ?>">
               </div>
               <div class="mb-3">
@@ -272,7 +272,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               pengalaman bermain billiard yang tak terlupakan. Kami adalah pusat hiburan Billiard yang menyediakan fasilitas
               berkualitas tinggi, suasana yang ramah, dan layanan pelanggan terbaik. Dengan koleksi meja Billiard yang
               modern dan nyaman, Basecamp Billiard menjadi tempat ideal untuk bertemu teman, merayakan momen spesial,
-              atau sekadar melepaskan stres setelah hari yang sibuk. Kami berkomitmen untuk memberikan pengalaman
+              atau sekadar melepaskan stres setelah seharian sibuk beraktivitas. Kami berkomitmen untuk memberikan pengalaman
               bermain billiard yang menyenangkan dan memuaskan bagi setiap pelanggan. Selamat datang di Basecamp
               Billiard, di mana kegembiraan dan persaingan bisa kamu temukan disini!
             </p>
@@ -297,8 +297,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
 
         <div class="section-title">
           <h2>OUR<span> SERVICES</span></h2>
-          <p>Berikut ini adalah fasilitas-fasilitas yang diberikan oleh Basecamp Billiard untuk kenyamanan para
-            pelanggan.</p>
+          <p>Di bawah ini adalah layanan-layanan yang disediakan oleh Basecamp Billiard untuk memastikan kenyamanan bagi para pelanggan.</p>
         </div>
 
         <div class="row">
@@ -342,7 +341,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         <div class="row">
           <div class="col-lg-9 text-center text-lg-start">
             <h3>Call To Action</h3>
-            <p> Rasakan kemudahan dalam memesan meja dan snack yang kami sediakan dengan menjadi User di Website kami.
+            <p> Rasakan kemudahan pada pemesan meja dan snack yang kami sediakan dengan menjadi User di Website kami.
               Register sekarang!</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
