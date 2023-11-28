@@ -1331,6 +1331,18 @@ section {
 .table .featured .buy-btn:hover {
   background: #23a3df;
 }
+#table .row {
+  position: relative;
+}
+
+#table .row::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%; /* Posisikan garis di tengah */
+  height: 95%;
+  border-left: 2px solid #FFBB35; /* Warna dan ketebalan border dapat disesuaikan */
+}
 
 @media (max-width: 992px) {
   .table .box {
