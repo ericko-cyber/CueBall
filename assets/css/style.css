@@ -1213,6 +1213,14 @@ section {
 /*--------------------------------------------------------------
 # Table
 --------------------------------------------------------------*/
+.col-md-6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%; 
+  float: left; 
+}
+
 .table {
   margin: 0;
   padding: 0;
