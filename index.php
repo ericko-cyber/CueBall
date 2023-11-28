@@ -103,14 +103,14 @@ $row_countp = mysqli_num_rows($result);
                             <a class="nav-text text-white" href="index.php?page=mejapesan">Meja &nbsp;</a>
                         </li>
                         <li class="nav-link drop">
-                            <a class=" nav-text text-white" href="index.php?page=makanpesan">Minuman &nbsp; </a>
+                            <a class=" nav-text text-white" href="index.php?page=makanpesan">Makanan & Minuman &nbsp; </a>
                         </li>
                     </ul>
 
                     <li class="nav-link down">
                         <a href="#sidemenu" data-bs-toggle="collapse" aria-current="page">
                             <i class='bx bx-clipboard icon'></i>
-                            <span class="text nav-text">Meja & Minuman </span>
+                            <span class="text nav-text">Meja & Makanan </span>
                         </a>
                     </li>
                     <ul class="collapse " id="sidemenu" data-bs-parent="#menu">
@@ -118,7 +118,7 @@ $row_countp = mysqli_num_rows($result);
                             <a class="nav-text text-white" href="index.php?page=meja">Meja</a>
                         </li>
                         <li class="nav-link drop">
-                            <a class=" nav-text text-white" href="index.php?page=makan">Minuman</a>
+                            <a class=" nav-text text-white" href="index.php?page=makan">Makanan & Minuman</a>
                         </li>
                     </ul>
                     <li class="nav-link">
