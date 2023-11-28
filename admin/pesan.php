@@ -3,7 +3,7 @@ include_once(__DIR__ . '/../functions.php');
 include_once(__DIR__ . '/../session.php');
 
 if ($role !== 'Admin') {
-    header("location:../login.php");
+  header("location:../login.php");
 };
 
 
@@ -15,82 +15,82 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
 
 ?>
 
-  <link rel="stylesheet" href="../css/form.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="../css/form.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
-  <div class="container-fluid">
-    <div class="row">
+<div class="container-fluid">
+  <div class="row">
 
-      <div class="col-10 p-5">
+    <div class="col-10 p-5">
 
-        <main class="table">
-          <section class="table__header mt-5">
-            <h1 style="margin-left:10px;">Data Pesanan</h1>
-            <div class="input-group">
-              <input type="search" placeholder="Search Data...">
-            </div>
-          </section>
-          <hr>
-          <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal1">Download</button>
-          <section class="table__body">
-            <table>
-              <thead>
+      <main class="table">
+        <section class="table__header mt-5">
+          <h1 style="margin-left:10px;">Data Pesanan</h1>
+          <div class="input-group">
+            <input type="search" placeholder="Search Data...">
+          </div>
+        </section>
+        <hr>
+        <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal1">Download</button>
+        <section class="table__body">
+          <table>
+            <thead>
+              <tr>
+                <th> No <span class="icon-arrow"></span></th>
+                <th> NamaCust <span class="icon-arrow">&UpArrow;</span></th>
+                <th> TglPesan <span class="icon-arrow">&UpArrow;</span></th>
+                <th> TglMulai <span class="icon-arrow">&UpArrow;</span></th>
+                <th> TglAkhir <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Harga <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Total <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Bukti <span class="icon-arrow">&UpArrow;</span></th>
+                <th> konfirmasi <span class="icon-arrow">&UpArrow;</span></th>
+                <th> action <span class="icon-arrow">&UpArrow;</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; ?>
+              <?php foreach ($pesan as $row) : ?>
                 <tr>
-                  <th> No <span class="icon-arrow"></span></th>
-                  <th> NamaCust <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> TglPesan <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> TglMulai <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> TglAkhir <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> Harga <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> Total <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> Bukti <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> konfirmasi <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> action <span class="icon-arrow">&UpArrow;</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $i = 1; ?>
-                <?php foreach ($pesan as $row) : ?>
-                  <tr>
-                    <td><?= $i++; ?></td>
-                    <td><?= $row["nama_lengkap"]; ?></td>
-                    <td><?= $row["tgl_pesan"]; ?></td>
-                    <td><?= $row["jmulai"]; ?></td>
-                    <td><?= $row["jhabis"]; ?></td>
-                    <td><span>Rp.</span><?= $row["harga"]; ?></td>
-                    <td><span>Rp.</span><?= $row["tot"]; ?></td>
-                    <td><img src="../img/<?= $row["bukti"]; ?>" id="imglap" width="100" height="100"></td>
-                    <td><?= $row["konfirmasi"]; ?></td>
-                    <td>
-                      <?php
-                      $idsewa = $row["idsewa"];
-                      if ($row["konfirmasi"] == "Terkonfirmasi") {
-                        // tampilkan tombol Bayar dan Hapus
-                        echo '';
-                      } else {
-                        // tampilkan tombol Detail
-                        echo ' <button type="button" class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#konfirmasiModal' . $idsewa . '">
+                  <td><?= $i++; ?></td>
+                  <td><?= $row["nama_lengkap"]; ?></td>
+                  <td><?= $row["tgl_pesan"]; ?></td>
+                  <td><?= $row["jmulai"]; ?></td>
+                  <td><?= $row["jhabis"]; ?></td>
+                  <td><span>Rp.</span><?= $row["harga"]; ?></td>
+                  <td><span>Rp.</span><?= $row["tot"]; ?></td>
+                  <td><img src="../img/<?= $row["bukti"]; ?>" id="imglap" width="100" height="100"></td>
+                  <td><?= $row["konfirmasi"]; ?></td>
+                  <td>
+                    <?php
+                    $idsewa = $row["idsewa"];
+                    if ($row["konfirmasi"] == "Terkonfirmasi") {
+                      // tampilkan tombol Bayar dan Hapus
+                      echo '';
+                    } else {
+                      // tampilkan tombol Detail
+                      echo ' <button type="button" class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#konfirmasiModal' . $idsewa . '">
                     Konfirmasi
                   </button>
                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal' . $idsewa . '">
                     Hapus
                   </button>
                   ';
-                      }
-                      ?>
-                    </td>
-                  </tr>
+                    }
+                    ?>
+                  </td>
+                </tr>
 
-                  <!-- Modal Konfirmasi -->
-                  
-                  <?php endforeach; ?>
-                </tbody>
-              </section>
-            </table>
-        </main>
-        
+                <!-- Modal Konfirmasi -->
+
+            </tbody>
+        </section>
+      <?php endforeach; ?>
+      </table>
+      </main>
+      <?php foreach ($pesan as $row) : ?>
         <div class="modal fade" id="konfirmasiModal<?= $row["idsewa"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -128,4 +128,5 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
             </div>
           </div>
         </div>
-      </div>
+    </div>
+  <?php endforeach; ?>

@@ -122,6 +122,12 @@ $row_countp = mysqli_num_rows($result);
                         </li>
                     </ul>
                     <li class="nav-link">
+                        <a href="index.php?page=pengeluaran">
+                            <i class='bx bxs-report icon'></i>
+                            <span class="text nav-text">Pengeluaran</span>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-link">
                         <a href="#sidemenu1" data-bs-toggle="collapse" aria-current="page">
                             <i class='bx bxs-report icon'></i>
                             <span class="text nav-text">Laporan</span>
@@ -134,7 +140,7 @@ $row_countp = mysqli_num_rows($result);
                         <li class="nav-link drop">
                             <a class=" nav-text text-white" href="index.php?page=pengeluaran">Pengeluaran</a>
                         </li>
-                    </ul>
+                    </ul> -->
 
                 </ul>
             </div>
@@ -183,9 +189,6 @@ $row_countp = mysqli_num_rows($result);
                     break;
                 case 'makan':
                     include 'admin/makan.php';
-                    break;
-                case 'pemasukan':
-                    include 'admin/pemasukan.php';
                     break;
                 case 'pengeluaran':
                     include 'admin/pengeluaran.php';
