@@ -1213,7 +1213,7 @@ section {
 /*--------------------------------------------------------------
 # Table
 --------------------------------------------------------------*/
-.col-md-6 {
+.custom-class {
   display: flex;
   justify-content: center;
   align-items: center;
