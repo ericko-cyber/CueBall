@@ -11,9 +11,19 @@ $lapangan = query("SELECT COUNT(idlap) AS jml_lapangan FROM lapangan")[0];
 $user = query("SELECT COUNT(idmakanan) AS jml_makanan FROM makanan")[0];
 $stok = query("SELECT COUNT(idpesan) AS jml_pesanan FROM pesan")[0];
 $pesanan = query("SELECT COUNT(idsewa) AS jml_sewa FROM sewa")[0];
-$besar = query("SELECT COUNT(*) as jumlah_meja_besar FROM lapangan INNER JOIN sewa ON lapangan.idlap = sewa.idlap WHERE lapangan.ket = 'meja besar'; ")[0];
-$kecil = query("SELECT COUNT(*) as jumlah_meja_kecil FROM lapangan INNER JOIN sewa ON lapangan.idlap = sewa.idlap WHERE lapangan.ket = 'meja kecil';")[0];
+$meja = query("SELECT lapangan.nm, COUNT(sewa.idlap) as jumlah_pesanan 
+               FROM lapangan 
+               LEFT JOIN sewa ON lapangan.idlap = sewa.idlap 
+               WHERE sewa.status IN ('Sudah Bayar', 'Dikonfirmasi')
+               GROUP BY lapangan.idlap;");
 
+$labelss = [];
+$data = [];
+
+foreach ($meja as $item) {
+    $labelss[] = $item['nm'];
+    $data[] = $item['jumlah_pesanan'];
+}
 
 $sqlBulan = "SELECT MONTHNAME(tgl_pesan) AS bulan FROM sewa GROUP BY MONTH(tgl_pesan) ORDER BY MONTH(tgl_pesan)";
 $resultBulan = $conn->query($sqlBulan);
@@ -190,18 +200,17 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
       });
       legend.chart.update();
     }
+
     const data = {
-      labels: ['Meja Besar', 'Meja Kecil'],
+      labels: <?php echo json_encode($labelss); ?>,
       datasets: [{
-        label: '# Total',
-        data: [
-          <?= $besar["jumlah_meja_besar"]; ?>,
-          <?= $kecil["jumlah_meja_kecil"]; ?>
-        ],
+        label: '# Total Pesanan',
+        data: <?php echo json_encode($data); ?>,
         borderWidth: 1,
-        backgroundColor: ['#FFD369', '#393E46'],
+        backgroundColor: ['#FFD369', '#393E46', '#A23E48', '#008080', '#4CAF50'],
       }]
     };
+
     var pieCtx = document.getElementById('myPieChart').getContext('2d');
     var pieChart = new Chart(pieCtx, {
       type: 'pie',

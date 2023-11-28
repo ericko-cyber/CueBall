@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2023 at 04:26 PM
+-- Generation Time: Nov 28, 2023 at 03:22 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -68,8 +68,11 @@ INSERT INTO `bayar` (`idbayar`, `idsewa`, `bukti`, `tgl_upload`, `konfirmasi`) V
 (60, 130, '64522a4de1d9a.png', '2023-05-03', 'Terkonfirmasi'),
 (62, 244, '65642e5bcec16.jpg', '2023-11-27', 'Terkonfirmasi'),
 (63, 245, '65642e6de6b81.jpg', '2023-11-27', 'Sudah Bayar'),
-(65, 246, '6564484580caf.jpg', '2023-11-27', 'Sudah Bayar'),
-(66, 247, '656448b0c50c8.jpg', '2023-11-27', 'Sudah Bayar');
+(65, 246, '6564484580caf.jpg', '2023-11-27', 'Terkonfirmasi'),
+(66, 247, '656448b0c50c8.jpg', '2023-11-27', 'Terkonfirmasi'),
+(67, 248, '65654096acfe7.jpg', '2023-11-28', 'Terkonfirmasi'),
+(68, 249, '656541a8703bb.jpg', '2023-11-28', 'Terkonfirmasi'),
+(69, 250, '65654d8a8f4cb.jpg', '2023-11-28', 'Terkonfirmasi');
 
 -- --------------------------------------------------------
 
@@ -93,7 +96,9 @@ INSERT INTO `bayarmkn` (`idbayarmkn`, `idpesan`, `bukti`, `tgl_upload`, `konfirm
 (1, 1, '6564299fd3102.jpg', '0000-00-00 00:00:00', 'Terkonfirmasi'),
 (2, 2, '65642c893d18c.jpg', '2023-11-27 05:43:37', 'Sudah Bayar'),
 (3, 3, '656446d605713.jpg', '2023-11-27 07:35:50', 'Sudah Bayar'),
-(4, 4, '656446ecab1b5.jpg', '2023-11-27 07:36:12', 'Sudah Bayar');
+(4, 4, '656446ecab1b5.jpg', '2023-11-27 07:36:12', 'Terkonfirmasi'),
+(5, 5, '6564b6daed642.jpg', '2023-11-27 15:33:46', 'Terkonfirmasi'),
+(6, 6, '656540f73ce85.jpg', '2023-11-28 01:23:03', 'Terkonfirmasi');
 
 -- --------------------------------------------------------
 
@@ -118,7 +123,7 @@ INSERT INTO `keranjang` (`idkeranjang`, `iduser`, `nama`, `harga`, `gambar`, `ju
 (142, 128, 'aqua', '10000', '6559b1cc669cb.jpg', 1),
 (143, 128, 'coca-cola', '10000', '6558d286c75f0.jpeg', 1),
 (155, 127, 'sprite', '10000', '6559b22759f3f.jpg', 3),
-(156, 127, 'coca-cola', '10000', '6558d286c75f0.jpeg', 2);
+(156, 127, 'coca-cola', '10000', '6558d286c75f0.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -139,8 +144,11 @@ CREATE TABLE `lapangan` (
 --
 
 INSERT INTO `lapangan` (`idlap`, `nm`, `ket`, `harga`, `foto`) VALUES
-(51, 'Meja Besar 01', 'meja besar', 25000, '65642d267cb08.jpeg'),
-(52, 'Meja Kecil 01', 'meja kecil', 12000, '65642d39be277.jpeg');
+(51, 'Meja Besar 01', '', 25000, '65642d267cb08.jpeg'),
+(52, 'Meja Kecil 01', '', 12000, '65642d39be277.jpeg'),
+(53, 'Meja Besar 02', '', 25000, '65654cb29f99d.jpeg'),
+(54, 'Meja Kecil 02', '', 12000, '65654d1d50200.jpeg'),
+(55, 'Meja Kecil 03', '', 12000, '65654d3b9ea0e.jpeg');
 
 -- --------------------------------------------------------
 
@@ -169,26 +177,6 @@ INSERT INTO `makanan` (`idmakanan`, `nm`, `harga`, `foto`) VALUES
 (17, 'Dj Super', '10000', '656295b5304ae.jpg'),
 (18, 'King', '10000', '656295ce849a6.jpeg'),
 (19, 'Madu Hitam', '10000', '656295e8aa940.jpeg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pemasukan`
---
-
-CREATE TABLE `pemasukan` (
-  `idp` int(11) NOT NULL,
-  `tgl` datetime NOT NULL,
-  `keterangan` varchar(255) NOT NULL,
-  `pemasukan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pemasukan`
---
-
-INSERT INTO `pemasukan` (`idp`, `tgl`, `keterangan`, `pemasukan`) VALUES
-(3, '2023-11-14 09:23:55', 'meja', '10000\r\n');
 
 -- --------------------------------------------------------
 
@@ -227,8 +215,8 @@ CREATE TABLE `pesan` (
 --
 
 INSERT INTO `pesan` (`idpesan`, `iduser`, `tgl_pesan`, `nama`, `hp`, `meja`, `foto`, `total_products`, `total_price`, `status`) VALUES
-(3, 127, '2023-11-27 07:35:50', 'ihya', '089516378624', 'meja besar 01', '656446d605713.jpg', 'sprite (3) , coca-cola (2) ', '50000', 'menunggu'),
-(4, 127, '2023-11-27 07:36:12', 'ihya', '089516378624', 'meja besar 01', '656446ecab1b5.jpg', 'sprite (3) , coca-cola (2) ', '50000', 'menunggu');
+(5, 127, '2023-11-27 15:33:46', 'ihya', '0895765679876', 'meja besar 01', '6564b6daed642.jpg', 'sprite (3) , coca-cola (2) ', '50000', 'dikonfirmasi'),
+(6, 127, '2023-12-28 01:23:03', 'ihya', '0895765679876', 'meja besar 01', '656540f73ce85.jpg', 'sprite (3) , coca-cola (1) ', '40000', 'dikonfirmasi');
 
 -- --------------------------------------------------------
 
@@ -254,8 +242,9 @@ CREATE TABLE `sewa` (
 
 INSERT INTO `sewa` (`idsewa`, `iduser`, `idlap`, `tgl_pesan`, `jmulai`, `jhabis`, `harga`, `tot`, `status`) VALUES
 (244, 127, 51, '2023-11-27 05:49:37', '12:00', '14:00', 25000, '50000', 'Dikonfirmasi'),
-(246, 127, 51, '2023-12-27 07:38:21', '18:00', '20:00', 25000, '50000', 'Sudah Bayar'),
-(247, 127, 52, '2023-12-27 07:43:33', '12:00', '15:00', 12000, '36000', 'Sudah Bayar');
+(248, 127, 52, '2023-12-28 01:21:16', '12:00', '14:00', 12000, '24000', 'Dikonfirmasi'),
+(249, 127, 51, '2023-11-28 01:25:47', '16:00', '19:00', 25000, '75000', 'Dikonfirmasi'),
+(250, 127, 54, '2023-11-28 02:16:31', '12:00', '14:00', 12000, '24000', 'Dikonfirmasi');
 
 -- --------------------------------------------------------
 
@@ -326,12 +315,6 @@ ALTER TABLE `makanan`
   ADD PRIMARY KEY (`idmakanan`);
 
 --
--- Indexes for table `pemasukan`
---
-ALTER TABLE `pemasukan`
-  ADD PRIMARY KEY (`idp`);
-
---
 -- Indexes for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
@@ -371,13 +354,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bayar`
 --
 ALTER TABLE `bayar`
-  MODIFY `idbayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `idbayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `bayarmkn`
 --
 ALTER TABLE `bayarmkn`
-  MODIFY `idbayarmkn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idbayarmkn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `keranjang`
@@ -389,19 +372,13 @@ ALTER TABLE `keranjang`
 -- AUTO_INCREMENT for table `lapangan`
 --
 ALTER TABLE `lapangan`
-  MODIFY `idlap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `idlap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `makanan`
 --
 ALTER TABLE `makanan`
   MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `pemasukan`
---
-ALTER TABLE `pemasukan`
-  MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
@@ -413,13 +390,13 @@ ALTER TABLE `pengeluaran`
 -- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `idpesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idpesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sewa`
 --
 ALTER TABLE `sewa`
-  MODIFY `idsewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `idsewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 
 --
 -- AUTO_INCREMENT for table `user`
