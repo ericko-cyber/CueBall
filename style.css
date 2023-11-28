@@ -314,7 +314,7 @@ form .txt_field {
 .pembayaran h2 span,
 .contact h2 span,
 .lapangan h2 span {
-  color: #FFBB35;
+  color: #ffbb35;
 }
 .about .row {
   display: flex;
@@ -376,7 +376,7 @@ form .txt_field {
 /* End Contact */
 
 /*--------------------------------------------------------------
-# Footer
+#   
 --------------------------------------------------------------*/
 #footer {
   font-size: 14px;
@@ -409,14 +409,14 @@ form .txt_field {
   border-radius: 50px;
   color: #fff;
   font-size: 14px;
-  border: 2px solid #FFBB35;
-  background:#FFBB35;
+  border: 2px solid #FFbb35;
+  background:#ffbb35;
   font-weight: 600;
 }
 
 .footer-newsletter .getstarted:hover,
  .footer-newsletter .getstarted:focus:hover{
-  color: #FFBB35;
+  color: #ffbb35;
   background:#040404;
 }
 
@@ -437,7 +437,7 @@ form .txt_field {
   line-height: 1;
   text-transform: uppercase;
   font-weight: 600;
-  color: #FFBB35;
+  color: #FFbb35;
 }
 
 #footer .footer-top .footer-contact p {
@@ -451,7 +451,7 @@ form .txt_field {
 #footer .footer-top h4 {
   font-size: 16px;
   font-weight: bold;
-  color: #FFBB35;
+  color: #FFbb35;
   position: relative;
   padding-bottom: 12px;
 }

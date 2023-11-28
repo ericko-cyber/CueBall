@@ -19,7 +19,7 @@ a {
 }
 
 a:hover {
-    color: #040404;
+  color: #040404;
   text-decoration: none;
 }
 
@@ -43,7 +43,7 @@ h6 {
   bottom: 0;
   z-index: 9999;
   overflow: hidden;
-  background:#040404;
+  background: #040404;
 }
 
 #preloader:before {
@@ -125,7 +125,7 @@ h6 {
 
 #header.header-scrolled,
 #header.header-inner-pages {
-  background:#040404;
+  background: #040404;
 }
 
 #header .logo {
@@ -204,14 +204,14 @@ h6 {
   color: #fff;
   font-size: 14px;
   border: 2px solid #FFBB35;
-  background:#FFBB35;
+  background: #FFBB35;
   font-weight: 600;
 }
 
 .navbar .getstarted:hover,
 .navbar .getstarted:focus:hover {
   color: #FFBB35;
-  background:#040404;
+  background: #040404;
 }
 
 .navbar .dropdown ul {
@@ -280,9 +280,11 @@ h6 {
     left: -100%;
   }
 }
+
 /* Gaya tambahan untuk tombol keranjang */
 #header .navbar .social-links a {
-  margin-left: 20px; /* Sesuaikan margin-right sesuai kebutuhan Anda */
+  margin-left: 20px;
+  /* Sesuaikan margin-right sesuai kebutuhan Anda */
   font-size: 18px;
   display: inline-block;
   background: #FFBB35;
@@ -419,7 +421,10 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #040404;
 }
 
@@ -461,6 +466,14 @@ h6 {
 
 #hero .animated {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (max-width: 768px) {
+  #hero .btn-get-started {
+    margin-left: 100px;
+    text-align: center;
+    width: 30%;
+  }
 }
 
 @media (max-width: 991px) {
@@ -559,8 +572,8 @@ section {
   color: #FFBB35;
 }
 
-.section-title h2 span{
-    color: #fff;
+.section-title h2 span {
+  color: #fff;
 }
 
 .section-title h2::before {
@@ -590,7 +603,7 @@ section {
   color: #fff;
 }
 
-<!--.about .content h3 {
+--.about .content h3 {
   font-weight: 600;
   font-size: 26px;
 }
@@ -625,8 +638,8 @@ section {
   margin-bottom: 0;
   color: #fff;
   text-align: justify;
-  padding-right: 15px; 
-  padding-left: 15px; 
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 
@@ -849,14 +862,18 @@ section {
 # Services
 --------------------------------------------------------------*/
 #services {
-  background-size: cover; /* Set the background size to cover the entire section */
-  background-position: center; /* Center the background image */
-  padding-bottom: 180px; /* Adjust the padding-bottom to extend the background downward */
+  background-size: cover;
+  /* Set the background size to cover the entire section */
+  background-position: center;
+  /* Center the background image */
+  padding-bottom: 180px;
+  /* Adjust the padding-bottom to extend the background downward */
 }
 
 
 .services .icon-box {
   box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   padding: 50px 30px;
   transition: all ease-in-out 0.4s;
   background: #fff;
@@ -1209,6 +1226,13 @@ section {
 /*--------------------------------------------------------------
 # Table
 --------------------------------------------------------------*/
+.custom-class {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
 .table {
   margin: 0;
   padding: 0;
@@ -1220,7 +1244,8 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh; /* Jika ingin membuatnya berada di tengah secara vertikal pada seluruh viewport height */
+  height: 100vh;
+  /* Jika ingin membuatnya berada di tengah secara vertikal pada seluruh viewport height */
 }
 
 .table .box {
@@ -1328,6 +1353,15 @@ section {
 }
 
 @media (max-width: 767px) {
+  .custom-class {
+    width: 40%;
+    /* Mengisi lebar layar pada mode mobile */
+    margin: 0 auto 30px auto;
+    /* Menambahkan ruang di bawah setiap elemen pada mode mobile */
+  }
+}
+
+@media (max-width: 767px) {
   .table .box {
     max-width: 80%;
     margin: 0 auto 30px auto;
@@ -1344,26 +1378,26 @@ section {
 /*--------------------------------------------------------------
 # Food and Beverage section
 --------------------------------------------------------------*/
-.fnb{
+.fnb {
   padding: 0px;
 }
 
-.section-title{
+.section-title {
   padding-top: 70px;
 }
 
 .product_section {
-  margin-top: -20px; 
+  margin-top: -20px;
 }
 
 .product-card {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .name-product,
 .price-product {
-  text-align: center; 
-  margin-top: 10px; 
+  text-align: center;
+  margin-top: 10px;
 }
 
 
@@ -1401,7 +1435,7 @@ section {
   object-fit: contain;
   object-position: center;
   transition: 0.65s;
-  
+
 }
 
 .product_section .product-card .product-img:hover img {
@@ -1409,19 +1443,19 @@ section {
 }
 
 .product_section .product-card .name-product {
-  color: black; 
-  font-size: 25px; 
-  font-family: Inter; 
-  font-weight: 800; 
+  color: black;
+  font-size: 25px;
+  font-family: Inter;
+  font-weight: 800;
   word-wrap: break-word
 }
 
 .product_section .product-card .price-product {
-  color: #FFBB35; 
-  font-size: 20px; 
-  font-family: Inter; 
-  font-style: italic; 
-  font-weight: 800; 
+  color: #FFBB35;
+  font-size: 20px;
+  font-family: Inter;
+  font-style: italic;
+  font-weight: 800;
   word-wrap: break-word
 }
 
@@ -1531,10 +1565,11 @@ section {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
-.contact{
+.contact {
   padding: 0px;
-  
+
 }
+
 .contact .info {
   border-top: 3px solid #FFBB35;
   border-bottom: 3px solid #FFBB35;
@@ -1783,14 +1818,14 @@ section {
   background: #040404;
 }
 
-.subcribe{
+.subcribe {
   padding: 50px 0 30px 0;
   background: #040404;
 }
 
 .footer-newsletter {
   padding: 50px 0;
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),url("../img/bg5.jpg");
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../img/bg5.jpg");
   text-align: center;
 }
 
@@ -1802,22 +1837,23 @@ section {
   font-weight: bold;
   color: #040404;
 }
- .footer-newsletter .getstarted,
- .footer-newsletter .getstarted:focus{
+
+.footer-newsletter .getstarted,
+.footer-newsletter .getstarted:focus {
   padding: 8px 20px;
-  margin-left: 30px;
+  margin-left: -30px;
   border-radius: 50px;
   color: #fff;
   font-size: 14px;
   border: 2px solid #FFBB35;
-  background:#FFBB35;
+  background: #FFBB35;
   font-weight: 600;
 }
 
 .footer-newsletter .getstarted:hover,
- .footer-newsletter .getstarted:focus:hover{
+.footer-newsletter .getstarted:focus:hover {
   color: #FFBB35;
-  background:#040404;
+  background: #040404;
 }
 
 /*#footer .footer-newsletter form {
@@ -1961,7 +1997,7 @@ section {
 }
 
 #footer .copyright {
-  float: left;
+  text-align: center;
 }
 
 #footer .credits {

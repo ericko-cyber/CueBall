@@ -149,7 +149,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           }
           ?>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        <i class="bi bi-list mobile-nav-toggle"></i> 
       </nav><!-- .navbar -->
 
     </div>
@@ -225,7 +225,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
                 </div>
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">alamat</label>
+                <label for="exampleInputPassword1" class="form-label">Alamat</label>
                 <input type="text" name="alamat" class="form-control" id="exampleInputPassword1" value="<?= $profil["alamat"]; ?>">
               </div>
               <div class="mb-3">
@@ -252,7 +252,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>Basecamp <span>Billiard</span></h1>
           <h2>Your favorite Billiards place in town!</h2>
-          <div class="d-flex justify-content-center justify-content-lg-start">
+          <div class="d-flex justify-content-center justify-content-lg-start text-center">
             <a href="#about" class="btn-get-started scrollto">Get Started</a>
             <a href="" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
@@ -283,7 +283,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               pengalaman bermain billiard yang tak terlupakan. Kami adalah pusat hiburan Billiard yang menyediakan fasilitas
               berkualitas tinggi, suasana yang ramah, dan layanan pelanggan terbaik. Dengan koleksi meja Billiard yang
               modern dan nyaman, Basecamp Billiard menjadi tempat ideal untuk bertemu teman, merayakan momen spesial,
-              atau sekadar melepaskan stres setelah hari yang sibuk. Kami berkomitmen untuk memberikan pengalaman
+              atau sekadar melepaskan stres setelah seharian sibuk beraktivitas. Kami berkomitmen untuk memberikan pengalaman
               bermain billiard yang menyenangkan dan memuaskan bagi setiap pelanggan. Selamat datang di Basecamp
               Billiard, di mana kegembiraan dan persaingan bisa kamu temukan disini!
             </p>
@@ -291,7 +291,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           <div class="col-lg-6 pt-4 pt-lg-0">
             <ul>
               <li><i class="ri-check-double-line"></i> Mengutamakan kenyamanan pelanggan</li>
-              <li><i class="ri-check-double-line"></i> Menyediakan minuman dan snack dengan harga terjangkau</li>
+              <li><i class="ri-check-double-line"></i> Menyediakan minuman dan makanan dengan harga terjangkau</li>
               <li><i class="ri-check-double-line"></i> Berada di tempat strategis, area kota dan dekat dengan kampus
               </li>
             </ul>
@@ -308,12 +308,11 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
 
         <div class="section-title">
           <h2>OUR<span> SERVICES</span></h2>
-          <p>Berikut ini adalah fasilitas-fasilitas yang diberikan oleh Basecamp Billiard untuk kenyamanan para
-            pelanggan.</p>
+          <p>Di bawah ini adalah layanan-layanan yang disediakan oleh Basecamp Billiard untuk memastikan kenyamanan bagi para pelanggan.</p>
         </div>
 
         <div class="row">
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="img-area mb-4"><img alt="" class="img-fluid" src="assets/img/toilet.png"></div>
               <h4><a href="">Toilet</a></h4>
@@ -353,7 +352,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         <div class="row">
           <div class="col-lg-9 text-center text-lg-start">
             <h3>Call To Action</h3>
-            <p> Rasakan kemudahan dalam memesan meja dan snack yang kami sediakan dengan menjadi User di Website kami.
+            <p> Rasakan kemudahan pada pemesan meja dan snack yang kami sediakan dengan menjadi User di Website kami.
               Register sekarang!</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
@@ -376,8 +375,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         </div>
 
         <div class="row">
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-md-6 custom-class" data-aos="fade-up"  data-aos-delay="100">
             <div class="box">
               <h3>Small Table</h3>
               <h4>12k<span>/hour</span></h4>
@@ -400,7 +398,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           </div>
 
 
-          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-md-6 custom-class" data-aos="fade-up" data-aos-delay="100">
             <div class="box">
               <h3>Big Table</h3>
               <h4>25k<span>/hour</span></h4>
@@ -421,10 +419,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               </div>
             </div>
           </div>
-
-
         </div>
-
       </div>
     </section>
     <!-- End Table Section -->
