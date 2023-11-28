@@ -2,10 +2,21 @@
 session_start();
 require "functions.php";
 
-$id_user = $_SESSION["id_user"];
+if (isset($_SESSION["id_user"])) {
+  $id_user = $_SESSION["id_user"];
 
-$profil = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
-
+  // Pastikan $id_user bukan null sebelum menggunakan
+  if (!empty($id_user)) {
+      $profil = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
+      // Lanjutkan dengan menggunakan data pengguna seperti yang telah Anda lakukan sebelumnya
+  } else {
+      // Handle jika $id_user kosong atau null
+      // ...
+  }
+} else {
+  // Pengguna belum login, berikan akses ke konten umum atau halaman login
+  // ...
+}
 if (isset($_POST['add_to_cart'])) {
   $product_name = $_POST['product_name'];
   $product_price = $_POST['product_price'];
