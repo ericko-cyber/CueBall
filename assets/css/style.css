@@ -466,6 +466,14 @@ h6 {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
+@media (max-width: 768px) {
+  #hero .btn-get-started {
+    margin-left: 100px;
+    text-align: center; 
+    width: 30%; 
+  }
+}
+
 @media (max-width: 991px) {
   #hero {
     height: 100vh;
