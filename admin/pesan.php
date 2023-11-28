@@ -29,11 +29,11 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
         <section class="table__header mt-5">
           <h1 style="margin-left:10px;">Data Pesanan</h1>
           <div class="input-group">
-            <input type="search" placeholder="Search Data...">
+            <input type="search" name="search" id="searchInput" oninput="searchTable()" placeholder="Search Data...">
           </div>
         </section>
         <hr>
-        <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal1">Download</button>
+        <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;">Download</button>
         <section class="table__body">
           <table>
             <thead>
@@ -41,8 +41,8 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
                 <th> No <span class="icon-arrow"></span></th>
                 <th> NamaCust <span class="icon-arrow">&UpArrow;</span></th>
                 <th> TglPesan <span class="icon-arrow">&UpArrow;</span></th>
-                <th> TglMulai <span class="icon-arrow">&UpArrow;</span></th>
-                <th> TglAkhir <span class="icon-arrow">&UpArrow;</span></th>
+                <th> JamMulai <span class="icon-arrow">&UpArrow;</span></th>
+                <th> JamAkhir <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Harga <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Total <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Bukti <span class="icon-arrow">&UpArrow;</span></th>
@@ -50,7 +50,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
                 <th> action <span class="icon-arrow">&UpArrow;</span></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody  id="dataTable">
               <?php $i = 1; ?>
               <?php foreach ($pesan as $row) : ?>
                 <tr>
@@ -82,9 +82,6 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
                     ?>
                   </td>
                 </tr>
-
-                <!-- Modal Konfirmasi -->
-
             </tbody>
         </section>
       <?php endforeach; ?>
@@ -130,3 +127,67 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
         </div>
     </div>
   <?php endforeach; ?>
+  <div style="display: none;">
+    <table class="table table-striped mt-3" id="print">
+      <thead class="table" style="background-color:#9cd203 ;">
+        <tr>
+          <th scope="col" style="text-align: center; vertical-align: middle;">No</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">NamaCust</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">TglPesan</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">JamMulai</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">JamAkhir</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">Harga</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">Total</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">Bukti</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">Konfirmasi</th>
+          <!-- <th scope="col" style="text-align: center; vertical-align: middle;">Aksi</th> -->
+        </tr>
+      </thead>
+      <tbody class="" id="searchResults">
+        <?php $i = 1; ?>
+        <?php foreach ($pesan as $row) : ?>
+          <tr>
+            <td style="text-align: center; vertical-align: middle;"><?= $i++; ?></td>
+            <td style="text-align: center; vertical-align: middle;"><?= $row["nama_lengkap"]; ?></td>
+            <td style="text-align: center; vertical-align: middle;"><?= $row["tgl_pesan"]; ?></td>
+            <td style="text-align: center; vertical-align: middle;"><?= $row["jmulai"]; ?></td>
+            <td style="text-align: center; vertical-align: middle;"><?= $row["jhabis"]; ?></td>
+            <td style="text-align: center; vertical-align: middle;"><?= $row["harga"]; ?></td>
+            <td style="text-align: center; vertical-align: middle;"><?= $row["tot"]; ?></td>
+            <td style="text-align: center; vertical-align: middle;"><img src="../img/<?= $row["bukti"]; ?>" width="100" height="100"></td>
+            <td style="text-align: center; vertical-align: middle;"><?= $row["konfirmasi"]; ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    function printTable() {
+      var printContents = document.getElementById("print").outerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+    }
+
+    function searchTable() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("dataTable");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+        var found = false;
+        td = tr[i].getElementsByTagName("td");
+        for (var j = 0; j < td.length; j++) {
+          txtValue = td[j].textContent || td[j].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            found = true;
+            break;
+          }
+        }
+        tr[i].style.display = found ? "" : "none";
+      }
+    }
+  </script>

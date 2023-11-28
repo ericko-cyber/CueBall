@@ -77,6 +77,7 @@ if (isset($_POST["simpan"])) {
             <input type="search" name="search" id="searchInput" oninput="searchTable()" placeholder="Search Data...">
         </div>
     </section>
+    <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;" >Download</button>
     <hr>
     <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah</button>
     <section class="table__body">
@@ -112,6 +113,30 @@ if (isset($_POST["simpan"])) {
         </table>
     </section>
 </main>
+<div style="display: none;">
+        <table class="table table-striped mt-3" id="print">
+          <thead class="table" style="background-color:#9cd203 ;">
+            <tr>
+              <th scope="col" style="text-align: center; vertical-align: middle;">No</th>
+              <th scope="col" style="text-align: center; vertical-align: middle;">Tanggal Masuk</th>
+              <th scope="col" style="text-align: center; vertical-align: middle;">Keterangan</th>
+              <th scope="col" style="text-align: center; vertical-align: middle;">Pengeluaran</th>
+              <!-- <th scope="col" style="text-align: center; vertical-align: middle;">Aksi</th> -->
+            </tr>
+          </thead>
+          <tbody class="" id="searchResults">
+            <?php $i = 1; ?>
+            <?php foreach ($pesan as $row) : ?>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><?= $i++; ?></td>
+                <td style="text-align: center; vertical-align: middle;"><?= $row["tgl"]; ?></td>
+                <td style="text-align: center; vertical-align: middle;"><?= $row["keterangan"]; ?></td>
+                <td style="text-align: center; vertical-align: middle;"><?= $row["pengeluaran"]; ?></td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
 <script>
     function searchTable() {
         var input, filter, table, tr, td, i, txtValue;
@@ -134,3 +159,12 @@ if (isset($_POST["simpan"])) {
         }
     }
 </script>
+<script>
+    function printTable() {
+        var printContents = document.getElementById("print").outerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+  </script>
