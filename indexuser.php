@@ -280,7 +280,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           <div class="col-lg-6 pt-4 pt-lg-0">
             <ul>
               <li><i class="ri-check-double-line"></i> Mengutamakan kenyamanan pelanggan</li>
-              <li><i class="ri-check-double-line"></i> Menyediakan minuman dan snack dengan harga terjangkau</li>
+              <li><i class="ri-check-double-line"></i> Menyediakan minuman dan makanan dengan harga terjangkau</li>
               <li><i class="ri-check-double-line"></i> Berada di tempat strategis, area kota dan dekat dengan kampus
               </li>
             </ul>
