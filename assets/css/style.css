@@ -1218,7 +1218,6 @@ section {
   justify-content: center;
   align-items: center;
   width: 50%; 
-  float: left; 
 }
 
 .table {
@@ -1331,18 +1330,6 @@ section {
 .table .featured .buy-btn:hover {
   background: #23a3df;
 }
-#table .row {
-  position: relative;
-}
-
-#table .row::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%; /* Posisikan garis di tengah */
-  height: 95%;
-  border-left: 2px solid #FFBB35; /* Warna dan ketebalan border dapat disesuaikan */
-}
 
 @media (max-width: 992px) {
   .table .box {
@@ -1351,6 +1338,12 @@ section {
   }
 }
 
+@media (max-width: 767px) {
+  .custom-class {
+    width: 40%; /* Mengisi lebar layar pada mode mobile */
+    margin: 0 auto 30px auto; /* Menambahkan ruang di bawah setiap elemen pada mode mobile */
+  }
+}
 @media (max-width: 767px) {
   .table .box {
     max-width: 80%;
@@ -1829,7 +1822,7 @@ section {
  .footer-newsletter .getstarted,
  .footer-newsletter .getstarted:focus{
   padding: 8px 20px;
-  margin-left: -30px;
+  margin-left: 30px;
   border-radius: 50px;
   color: #fff;
   font-size: 14px;
