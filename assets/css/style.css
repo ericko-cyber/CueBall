@@ -1973,7 +1973,7 @@ section {
 }
 
 #footer .copyright {
-  float: left;
+  text-align: center;
 }
 
 #footer .credits {
