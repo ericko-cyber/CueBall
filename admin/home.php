@@ -8,8 +8,8 @@ if ($role !== 'Admin') {
 }
 
 $lapangan = query("SELECT COUNT(idlap) AS jml_lapangan FROM lapangan")[0];
-$user = query("SELECT COUNT(idmakanan) AS jml_user FROM makanan")[0];
-$stok = query("SELECT COUNT(idpesan) AS jml_makanan FROM pesan")[0];
+$user = query("SELECT COUNT(idmakanan) AS jml_makanan FROM makanan")[0];
+$stok = query("SELECT COUNT(idpesan) AS jml_pesanan FROM pesan")[0];
 $pesanan = query("SELECT COUNT(idsewa) AS jml_sewa FROM sewa")[0];
 $besar = query("SELECT COUNT(*) as jumlah_meja_besar FROM lapangan INNER JOIN sewa ON lapangan.idlap = sewa.idlap WHERE lapangan.ket = 'meja besar'; ")[0];
 $kecil = query("SELECT COUNT(*) as jumlah_meja_kecil FROM lapangan INNER JOIN sewa ON lapangan.idlap = sewa.idlap WHERE lapangan.ket = 'meja kecil';")[0];
@@ -123,7 +123,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
               <div class="numbers">
                 <p class="text-sm mb-0 text-capitalize" style="color: #4B4B4B; font-weight: bold;">Makanan</p>
                 <h5 class="font-weight-bolder mb-0" style="color: #4B4B4B; font-weight: bold;">
-                  <?= $user["jml_user"]; ?>
+                  <?= $user["jml_makanan"]; ?>
                 </h5>
               </div>
             </div>
@@ -144,7 +144,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
               <div class="numbers">
                 <p class="text-sm mb-0 text-capitalize" style="color: #4B4B4B; font-weight: bold;">Jumlah Pesanan </p>
                 <h5 class="font-weight-bolder mb-0" style="color: #4B4B4B; font-weight: bold;">
-                  <?= $stok["jml_makanan"]; ?>
+                  <?= $stok["jml_pesanan"]; ?>
                 </h5>
               </div>
             </div>
