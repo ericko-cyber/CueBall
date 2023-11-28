@@ -366,7 +366,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
 
         <div class="row">
 
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-md-6 " data-aos="fade-up" data-aos-delay="100">
             <div class="box">
               <h3>Small Table</h3>
               <h4>12k<span>/hour</span></h4>
@@ -389,7 +389,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           </div>
 
 
-          <div class="col-12 col-sm-6 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-md-6 " data-aos="fade-up" data-aos-delay="100">
             <div class="box">
               <h3>Big Table</h3>
               <h4>25k<span>/hour</span></h4>
