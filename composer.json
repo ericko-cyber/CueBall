@@ -1,6 +1,0 @@
-{
-    "require": {
-        "dragonmantank/cron-expression": "^3.3",
-        "mtdowling/cron-expression": "*"
-    }
-}

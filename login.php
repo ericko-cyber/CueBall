@@ -2,11 +2,13 @@
 session_start();
 require "functions.php";
 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 if (isset($_SESSION["role"])) {
   $role = $_SESSION["role"];
   if ($role == "Admin") {
-    header("Location: index.php");
+    header("Location: admin.php");
   } else {
     header("Location: index.php");
   }
@@ -17,12 +19,12 @@ if (isset($_SESSION["role"])) {
 if (isset($_POST["login"])) {
   $username = $_POST["username"];
   $password = $_POST["password"];
+
   $adminRow = query("SELECT * FROM admin WHERE email = '$username'");
   $userRow = query("SELECT * FROM user WHERE email = '$username'");
 
-  // Periksa login dan verifikasi
-  if ($adminRow) {
-    if (password_verify($password, $adminRow[0]['password'])) {
+  // Periksa login dan verifikasi untuk admin
+  if ($adminRow && password_verify($password, $adminRow[0]['password'])) {
       // set session untuk admin
       $_SESSION['id_user'] = $adminRow[0]['id_user'];
       $_SESSION['username'] = $adminRow[0]['username'];
@@ -30,24 +32,23 @@ if (isset($_POST["login"])) {
       $_SESSION['phone'] = $adminRow[0]['phone']; 
       $_SESSION['email'] = $adminRow[0]['email'];  
       $_SESSION['role'] = "Admin";
-      header("Location: index.php");
-    } else {
-      echo "<div class='alert alert-warning'>Username atau Password salah</div>";
-    }
-  } elseif ($userRow && $userRow[0]["account_activation_hash"] === NULL) {
-    if (password_verify($password, $userRow[0]['password'])) {
+      header("Location: admin.php");
+      die(); // Pastikan untuk berhenti setelah melakukan redirect
+  } elseif ($userRow && $userRow[0]["account_activation_hash"] === NULL && password_verify($password, $userRow[0]['password'])) {
+      // Periksa login dan verifikasi untuk user
       // set session untuk user
       $_SESSION['email'] = $userRow[0]['email'];
       $_SESSION['id_user'] = $userRow[0]['id_user'];
       $_SESSION['role'] = "User";
-      header("Location: indexuser.php");
-    } else {
-      echo "<div class='alert alert-warning'>Username atau Password salah</div>";
-    }
+      header("Location: index.php");
+      die(); // Pastikan untuk berhenti setelah melakukan redirect
   } else {
-    echo "<div class='alert alert-warning'>Verifikasi Terlebih Dahulu atau Email Tidak Ditemukan</div>";
+      echo "<div class='alert alert-warning'>Username atau Password salah</div>";
   }
+
+  echo "<div class='alert alert-warning'>Verifikasi Terlebih Dahulu atau Email Tidak Ditemukan</div>";
 }
+
 ?>
 
 

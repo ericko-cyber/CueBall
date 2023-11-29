@@ -2,31 +2,10 @@
 
 $autoload["libraries"] = array('email', 'session');
 
-$conn = mysqli_connect("localhost", "root", "", "db_futsal");
+$conn = mysqli_connect("mifa.myhost.id", "mifamyho_cueball", "WSImif2023", "mifamyho_cueball");
+// $conn = mysqli_connect("localhost", "root", "", "db_futsal");
 
 // functions.php
-
-if (!function_exists('query')) {
-  function query($sql, $params = []) {
-      // Lakukan koneksi ke database
-      $dsn = "mysql:host=localhost;dbname=db_futsal";
-      $username = "username";
-      $password = "password";
-
-      try {
-          $pdo = new PDO($dsn, $username, $password);
-          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-          // Lakukan query dan kembalikan hasilnya
-          $stmt = $pdo->prepare($sql);
-          $stmt->execute($params);
-
-          return $stmt->fetchAll(PDO::FETCH_ASSOC);
-      } catch (PDOException $e) {
-          die("Error: " . $e->getMessage());
-      }
-  }
-}
 
 
 function query($query)
@@ -476,8 +455,7 @@ function konfirmasimkn($idpesan)
 }
 
 
-function checkEmailExists($email)
-    {
+function checkEmailExists($email){
       global $conn;
         $email = $conn->real_escape_string($email);
 
@@ -488,8 +466,5 @@ function checkEmailExists($email)
             return true; // Email ada di database
         }
         return false; // Email tidak ditemukan di database
-    }
-
- ?>
-
-
+}
+?>
