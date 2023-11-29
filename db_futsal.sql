@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2023 at 02:48 AM
+-- Generation Time: Nov 29, 2023 at 03:39 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -169,19 +169,17 @@ CREATE TABLE `makanan` (
 
 INSERT INTO `makanan` (`idmakanan`, `nm`, `harga`, `foto`) VALUES
 (11, 'aqua', '10000', '6559b1cc669cb.jpg'),
-(12, 'sprite', '10000', '6565d2df18b6a.jpg'),
-(13, 'coca-cola', '10000', '6565d4903e98a.jpeg'),
+(12, 'sprite', '10000', '6566a2f7547fa.jpg'),
+(13, 'coca-cola', '10000', '6566a307cef0e.jpeg'),
 (14, 'Mie Goreng', '10000', '65629551066e1.jpg'),
 (15, 'Mie Telur', '10000', '65642f5846300.jpg'),
 (16, 'Snack Usus', '10000', '6562958d25f95.jpg'),
 (17, 'Dj Super', '10000', '656295b5304ae.jpg'),
 (18, 'King', '10000', '656295ce849a6.jpeg'),
-
 (19, 'Madu Hitam', '10000', '656295e8aa940.jpeg'),
-(20, 'L.A Ice', '10000', '6565d4e5501c0.jpeg');
-
-=======
-(19, 'Madu Hitam', '10000', '656295e8aa940.jpeg');
+(20, 'L.A Ice', '10000', '6566a3351e102.jpeg'),
+(21, 'Es Teh', '10000', '6566a352a560f.png'),
+(22, 'Kopi', '10000', '6566a3787e0e5.jpeg');
 
 -- --------------------------------------------------------
 
@@ -383,7 +381,7 @@ ALTER TABLE `lapangan`
 -- AUTO_INCREMENT for table `makanan`
 --
 ALTER TABLE `makanan`
-  MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
