@@ -56,7 +56,7 @@ $grand_total = 0;
       <nav class="navbar fixed-top navbar-expand-lg" style="background-color: black;">
          <div class="container">
             <a class="navbar-brand" href="#">
-               <img src="../assets/img/logo.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+               <img src="../assets/img/logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler " style="background-color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
@@ -85,52 +85,59 @@ $grand_total = 0;
    </div>
    <section class="shopping-cart">
       <!--<h1 class="heading">Shopping Cart</h1>-->
-      <table style="margin-top: 6%;">
-         <thead>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-            <th>Action</th>
-         </thead>
-         <tbody>
-            <?php
-            if (mysqli_num_rows($select_cart) > 0) {
-               while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
-            ?>
-                  <tr>
-                     <td><img src="../img/<?php echo $fetch_cart['gambar']; ?>" height="100" alt=""></td>
-                     <td><?php echo $fetch_cart['nama']; ?></td>
-                     <td>Rp <?php echo ($fetch_cart['harga']); ?>/-</td>
-                     <td>
-                        <div class="card-action">
-                           <button class="btn" onclick="handleCounterMin(<?php echo $fetch_cart['idkeranjang']; ?>)">-</button>
-                           <input type="text" id="counter_<?php echo $fetch_cart['idkeranjang']; ?>" class="counter" value="<?php echo $fetch_cart['jumlah']; ?>">
-                           <button class="btn" onclick="handleCounterPlus(<?php echo $fetch_cart['idkeranjang']; ?>)">+</button>
-                        </div>
-                     </td>
-                     <td>Rp <?php echo $fetch_cart['harga'] * $fetch_cart['jumlah']; ?>/-</td>
-                     <td><a href="keranjang.php?remove=<?php echo $fetch_cart['idkeranjang']; ?>" onclick="return confirm('Remove item from cart?')" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Remove</a></td>
 
-                  </tr>
-            <?php
+      <div class="table-responsive">
+
+         <table class="table table-hover table-sm border-secondary" style="margin-top: 5%;">
+            <thead>
+               <th>Image</th>
+               <th>Name</th>
+               <th>Price</th>
+               <th>Quantity</th>
+               <th>Total Price</th>
+               <th>Action</th>
+            </thead>
+            <tbody>
+               <?php
+               if (mysqli_num_rows($select_cart) > 0) {
+                  while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
+               ?>
+                     <tr>
+                        <td><img src="../img/<?php echo $fetch_cart['gambar']; ?>" height="100" alt=""></td>
+                        <td><?php echo $fetch_cart['nama']; ?></td>
+                        <td>Rp <?php echo ($fetch_cart['harga']); ?>/-</td>
+                        <td>
+                           <div class="card-action">
+                              <button class="btn" onclick="handleCounterMin(<?php echo $fetch_cart['idkeranjang']; ?>)">-</button>
+                              <input type="text" id="counter_<?php echo $fetch_cart['idkeranjang']; ?>" class="counter" value="<?php echo $fetch_cart['jumlah']; ?>">
+                              <button class="btn" onclick="handleCounterPlus(<?php echo $fetch_cart['idkeranjang']; ?>)">+</button>
+                           </div>
+                        </td>
+                        <td>Rp <?php echo $fetch_cart['harga'] * $fetch_cart['jumlah']; ?>/-</td>
+                        <td><a href="keranjang.php?remove=<?php echo $fetch_cart['idkeranjang']; ?>" onclick="return confirm('Remove item from cart?')" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Remove</a></td>
+
+                     </tr>
+               <?php
+                  }
                }
-            }
-            ?>
-            <tr class="table-bottom">
-               <td></td>
-               <td colspan="3" style="text-align: right;">Total</td>
-               <td><span id="grandtotal">Rp 0.00/-</span></td>
-               <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Clear All </a></td>
-            </tr>
+               ?>
+               <tr class="table-footer">
+                  <td></td>
+                  <td colspan="3" style="text-align: right;">Total</td>
+                  <td><span id="grandtotal">Rp 0.00/-</span></td>
+                  <td><a href="keranjang.php?delete_all=1" onclick="return confirm('Apakah Anda yakin ingin menghapus semua?');" class="delete-btn btn btn-danger"> <i class="fas fa-trash"></i> Clear All </a></td>
+               </tr>
 
-         </tbody>
-      </table>
+            </tbody>
+         </table>
+      </div>
       <!-- Your Checkout Button -->
       <div class="checkout-btn">
          <a href="../index.php" class="option-btn btn btn-warning" style="margin-top: 0;">Continue Shopping</a>
          <a href="#" data-bs-toggle="modal" data-bs-target="#checkout" class="btn btn-inti btn btn-success">Processed to Checkout</a>
+      </div>
+      <div>
+
       </div>
    </section>
 
