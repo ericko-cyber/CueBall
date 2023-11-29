@@ -13,7 +13,7 @@ if (isset($_POST["simpan"])) {
   if (tambahMkn($_POST) > 0) {
     echo "<script>
           alert('Berhasil DiTambahkan');
-          window.location.href = 'index.php?page=makan'; 
+          window.location.href = 'admin.php?page=makan'; 
           </script>";
   } else {
     echo "<script>
@@ -26,7 +26,7 @@ if (isset($_POST["edit"])) {
   if (editMkn($_POST) > 0) {
     echo "<script>
           alert('Berhasil Di Ubah');
-          window.location.href = 'index.php?page=makan'; // Merefresh halaman ke admin.php
+          window.location.href = 'admin.php?page=makan'; // Merefresh halaman ke admin.php
           </script>";
   } else {
     echo "<script>

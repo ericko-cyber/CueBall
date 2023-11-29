@@ -6,14 +6,14 @@ if (hapusLpg($id_lap) > 0) {
   echo "
   <script>
     alert('Data Berhasil Dihapus');
-    document.location.href = 'index.php?page=meja'; 
+    document.location.href = 'admin.php?page=meja'; 
   </script>
   ";
 } else {
   echo "
   <script>
     alert('Data Gagal Dihapus');
-    document.location.href = 'index.php?page=meja'; 
+    document.location.href = 'admin.php?page=meja'; 
   </script>
   ";
 }

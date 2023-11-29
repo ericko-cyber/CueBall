@@ -26,7 +26,7 @@ if (isset($_POST["simpan"])) {
   if (tambahAdmin($_POST) > 0) {
     echo "<script>
   alert('Berhasil DiTambahkan');
-  window.location.href = 'index.php?page=admin'; 
+  window.location.href = 'admin.php?page=admin'; 
 </script>";
   } else {
     echo "<script>
