@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 03:22 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Nov 29, 2023 at 02:48 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `admin` (
   `nama` varchar(50) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `admin`
@@ -55,7 +55,7 @@ CREATE TABLE `bayar` (
   `bukti` text NOT NULL,
   `tgl_upload` date NOT NULL DEFAULT current_timestamp(),
   `konfirmasi` varchar(50) NOT NULL DEFAULT 'Belum'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `bayar`
@@ -86,7 +86,7 @@ CREATE TABLE `bayarmkn` (
   `bukti` text NOT NULL,
   `tgl_upload` timestamp NOT NULL DEFAULT current_timestamp(),
   `konfirmasi` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bayarmkn`
@@ -113,7 +113,7 @@ CREATE TABLE `keranjang` (
   `harga` varchar(255) NOT NULL,
   `gambar` text NOT NULL,
   `jumlah` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `keranjang`
@@ -137,7 +137,7 @@ CREATE TABLE `lapangan` (
   `ket` text NOT NULL,
   `harga` int(11) NOT NULL,
   `foto` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `lapangan`
@@ -161,7 +161,7 @@ CREATE TABLE `makanan` (
   `nm` varchar(35) NOT NULL,
   `harga` varchar(255) NOT NULL,
   `foto` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `makanan`
@@ -169,13 +169,18 @@ CREATE TABLE `makanan` (
 
 INSERT INTO `makanan` (`idmakanan`, `nm`, `harga`, `foto`) VALUES
 (11, 'aqua', '10000', '6559b1cc669cb.jpg'),
-(12, 'sprite', '10000', '6559b22759f3f.jpg'),
-(13, 'coca-cola', '10000', '6558d286c75f0.jpeg'),
+(12, 'sprite', '10000', '6565d2df18b6a.jpg'),
+(13, 'coca-cola', '10000', '6565d4903e98a.jpeg'),
 (14, 'Mie Goreng', '10000', '65629551066e1.jpg'),
 (15, 'Mie Telur', '10000', '65642f5846300.jpg'),
 (16, 'Snack Usus', '10000', '6562958d25f95.jpg'),
 (17, 'Dj Super', '10000', '656295b5304ae.jpg'),
 (18, 'King', '10000', '656295ce849a6.jpeg'),
+
+(19, 'Madu Hitam', '10000', '656295e8aa940.jpeg'),
+(20, 'L.A Ice', '10000', '6565d4e5501c0.jpeg');
+
+=======
 (19, 'Madu Hitam', '10000', '656295e8aa940.jpeg');
 
 -- --------------------------------------------------------
@@ -189,7 +194,7 @@ CREATE TABLE `pengeluaran` (
   `tgl` date NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `pengeluaran` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -208,7 +213,7 @@ CREATE TABLE `pesan` (
   `total_products` varchar(255) NOT NULL,
   `total_price` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pesan`
@@ -234,7 +239,7 @@ CREATE TABLE `sewa` (
   `harga` int(11) NOT NULL,
   `tot` varchar(11) NOT NULL,
   `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sewa`
@@ -264,7 +269,7 @@ CREATE TABLE `user` (
   `reset_token_hash` varchar(64) DEFAULT NULL,
   `reset_token_expires_at` datetime DEFAULT NULL,
   `account_activation_hash` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user`
@@ -378,7 +383,7 @@ ALTER TABLE `lapangan`
 -- AUTO_INCREMENT for table `makanan`
 --
 ALTER TABLE `makanan`
-  MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
