@@ -7,11 +7,11 @@ if (isset($_SESSION["id_user"])) {
 
   // Pastikan $id_user bukan null sebelum menggunakan
   if (!empty($id_user)) {
-      $profil = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
-      // Lanjutkan dengan menggunakan data pengguna seperti yang telah Anda lakukan sebelumnya
+    $profil = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
+    // Lanjutkan dengan menggunakan data pengguna seperti yang telah Anda lakukan sebelumnya
   } else {
-      // Handle jika $id_user kosong atau null
-      // ...
+    // Handle jika $id_user kosong atau null
+    // ...
   }
 } else {
   // Pengguna belum login, berikan akses ke konten umum atau halaman login
@@ -149,7 +149,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           }
           ?>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i> 
+        <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
@@ -312,7 +312,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         </div>
 
         <div class="row">
-        <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="img-area mb-4"><img alt="" class="img-fluid" src="assets/img/toilet.png"></div>
               <h4><a href="">Toilet</a></h4>
@@ -375,7 +375,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         </div>
 
         <div class="row">
-        <div class="col-md-6 custom-class" data-aos="fade-up"  data-aos-delay="100">
+          <div class="col-md-6 custom-class" data-aos="fade-up" data-aos-delay="100">
             <div class="box">
               <h3>Small Table</h3>
               <h4>12k<span>/hour</span></h4>

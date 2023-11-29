@@ -50,7 +50,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
                 <th> action <span class="icon-arrow">&UpArrow;</span></th>
               </tr>
             </thead>
-            <tbody  id="dataTable">
+            <tbody  id="searchResults">
               <?php $i = 1; ?>
               <?php foreach ($pesan as $row) : ?>
                 <tr>
@@ -170,24 +170,33 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
       document.body.innerHTML = originalContents;
     }
 
-    function searchTable() {
-      var input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("searchInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("dataTable");
-      tr = table.getElementsByTagName("tr");
+    document.addEventListener("DOMContentLoaded", function() {
+          const searchInput = document.getElementById("searchInput");
+          const rows = document.querySelectorAll("#searchResults tr");
 
-      for (i = 0; i < tr.length; i++) {
-        var found = false;
-        td = tr[i].getElementsByTagName("td");
-        for (var j = 0; j < td.length; j++) {
-          txtValue = td[j].textContent || td[j].innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            found = true;
-            break;
-          }
-        }
-        tr[i].style.display = found ? "" : "none";
-      }
-    }
+          searchInput.addEventListener("input", function() {
+            const searchQuery = searchInput.value.toLowerCase();
+
+            rows.forEach((row) => {
+              const cells = row.getElementsByTagName("td");
+              let rowContainsQuery = false;
+
+              for (let i = 0; i < cells.length; i++) {
+                const cellText = cells[i].textContent.toLowerCase();
+
+                if (cellText.includes(searchQuery)) {
+                  rowContainsQuery = true;
+                  break;
+                }
+              }
+
+              if (rowContainsQuery) {
+                row.style.display = "";
+              } else {
+                row.style.display = "none";
+              }
+            });
+          });
+        });
+
   </script>
