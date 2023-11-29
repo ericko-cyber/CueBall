@@ -210,7 +210,7 @@ if (isset($_POST["bayar"])) {
                                   <input type="text" name="jam_habis" class="form-control" id="exampleInputPassword1" value="<?= $row["jhabis"]; ?>" disabled>
                                 </div>
                               </div>
-                                <div class="mb-1">
+                                <div class="mb-2">
                                   <label for="exampleInputPassword1" class="form-label">Harga</label>
                                   <input type="number" name="harga" class="form-control" id="exampleInputPassword1" value="<?= $row["harga"]; ?>" disabled>
                                 </div>
@@ -222,7 +222,7 @@ if (isset($_POST["bayar"])) {
                               </div>
                             </div>
                           </div>
-                          <div class="mt-3 mx-3">
+                          <div class="mt-4 mx-3">
                             <h6 class="text-center border border-danger">Status : <?= $row["konfirmasi"]; ?></h6>
                           </div>
                           <div class="mt-3 mb-3 d-flex text-center align-items-center justify-content-center">
