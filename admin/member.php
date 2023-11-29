@@ -5,18 +5,6 @@ if ($role !== 'Admin') {
   header("location:/login.php");
 }
 
-// Pagination
-$jmlHalamanPerData = 5;
-$jumlahData = count(query("SELECT * FROM user"));
-$jmlHalaman = ceil($jumlahData / $jmlHalamanPerData);
-
-if (isset($_GET["halaman"])) {
-  $halamanAktif = $_GET["halaman"];
-} else {
-  $halamanAktif = 1;
-}
-
-$awalData = ($jmlHalamanPerData * $halamanAktif) - $jmlHalamanPerData;
 
 $member = query("SELECT * FROM user");
 
