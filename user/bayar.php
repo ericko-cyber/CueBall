@@ -84,11 +84,11 @@ if (isset($_POST["bayar"])) {
     </nav>
   </div>
 
-  <section class="lapangan mb-5" id="lapangan" style="margin-top: 8%;">
+  <section class="lapangan mb-5" id="lapangan" style="margin-top: 9%;">
     <div class="container-fluid">
-
       <!-- <h2 class="text-head"><span>Pembayaran</span>Meja </h2> -->
       <form action="" method="post" enctype="multipart/form-data" class="px-4">
+      <div class="col-12 col-md-12">
       <div class="table-responsive">
         <table class="table table-striped table-hover my-5">
           <thead>
@@ -196,7 +196,7 @@ if (isset($_POST["bayar"])) {
                         <form action="" method="post">
                           <div class="modal-body">
                             <!-- konten form modal -->
-                            <div class="row justify-content-center align-items-center"  style="height: 400px;">
+                            <div class="row justify-content-center align-items-center"  style="height: 395px;">
                               <div class="mb-1 text-center d-flex align-items-center justify-content-center">
                                 <img src="../img/<?= $row["bukti"]; ?>" alt="gambar lapangan" class="img-fluid rounded" style="height: 160px;">
                               </div>
@@ -223,9 +223,9 @@ if (isset($_POST["bayar"])) {
                             </div>
                           </div>
                           <div class="mt-4 mx-3">
-                            <h6 class="text-center border border-danger">Status : <?= $row["konfirmasi"]; ?></h6>
+                            <h6 class="text-center border border-danger rounded">Status : <?= $row["konfirmasi"]; ?></h6>
                           </div>
-                          <div class="mt-3 mb-3 d-flex text-center align-items-center justify-content-center">
+                          <div class="mt-2 mb-2 d-flex text-center align-items-center justify-content-center">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100px; height: 35px;">Tutup</button>
                           </div>
                         </form>
