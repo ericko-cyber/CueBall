@@ -190,27 +190,27 @@ if (isset($_POST["bayar"])) {
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title">Detail Pembayaran <?= $row["nm"]; ?></h5>
+                          <h3 class="modal-title">Detail Pembayaran <?= $row["nm"]; ?></h3>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form action="" method="post">
                           <div class="modal-body">
                             <!-- konten form modal -->
-                            <div class="row justify-content-center align-items-center"  style="height: 500px;">
-                              <div class="mb-3 text-center d-flex align-items-center justify-content-center">
-                                <img src="../img/<?= $row["bukti"]; ?>" alt="gambar lapangan" class="img-fluid rounded" style="height: 200px;">
+                            <div class="row justify-content-center align-items-center"  style="height: 400px;">
+                              <div class="mb-1 text-center d-flex align-items-center justify-content-center">
+                                <img src="../img/<?= $row["bukti"]; ?>" alt="gambar lapangan" class="img-fluid rounded" style="height: 160px;">
                               </div>
                               <div class="col">
-                                <div class="mb-3">
+                                <div class="mb-1">
                                   <label for="exampleInputPassword1" class="form-label">Jam Mulai</label>
                                   <input type="text" name="tgl_main" class="form-control" id="exampleInputPassword1" value="<?= $row["jmulai"]; ?>" disabled>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-1">
                                   <label for="exampleInputPassword1" class="form-label">Jam Habis</label>
                                   <input type="text" name="jam_habis" class="form-control" id="exampleInputPassword1" value="<?= $row["jhabis"]; ?>" disabled>
                                 </div>
                               </div>
-                                <div class="mb-3">
+                                <div class="mb-1">
                                   <label for="exampleInputPassword1" class="form-label">Harga</label>
                                   <input type="number" name="harga" class="form-control" id="exampleInputPassword1" value="<?= $row["harga"]; ?>" disabled>
                                 </div>
@@ -225,8 +225,8 @@ if (isset($_POST["bayar"])) {
                           <div class="mt-3 mx-3">
                             <h6 class="text-center border border-danger">Status : <?= $row["konfirmasi"]; ?></h6>
                           </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                          <div class="mt-3 mb-3 d-flex text-center align-items-center justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100px; height: 35px;">Tutup</button>
                           </div>
                         </form>
                       </div>
