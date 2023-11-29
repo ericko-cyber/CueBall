@@ -175,9 +175,7 @@ INSERT INTO `makanan` (`idmakanan`, `nm`, `harga`, `foto`) VALUES
 (16, 'Snack Usus', '10000', '6562958d25f95.jpg'),
 (17, 'Dj Super', '10000', '656295b5304ae.jpg'),
 (18, 'King', '10000', '656295ce849a6.jpeg'),
-(19, 'Madu Hitam', '10000', '656295e8aa940.jpeg'),
-(20, 'Es Teh', '4000' 'es-teh-cup-png-7-removebg-preview 1.png');
-
+(19, 'Madu Hitam', '10000', '656295e8aa940.jpeg');
 -- --------------------------------------------------------
 
 --
