@@ -6,14 +6,14 @@ if (konfirmasi($idsewa) > 0) {
   echo "
   <script>
     alert('Data Berhasil DiKonfirmasi');
-    document.location.href = 'admin.php?page=mejapesan'; 
+    document.location.href = '../../admin.php?page=mejapesan'; 
   </script>
   ";
 } else {
   echo "
   <script>
     alert('Data Gagal Dihapus');
-    document.location.href = 'admin.php?page=mejapesan'; 
+    document.location.href = '../../admin.php?page=mejapesan'; 
   </script>
   ";
 }

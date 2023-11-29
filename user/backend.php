@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: application/json');
-$mysqli = new mysqli("localhost", "root", "", "db_futsal");
+// $mysqli = new mysqli("localhost", "root", "", "db_futsal");
+$mysqli = new mysqli("mifa.myhost.id", "mifamyho_cueball", "WSImif2023", "mifamyho_cueball");
+
 
 if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);

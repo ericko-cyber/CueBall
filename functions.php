@@ -2,8 +2,8 @@
 
 $autoload["libraries"] = array('email', 'session');
 
-$conn = mysqli_connect("mifa.myhost.id", "mifamyho_cueball", "WSImif2023", "mifamyho_cueball");
-// $conn = mysqli_connect("localhost", "root", "", "db_futsal");
+// $conn = mysqli_connect("mifa.myhost.id", "mifamyho_cueball", "WSImif2023", "mifamyho_cueball");
+$conn = mysqli_connect("localhost", "root", "", "db_futsal");
 
 // functions.php
 

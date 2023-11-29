@@ -6,14 +6,14 @@ if (hapusMkn($id_mkn) > 0) {
   echo "
   <script>
     alert('Data Berhasil Dihapus');
-    document.location.href = 'admin.php?page=makan'; 
+    document.location.href = '../../admin.php?page=makan'; 
   </script>
   ";
 } else {
   echo "
   <script>
     alert('Data Gagal Dihapus');
-    document.location.href = 'admin.php?page=makan'; 
+    document.location.href = '../../admin.php?page=makan'; 
   </script>
   ";
 }
