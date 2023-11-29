@@ -196,9 +196,9 @@ if (isset($_POST["bayar"])) {
                         <form action="" method="post">
                           <div class="modal-body">
                             <!-- konten form modal -->
-                            <div class="row justify-content-center align-items-center">
-                              <div class="mb-3">
-                                <img src="../img/<?= $row["bukti"]; ?>" alt="gambar lapangan" class="img-fluid">
+                            <div class="row justify-content-center align-items-center"  style="height: 500px;">
+                              <div class="mb-3 text-center d-flex align-items-center justify-content-center">
+                                <img src="../img/<?= $row["bukti"]; ?>" alt="gambar lapangan" class="img-fluid rounded" style="height: 200px;">
                               </div>
                               <div class="col">
                                 <div class="mb-3">
