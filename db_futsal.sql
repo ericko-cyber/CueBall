@@ -124,7 +124,7 @@ INSERT INTO `keranjang` (`idkeranjang`, `iduser`, `nama`, `harga`, `gambar`, `ju
 (143, 128, 'coca-cola', '10000', '6558d286c75f0.jpeg', 1),
 (155, 127, 'sprite', '10000', '6559b22759f3f.jpg', 3),
 (156, 127, 'coca-cola', '10000', '6558d286c75f0.jpeg', 1),
-(157, 126, 'es teh', '4000', 'es-teh-cup-png-7-removebg-preview 1.png, 1');
+(157, 126, 'es teh', '4000', 'es-teh-cup-png-7-removebg-preview 1.png', 1);
 -- --------------------------------------------------------
 
 --
