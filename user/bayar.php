@@ -89,7 +89,8 @@ if (isset($_POST["bayar"])) {
 
       <!-- <h2 class="text-head"><span>Pembayaran</span>Meja </h2> -->
       <form action="" method="post" enctype="multipart/form-data" class="px-4">
-        <table class="table my-5">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover my-5">
           <thead>
             <tr>
               <th scope="col">No</th>
@@ -257,6 +258,7 @@ if (isset($_POST["bayar"])) {
           </tbody>
         </table>
       </form>
+    </div>
     </div>
   </section>
 
