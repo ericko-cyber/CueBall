@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2023 at 02:48 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Waktu pembuatan: 29 Nov 2023 pada 03.23
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -34,10 +34,10 @@ CREATE TABLE `admin` (
   `nama` varchar(50) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_user`, `username`, `password`, `nama`, `phone`, `email`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `admin` (`id_user`, `username`, `password`, `nama`, `phone`, `email`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bayar`
+-- Struktur dari tabel `bayar`
 --
 
 CREATE TABLE `bayar` (
@@ -55,10 +55,10 @@ CREATE TABLE `bayar` (
   `bukti` text NOT NULL,
   `tgl_upload` date NOT NULL DEFAULT current_timestamp(),
   `konfirmasi` varchar(50) NOT NULL DEFAULT 'Belum'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bayar`
+-- Dumping data untuk tabel `bayar`
 --
 
 INSERT INTO `bayar` (`idbayar`, `idsewa`, `bukti`, `tgl_upload`, `konfirmasi`) VALUES
@@ -77,7 +77,7 @@ INSERT INTO `bayar` (`idbayar`, `idsewa`, `bukti`, `tgl_upload`, `konfirmasi`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bayarmkn`
+-- Struktur dari tabel `bayarmkn`
 --
 
 CREATE TABLE `bayarmkn` (
@@ -86,10 +86,10 @@ CREATE TABLE `bayarmkn` (
   `bukti` text NOT NULL,
   `tgl_upload` timestamp NOT NULL DEFAULT current_timestamp(),
   `konfirmasi` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `bayarmkn`
+-- Dumping data untuk tabel `bayarmkn`
 --
 
 INSERT INTO `bayarmkn` (`idbayarmkn`, `idpesan`, `bukti`, `tgl_upload`, `konfirmasi`) VALUES
@@ -103,7 +103,7 @@ INSERT INTO `bayarmkn` (`idbayarmkn`, `idpesan`, `bukti`, `tgl_upload`, `konfirm
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keranjang`
+-- Struktur dari tabel `keranjang`
 --
 
 CREATE TABLE `keranjang` (
@@ -113,10 +113,10 @@ CREATE TABLE `keranjang` (
   `harga` varchar(255) NOT NULL,
   `gambar` text NOT NULL,
   `jumlah` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `keranjang`
+-- Dumping data untuk tabel `keranjang`
 --
 
 INSERT INTO `keranjang` (`idkeranjang`, `iduser`, `nama`, `harga`, `gambar`, `jumlah`) VALUES
@@ -128,7 +128,7 @@ INSERT INTO `keranjang` (`idkeranjang`, `iduser`, `nama`, `harga`, `gambar`, `ju
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lapangan`
+-- Struktur dari tabel `lapangan`
 --
 
 CREATE TABLE `lapangan` (
@@ -137,10 +137,10 @@ CREATE TABLE `lapangan` (
   `ket` text NOT NULL,
   `harga` int(11) NOT NULL,
   `foto` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `lapangan`
+-- Dumping data untuk tabel `lapangan`
 --
 
 INSERT INTO `lapangan` (`idlap`, `nm`, `ket`, `harga`, `foto`) VALUES
@@ -153,7 +153,7 @@ INSERT INTO `lapangan` (`idlap`, `nm`, `ket`, `harga`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `makanan`
+-- Struktur dari tabel `makanan`
 --
 
 CREATE TABLE `makanan` (
@@ -161,32 +161,27 @@ CREATE TABLE `makanan` (
   `nm` varchar(35) NOT NULL,
   `harga` varchar(255) NOT NULL,
   `foto` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `makanan`
+-- Dumping data untuk tabel `makanan`
 --
 
 INSERT INTO `makanan` (`idmakanan`, `nm`, `harga`, `foto`) VALUES
 (11, 'aqua', '10000', '6559b1cc669cb.jpg'),
-(12, 'sprite', '10000', '6565d2df18b6a.jpg'),
-(13, 'coca-cola', '10000', '6565d4903e98a.jpeg'),
+(12, 'sprite', '10000', '6559b22759f3f.jpg'),
+(13, 'coca-cola', '10000', '6558d286c75f0.jpeg'),
 (14, 'Mie Goreng', '10000', '65629551066e1.jpg'),
 (15, 'Mie Telur', '10000', '65642f5846300.jpg'),
 (16, 'Snack Usus', '10000', '6562958d25f95.jpg'),
 (17, 'Dj Super', '10000', '656295b5304ae.jpg'),
 (18, 'King', '10000', '656295ce849a6.jpeg'),
-
-(19, 'Madu Hitam', '10000', '656295e8aa940.jpeg'),
-(20, 'L.A Ice', '10000', '6565d4e5501c0.jpeg');
-
-=======
 (19, 'Madu Hitam', '10000', '656295e8aa940.jpeg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengeluaran`
+-- Struktur dari tabel `pengeluaran`
 --
 
 CREATE TABLE `pengeluaran` (
@@ -194,12 +189,12 @@ CREATE TABLE `pengeluaran` (
   `tgl` date NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `pengeluaran` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pesan`
+-- Struktur dari tabel `pesan`
 --
 
 CREATE TABLE `pesan` (
@@ -213,10 +208,10 @@ CREATE TABLE `pesan` (
   `total_products` varchar(255) NOT NULL,
   `total_price` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pesan`
+-- Dumping data untuk tabel `pesan`
 --
 
 INSERT INTO `pesan` (`idpesan`, `iduser`, `tgl_pesan`, `nama`, `hp`, `meja`, `foto`, `total_products`, `total_price`, `status`) VALUES
@@ -226,7 +221,7 @@ INSERT INTO `pesan` (`idpesan`, `iduser`, `tgl_pesan`, `nama`, `hp`, `meja`, `fo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sewa`
+-- Struktur dari tabel `sewa`
 --
 
 CREATE TABLE `sewa` (
@@ -239,10 +234,10 @@ CREATE TABLE `sewa` (
   `harga` int(11) NOT NULL,
   `tot` varchar(11) NOT NULL,
   `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sewa`
+-- Dumping data untuk tabel `sewa`
 --
 
 INSERT INTO `sewa` (`idsewa`, `iduser`, `idlap`, `tgl_pesan`, `jmulai`, `jhabis`, `harga`, `tot`, `status`) VALUES
@@ -254,7 +249,7 @@ INSERT INTO `sewa` (`idsewa`, `iduser`, `idlap`, `tgl_pesan`, `jmulai`, `jhabis`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -269,10 +264,10 @@ CREATE TABLE `user` (
   `reset_token_hash` varchar(64) DEFAULT NULL,
   `reset_token_expires_at` datetime DEFAULT NULL,
   `account_activation_hash` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `email`, `password`, `hp`, `jenis_kelamin`, `nama_lengkap`, `alamat`, `foto`, `reset_token_hash`, `reset_token_expires_at`, `account_activation_hash`) VALUES
@@ -284,61 +279,61 @@ INSERT INTO `user` (`id_user`, `email`, `password`, `hp`, `jenis_kelamin`, `nama
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indexes for table `bayar`
+-- Indeks untuk tabel `bayar`
 --
 ALTER TABLE `bayar`
   ADD PRIMARY KEY (`idbayar`);
 
 --
--- Indexes for table `bayarmkn`
+-- Indeks untuk tabel `bayarmkn`
 --
 ALTER TABLE `bayarmkn`
   ADD PRIMARY KEY (`idbayarmkn`);
 
 --
--- Indexes for table `keranjang`
+-- Indeks untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
   ADD PRIMARY KEY (`idkeranjang`);
 
 --
--- Indexes for table `lapangan`
+-- Indeks untuk tabel `lapangan`
 --
 ALTER TABLE `lapangan`
   ADD PRIMARY KEY (`idlap`);
 
 --
--- Indexes for table `makanan`
+-- Indeks untuk tabel `makanan`
 --
 ALTER TABLE `makanan`
   ADD PRIMARY KEY (`idmakanan`);
 
 --
--- Indexes for table `pengeluaran`
+-- Indeks untuk tabel `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   ADD PRIMARY KEY (`idp`);
 
 --
--- Indexes for table `pesan`
+-- Indeks untuk tabel `pesan`
 --
 ALTER TABLE `pesan`
   ADD PRIMARY KEY (`idpesan`);
 
 --
--- Indexes for table `sewa`
+-- Indeks untuk tabel `sewa`
 --
 ALTER TABLE `sewa`
   ADD PRIMARY KEY (`idsewa`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
@@ -346,65 +341,65 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `account_activation_hash` (`account_activation_hash`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `bayar`
+-- AUTO_INCREMENT untuk tabel `bayar`
 --
 ALTER TABLE `bayar`
   MODIFY `idbayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT for table `bayarmkn`
+-- AUTO_INCREMENT untuk tabel `bayarmkn`
 --
 ALTER TABLE `bayarmkn`
   MODIFY `idbayarmkn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `keranjang`
+-- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
   MODIFY `idkeranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
--- AUTO_INCREMENT for table `lapangan`
+-- AUTO_INCREMENT untuk tabel `lapangan`
 --
 ALTER TABLE `lapangan`
   MODIFY `idlap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
--- AUTO_INCREMENT for table `makanan`
+-- AUTO_INCREMENT untuk tabel `makanan`
 --
 ALTER TABLE `makanan`
-  MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idmakanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `pengeluaran`
+-- AUTO_INCREMENT untuk tabel `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `pesan`
+-- AUTO_INCREMENT untuk tabel `pesan`
 --
 ALTER TABLE `pesan`
   MODIFY `idpesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `sewa`
+-- AUTO_INCREMENT untuk tabel `sewa`
 --
 ALTER TABLE `sewa`
   MODIFY `idsewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
