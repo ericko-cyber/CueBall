@@ -156,7 +156,7 @@ if (isset($_POST["pesan"])) {
   </div>
   <!-- End Navbar -->
 
-  <section class="lapangan" id="lapangan" style="margin-top: 9%">
+  <section class="lapangan" id="lapangan" style="margin-top: 10%">
     <div class="container">
       <main class="contain" data-aos="fade-right" data-aos-duration="1000">
         <h2 class="text-head" style=" color:#ccc; margin-bottom: 50px"> Choose <span style="color: #ffbb35;">Your</span> Table! </h2>
