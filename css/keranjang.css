@@ -27,6 +27,17 @@
    height: 30px;
 }
 
+/* body */
+body {
+   padding-top: 40px;
+}
+
+@media (max-widht: 768px) {
+   body {
+      padding-top: 0px
+   }
+}
+
 /* Nav  */
 
 .nav-item {
@@ -99,7 +110,8 @@ button:hover {
 
 .shopping-cart .checkout-btn {
    text-align: center;
-   margin-top: 1rem;
+   margin-top: 100px;
+   margin-bottom: 120px;
 }
 
 .shopping-cart .checkout-btn a {

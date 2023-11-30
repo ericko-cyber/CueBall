@@ -133,8 +133,8 @@ $grand_total = 0;
       </div>
       <!-- Your Checkout Button -->
       <div class="checkout-btn">
-         <a href="../index.php" class="option-btn btn btn-warning" style="margin-top: 0;">Continue Shopping</a>
-         <a href="#" data-bs-toggle="modal" data-bs-target="#checkout" class="btn btn-inti btn btn-success">Processed to Checkout</a>
+         <button class="btn btn-default" type="button"><a href="../index.php" class="option-btn btn btn-warning" style="margin-top: 0;">Continue Shopping</a></button>
+         <button class="btn btn-default" type="button"><a href="#" data-bs-toggle="modal" data-bs-target="#checkout" class="btn btn-inti btn btn-success">Processed to Checkout</a></button>
       </div>
       <div>
 
@@ -149,7 +149,7 @@ $grand_total = 0;
                <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="checkoutForm" action="insertkeranjang.php" method="post" enctype="multipart/form-data">
+            <form id="checkoutForm" action="insertkeranjang.php" method="post" enctype="multipart/form-data" style="margin: 20px;">
                <div class="modal-body">
                   <div class="display-order" id="orderDetails">
                      <?php
