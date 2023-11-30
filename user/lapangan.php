@@ -159,7 +159,7 @@ if (isset($_POST["pesan"])) {
   <section class="lapangan" id="lapangan" style="margin-top: 9%">
     <div class="container">
       <main class="contain" data-aos="fade-right" data-aos-duration="1000">
-        <h2 class="text-head" style=" color:#ccc; margin-bottom: 50px"> Choose <span>Your</span> Table! </h2>
+        <h2 class="text-head" style=" color:#ccc; margin-bottom: 50px"> Choose <span style="color: #ffbb35;">Your</span> Table! </h2>
         <div class="row row-cols-1 row-cols-md-4">
           <?php foreach ($lapangan as $row) : ?>
             <div class="col" style="padding-bottom: 10px;">
