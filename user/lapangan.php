@@ -121,7 +121,7 @@ if (isset($_POST["pesan"])) {
   </style>
 </head>
 
-<body style="background-color: #FFBB35">
+<body style="background-color: black" >
   <!-- Navbar -->
   <div class="container ">
     <nav class="navbar fixed-top navbar-expand-lg" style="background-color: black;">
@@ -255,10 +255,10 @@ if (isset($_POST["pesan"])) {
   </div>
   <!-- End Edit Modal -->
 
-  <section class="lapangan" id="lapangan">
+  <section class="lapangan" id="lapangan" style="margin-top: 9%">
     <div class="container">
       <main class="contain" data-aos="fade-right" data-aos-duration="1000">
-        <h2 class="text-head"> Choose <span>Your</span> Table! </h2>
+        <h2 class="text-head" style=" color:#ccc; margin-bottom: 50px"> Choose <span>Your</span> Table! </h2>
         <div class="row row-cols-1 row-cols-md-4">
           <?php foreach ($lapangan as $row) : ?>
             <div class="col" style="padding-bottom: 10px;">
