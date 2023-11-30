@@ -90,7 +90,7 @@ if (isset($_POST["bayar"])) {
       <form action="" method="post" enctype="multipart/form-data" class="px-4">
       <div class="col-12 col-md-12">
       <div class="table-responsive">
-        <table class="table table-striped table-hover my-5">
+        <table class="table table-hover my-5">
           <thead>
             <tr>
               <th scope="col">No</th>

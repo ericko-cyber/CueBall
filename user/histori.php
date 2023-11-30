@@ -68,7 +68,7 @@ $pesan = query("SELECT pesan.*, bayarmkn.tgl_upload
     <div class="col-12 col-md-12">
     <div class="table-responsive">
       <form action="" method="post" class="px-4">
-        <table class="table my-5">
+        <table class="table table-hover my-5">
           <thead>
             <tr>
               <th scope="col">No</th>
@@ -138,12 +138,10 @@ $pesan = query("SELECT pesan.*, bayarmkn.tgl_upload
                                 </div>
                                 <div class="mb-3">
                                   <label for="total_price" class="form-label">Total Harga</label>
-                                  <div class="input-groub">
-                                    
+                                  <div class="input-groub">                                   
                                     <input type="text" name="total_price" class="form-control" id="total_price" value="<?= $row["total_price"]; ?>" disabled>
                                   </div>
-                                </div>
-                      
+                                </div>                      
                             </div>
                           </div>
                           <div class="modal-footer">
@@ -154,8 +152,6 @@ $pesan = query("SELECT pesan.*, bayarmkn.tgl_upload
                     </div>
                   </div>
                   <!-- End Modal Detail -->
-
-
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -163,7 +159,7 @@ $pesan = query("SELECT pesan.*, bayarmkn.tgl_upload
         </table>
       </form>
     </div>
-    </div>
+  </div>
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
