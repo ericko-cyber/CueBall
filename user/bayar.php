@@ -84,13 +84,13 @@ if (isset($_POST["bayar"])) {
     </nav>
   </div>
 
-  <section class="lapangan mb-5" id="lapangan" style="margin-top: 9%;">
+  <section class="lapangan mb-5" id="lapangan" style="margin-top: 4%;">
     <div class="container-fluid">
       <!-- <h2 class="text-head"><span>Pembayaran</span>Meja </h2> -->
       <form action="" method="post" enctype="multipart/form-data" class="px-4">
       <div class="col-12 col-md-12">
       <div class="table-responsive">
-        <table class="table table-striped table-hover my-5">
+        <table class="table table-hover my-5">
           <thead>
             <tr>
               <th scope="col">No</th>
