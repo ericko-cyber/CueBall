@@ -146,7 +146,7 @@ $row_countp = mysqli_num_rows($result);
             </div>
             <div class="bottom-content">
                 <li class="">
-                    <a href="index.php?page=setting">
+                    <a href="admin.php?page=setting">
                         <i class='bx bx-cog icon'></i>
                         <span class="text nav-text">Setting</span>
                     </a>

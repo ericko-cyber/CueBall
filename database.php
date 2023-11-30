@@ -1,9 +1,14 @@
 <?php
 
-$host = "mifa.myhost.id";
-$dbname = "mifamyho_cueball";
-$username = "mifamyho_cueball";
-$password = "WSImif2023";
+$host = "localhost";
+$dbname = "db_futsal";
+$username = "root";
+$password = "";
+
+// $host = "mifa.myhost.id";
+// $dbname = "mifamyho_cueball";
+// $username = "mifamyho_cueball";
+// $password = "WSImif2023";
 
 $mysqli = new mysqli(hostname: $host,
                      username: $username,

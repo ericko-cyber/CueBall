@@ -4,7 +4,7 @@ include_once(__DIR__ . '/../functions.php');
 include_once(__DIR__ . '/../session.php');
 include_once(__DIR__ . '/../database.php');
 if ($role !== 'Admin') {
-  header("location:../login.php");
+  header("location: ../login.php");
 }
 
 $lapangan = query("SELECT COUNT(idlap) AS jml_lapangan FROM lapangan")[0];
@@ -32,14 +32,14 @@ $resultBulan = $conn->query($sqlBulan);
 // Query total sewa dengan kondisi 'dikonfirmasi'
 $sqlTotalSewa = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(tot) AS total_sewa 
                 FROM sewa 
-                WHERE status = 'dikonfirmasi'
+                WHERE status = 'Dikonfirmasi'
                 GROUP BY MONTH(tgl_pesan) 
                 ORDER BY MONTH(tgl_pesan)";
 
 // Query total pesan dengan kondisi 'dikonfirmasi'
 $sqlTotalpesan = "SELECT MONTHNAME(tgl_pesan) AS bulan, SUM(total_price) AS total_pesan 
                 FROM pesan 
-                WHERE status = 'dikonfirmasi'
+                WHERE status = 'Dikonfirmasi'
                 GROUP BY MONTH(tgl_pesan) 
                 ORDER BY MONTH(tgl_pesan)";
 
