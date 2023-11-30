@@ -269,7 +269,7 @@ if (isset($_POST["pesan"])) {
                   <p class="card-text"><?= $row["ket"]; ?></p>
                   <p class="card-price"><?= $row["harga"]; ?></p>
                   <!-- <a href="jadwal.php?id=<?= $row["idlap"]; ?>" type="button" class="btn btn-secondary">Jadwal</a> -->
-                  <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#pesanModal<?= $row["idlap"]; ?>" onclick="handlePesanButtonClick(<?= $row["idlap"]; ?>)">Pesan</button>
+                  <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#pesanModal<?= $row["idlap"]; ?>" onclick="handlePesanButtonClick(<?= $row["idlap"]; ?>)" style="background-color: #ffbb35;">Pesan</button>
                 </div>
               </div>
             </div>
