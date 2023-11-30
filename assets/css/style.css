@@ -470,7 +470,6 @@ h6 {
 
 @media (max-width: 768px) {
   #hero .btn-get-started {
-    margin-left: 0px;
     text-align: center;
     width: 30%;
   }
