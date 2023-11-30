@@ -63,9 +63,10 @@ $pesan = query("SELECT pesan.*, bayarmkn.tgl_upload
     </nav>
   </div>
 
-  <section class="lapangan mb-5" id="lapangan" style="margin-top: 10%;">
+  <section class="lapangan mb-5" id="lapangan" style="margin-top: 5%;">
     <div class="container-fluid">
-      <h2 class="text-head"></h2>
+    <div class="col-12 col-md-12">
+    <div class="table-responsive">
       <form action="" method="post" class="px-4">
         <table class="table my-5">
           <thead>
@@ -161,6 +162,7 @@ $pesan = query("SELECT pesan.*, bayarmkn.tgl_upload
           </tbody>
         </table>
       </form>
+    </div>
     </div>
   </section>
 
