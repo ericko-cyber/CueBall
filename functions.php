@@ -3,8 +3,8 @@
 $autoload["libraries"] = array('email', 'session');
 
 // $conn = mysqli_connect("mifa.myhost.id", "mifamyho_cueball", "WSImif2023", "mifamyho_cueball");
-$conn = mysqli_connect("localhost", "root", "", "db_futsal");
-//$conn = mysqli_connect("localhost", "cueballm_billiard","cueballmifak4", "cueballm_billiard");
+// $conn = mysqli_connect("localhost", "root", "", "db_billiard");
+$conn = mysqli_connect("localhost", "cueballm_billiard","cueballmifak4", "cueballm_billiard");
 
 // functions.php
 
@@ -50,7 +50,7 @@ function hapusMember($id)
 function hapusLpg($id)
 {
   global $conn;
-  mysqli_query($conn, "DELETE FROM lapangan WHERE idlap = $id");
+  mysqli_query($conn, "DELETE FROM meja WHERE idmeja = $id");
 
   return mysqli_affected_rows($conn);
 }
@@ -195,7 +195,7 @@ function pesan($data)
   $harga = $data["harga"];
   $total = date("H", strtotime($lama)) * $harga;
 
-  mysqli_query($conn, "INSERT INTO sewa (iduser, idlap,lama,jmulai,jhabis,harga,tot) VALUES ('$userid','$idlpg','$lama','$mulai','$habis','$harga','$total') ");
+  mysqli_query($conn, "INSERT INTO sewa (iduser, idmeja,lama,jmulai,jhabis,harga,tot) VALUES ('$userid','$idlpg','$lama','$mulai','$habis','$harga','$total') ");
 
   return mysqli_affected_rows($conn);
 }
@@ -272,7 +272,7 @@ function tambahLpg($data)
   }
 
 
-  $query = "INSERT INTO lapangan (nm,harga,foto) VALUES ('$lapangan','$harga','$upload')";
+  $query = "INSERT INTO meja (nm,harga,foto) VALUES ('$lapangan','$harga','$upload')";
 
   mysqli_query($conn, $query);
   return mysqli_affected_rows($conn);
@@ -344,7 +344,7 @@ function editLpg($data)
 {
   global $conn;
 
-  $id = $data["idlap"];
+  $id = $data["idmeja"];
   $lapangan = $data["lapangan"];
   $ket = $data["ket"];
   $harga = $data["harga"];
@@ -358,11 +358,11 @@ function editLpg($data)
   }
 
 
-  $query = "UPDATE lapangan SET 
+  $query = "UPDATE meja SET 
   nm = '$lapangan',
   ket = '$ket',
   harga = '$harga',
-  foto = '$gambar' WHERE idlap = '$id'
+  foto = '$gambar' WHERE idmeja = '$id'
   ";
 
   mysqli_query($conn, $query);

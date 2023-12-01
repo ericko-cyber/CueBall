@@ -6,15 +6,15 @@ if ($role !== 'Admin') {
   header("location: ../login.php");
 }
 
-$lapangan = query("SELECT COUNT(idlap) AS jml_lapangan FROM lapangan")[0];
+$lapangan = query("SELECT COUNT(idmeja) AS jml_lapangan FROM meja")[0];
 $user = query("SELECT COUNT(idmakanan) AS jml_makanan FROM makanan")[0];
 $stok = query("SELECT COUNT(idpesan) AS jml_pesanan FROM pesan")[0];
 $pesanan = query("SELECT COUNT(idsewa) AS jml_sewa FROM sewa")[0];
-$meja = query("SELECT lapangan.nm, COUNT(sewa.idlap) as jumlah_pesanan 
-               FROM lapangan 
-               LEFT JOIN sewa ON lapangan.idlap = sewa.idlap 
+$meja = query("SELECT meja.nm, COUNT(sewa.idmeja) as jumlah_pesanan 
+               FROM meja 
+               LEFT JOIN sewa ON meja.idmeja = sewa.idmeja 
                WHERE sewa.status IN ('Sudah Bayar', 'Dikonfirmasi')
-               GROUP BY lapangan.idlap;");
+               GROUP BY meja.idmeja;");
 
 $labelss = [];
 $data = [];

@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json');
-// $mysqli = new mysqli("localhost", "root", "", "db_futsal");
+$mysqli = new mysqli("localhost", "root", "", "db_billiard");
 // $mysqli = new mysqli("mifa.myhost.id", "mifamyho_cueball", "WSImif2023", "mifamyho_cueball");
- $mysqli = new mysqli("localhost", "cueballm_billiard", "cueballmifak4", "cueballm_billiard");
+//  $mysqli = new mysqli("localhost", "cueballm_billiard", "cueballmifak4", "cueballm_billiard");
 
 
 if ($mysqli->connect_error) {
@@ -14,13 +14,13 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 // backend.php
 
 if ($action === 'getBookedDates') {
-    // Dapatkan idlap dari parameter atau request
-    $idlap = $_GET['idlap'] ?? null;
+    // Dapatkan idmeja dari parameter atau request
+    $idmeja = $_GET['idmeja'] ?? null;
 
-    // Pastikan idlap tidak kosong
-    if ($idlap !== null) {
-        // Query untuk mendapatkan data tanggal yang sudah dipesan berdasarkan idlap dengan kondisi status "Sudah Bayar" atau "Dikonfirmasi"
-        $result = $mysqli->query("SELECT tgl_pesan, jmulai, jhabis FROM sewa WHERE idlap = '$idlap' AND status IN ('Sudah Bayar', 'Dikonfirmasi')");
+    // Pastikan idmeja tidak kosong
+    if ($idmeja !== null) {
+        // Query untuk mendapatkan data tanggal yang sudah dipesan berdasarkan idmeja dengan kondisi status "Sudah Bayar" atau "Dikonfirmasi"
+        $result = $mysqli->query("SELECT tgl_pesan, jmulai, jhabis FROM sewa WHERE idmeja = '$idmeja' AND status IN ('Sudah Bayar', 'Dikonfirmasi')");
 
         if ($result === false) {
             echo json_encode(['error' => 'Error executing SQL query', 'sql_error' => $mysqli->error]);
@@ -40,8 +40,8 @@ if ($action === 'getBookedDates') {
             echo json_encode(['dates' => $bookedDates]);
         }
     } else {
-        // Jika idlap kosong, berikan response error
-        echo json_encode(['error' => 'Parameter idlap tidak valid']);
+        // Jika idmeja kosong, berikan response error
+        echo json_encode(['error' => 'Parameter idmeja tidak valid']);
     }
 }
  elseif ($action === 'saveBooking') {
@@ -49,17 +49,17 @@ if ($action === 'getBookedDates') {
     $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
     $iduser = $_POST['iduser'];
-    $idlap = $_POST['idlap'];
+    $idmeja = $_POST['idmeja'];
 
 
     error_log("bookingDate: " . $bookingDate);
     error_log("startTime: " . $startTime);
     error_log("endTime: " . $endTime);
     error_log("iduser: " . $iduser);
-    error_log("idlap: " . $idlap);
+    error_log("idmeja: " . $idmeja);
 
-    // Ambil harga lapangan berdasarkan idlap
-    $hargaQuery = $mysqli->query("SELECT harga FROM lapangan WHERE idlap = '$idlap'");
+    // Ambil harga lapangan berdasarkan idmeja
+    $hargaQuery = $mysqli->query("SELECT harga FROM meja WHERE idmeja = '$idmeja'");
 
     if ($hargaQuery === false) {
         echo json_encode(['success' => false, 'error' => $mysqli->error]);
@@ -82,8 +82,8 @@ if ($action === 'getBookedDates') {
 
     $status = 'menunggu';
 
-    $stmt = $mysqli->prepare('INSERT INTO sewa (iduser, idlap, tgl_pesan, jmulai, jhabis, harga, tot, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-    $stmt->bind_param('iisssiss', $iduser, $idlap, $bookingDate, $startTime, $endTime, $harga, $totalBiaya, $status);
+    $stmt = $mysqli->prepare('INSERT INTO sewa (iduser, idmeja, tgl_pesan, jmulai, jhabis, harga, tot, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('iisssiss', $iduser, $idmeja, $bookingDate, $startTime, $endTime, $harga, $totalBiaya, $status);
 
     error_log("Data yang dikirim: " . print_r($_POST, true));
 

@@ -9,9 +9,9 @@ if ($role !== 'User') {
 $id_user = $_SESSION["id_user"];
 
 
-$sewa = query("SELECT sewa.*, user.nama_lengkap, lapangan.nm, bayar.bukti, bayar.konfirmasi
+$sewa = query("SELECT sewa.*, user.nama_lengkap, meja.nm, bayar.bukti, bayar.konfirmasi
 FROM sewa
-JOIN lapangan ON sewa.idlap = lapangan.idlap
+JOIN meja ON sewa.idmeja = meja.idmeja
 JOIN user ON sewa.iduser = user.id_user 
 LEFT JOIN bayar ON sewa.idsewa = bayar.idsewa
 WHERE sewa.iduser = '$id_user'");

@@ -9,8 +9,8 @@ if ($role !== 'User') {
 
 $id = $_SESSION["id_user"];
 
-$lapangan = query("SELECT * FROM lapangan");
-$modal = query("SELECT * FROM lapangan where idlap");
+$lapangan = query("SELECT * FROM meja");
+$modal = query("SELECT * FROM meja where idmeja");
 $profil = query("SELECT * FROM user WHERE id_user = '$id'")[0];
 
 if (isset($_POST["simpan"])) {
@@ -156,10 +156,10 @@ if (isset($_POST["pesan"])) {
   </div>
   <!-- End Navbar -->
 
-  <section class="lapangan" id="lapangan" style="margin-top: 2%">
+  <section class="lapangan" id="lapangan" style="margin-top: 9%">
     <div class="container">
       <main class="contain" data-aos="fade-right" data-aos-duration="1000">
-        <h2 class="text-head" style=" color:#ccc; margin-bottom: 20px"> Choose <span style="color: #ffbb35;">Your</span> Table! </h2>
+        <h2 class="text-head" style=" color:#ccc; margin-bottom: 50px"> Choose <span>Your</span> Table! </h2>
         <div class="row row-cols-1 row-cols-md-4">
           <?php foreach ($lapangan as $row) : ?>
             <div class="col" style="padding-bottom: 10px;">
@@ -169,18 +169,18 @@ if (isset($_POST["pesan"])) {
                   <h5 class="card-title"><?= $row["nm"]; ?></h5>
                   <p class="card-text"><?= $row["ket"]; ?></p>
                   <p class="card-price"><?= $row["harga"]; ?></p>
-                  <!-- <a href="jadwal.php?id=<?= $row["idlap"]; ?>" type="button" class="btn btn-secondary">Jadwal</a> -->
-                  <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#pesanModal<?= $row["idlap"]; ?>" onclick="handlePesanButtonClick(<?= $row["idlap"]; ?>)" style="background-color: #ffbb35;">Pesan</button>
+                  <!-- <a href="jadwal.php?id=<?= $row["idmeja"]; ?>" type="button" class="btn btn-secondary">Jadwal</a> -->
+                  <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#pesanModal<?= $row["idmeja"]; ?>" onclick="handlePesanButtonClick(<?= $row["idmeja"]; ?>)" style="background-color: #ffbb35;">Pesan</button>
                 </div>
               </div>
             </div>
 
             <!-- Modal Pesan -->
-            <div class="modal fade" id="pesanModal<?= $row["idlap"]; ?>" tabindex="-1" aria-labelledby="pesanModalLabel<?= $row["idlap"]; ?>" aria-hidden="true">
+            <div class="modal fade" id="pesanModal<?= $row["idmeja"]; ?>" tabindex="-1" aria-labelledby="pesanModalLabel<?= $row["idmeja"]; ?>" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="pesanModalLabel<?= $row["idlap"]; ?>">Pesan <?= $row["nm"]; ?></h5>
+                    <h5 class="modal-title" id="pesanModalLabel<?= $row["idmeja"]; ?>">Pesan <?= $row["nm"]; ?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form id="bookingForm">
@@ -194,27 +194,27 @@ if (isset($_POST["pesan"])) {
                           <h6 name="harga" class="form-control" id="harga">Harga : <?= $row["harga"]; ?></h6>
                         </div>
                         <div class="col">
-                          <!-- <input type="hidden" name="id_lpg" class="form-control" id="exampleInputPassword1" value="<?= $row["idlap"]; ?>"> -->
+                          <!-- <input type="hidden" name="id_lpg" class="form-control" id="exampleInputPassword1" value="<?= $row["idmeja"]; ?>"> -->
                           <label for="bookingDate">Pilih Tanggal:</label>
                           <input type="date" class="form-control" style="margin-bottom: 20px;" id="bookingDate" name="bookingDate" required>
                         </div>
                         <div class="mb-3">
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="12:00" data-end-time="13:00" onclick="toggleTimeRange(this)" data-date="">12:00-13:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="13:00" data-end-time="14:00" onclick="toggleTimeRange(this)" data-date="">13:00-14:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="14:00" data-end-time="15:00" onclick="toggleTimeRange(this)" data-date="">14:00-15:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="15:00" data-end-time="16:00" onclick="toggleTimeRange(this)" data-date="">15:00-16:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="16:00" data-end-time="17:00" onclick="toggleTimeRange(this)" data-date="">16:00-17:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="17:00" data-end-time="18:00" onclick="toggleTimeRange(this)" data-date="">17:00-18:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="18:00" data-end-time="19:00" onclick="toggleTimeRange(this)" data-date="">18:00-19:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="19:00" data-end-time="20:00" onclick="toggleTimeRange(this)" data-date="">19:00-20:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="20:00" data-end-time="21:00" onclick="toggleTimeRange(this)" data-date="">20:00-21:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="21:00" data-end-time="22:00" onclick="toggleTimeRange(this)" data-date="">21:00-22:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="22:00" data-end-time="23:00" onclick="toggleTimeRange(this)" data-date="">22:00-23:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="23:00" data-end-time="00:00" onclick="toggleTimeRange(this)" data-date="">23:00-24:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="00:00" data-end-time="01:00" onclick="toggleTimeRange(this)" data-date="">00:00-01:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="01:00" data-end-time="02:00" onclick="toggleTimeRange(this)" data-date="">01:00-02:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="02:00" data-end-time="03:00" onclick="toggleTimeRange(this)" data-date="">02:00-03:00</button>
-                          <button type="button" data-idlap="<?= $row["idlap"]; ?>" data-start-time="03:00" data-end-time="04:00" onclick="toggleTimeRange(this)" data-date="">03:00-04:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="12:00" data-end-time="13:00" onclick="toggleTimeRange(this)" data-date="">12:00-13:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="13:00" data-end-time="14:00" onclick="toggleTimeRange(this)" data-date="">13:00-14:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="14:00" data-end-time="15:00" onclick="toggleTimeRange(this)" data-date="">14:00-15:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="15:00" data-end-time="16:00" onclick="toggleTimeRange(this)" data-date="">15:00-16:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="16:00" data-end-time="17:00" onclick="toggleTimeRange(this)" data-date="">16:00-17:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="17:00" data-end-time="18:00" onclick="toggleTimeRange(this)" data-date="">17:00-18:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="18:00" data-end-time="19:00" onclick="toggleTimeRange(this)" data-date="">18:00-19:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="19:00" data-end-time="20:00" onclick="toggleTimeRange(this)" data-date="">19:00-20:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="20:00" data-end-time="21:00" onclick="toggleTimeRange(this)" data-date="">20:00-21:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="21:00" data-end-time="22:00" onclick="toggleTimeRange(this)" data-date="">21:00-22:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="22:00" data-end-time="23:00" onclick="toggleTimeRange(this)" data-date="">22:00-23:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="23:00" data-end-time="00:00" onclick="toggleTimeRange(this)" data-date="">23:00-24:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="00:00" data-end-time="01:00" onclick="toggleTimeRange(this)" data-date="">00:00-01:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="01:00" data-end-time="02:00" onclick="toggleTimeRange(this)" data-date="">01:00-02:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="02:00" data-end-time="03:00" onclick="toggleTimeRange(this)" data-date="">02:00-03:00</button>
+                          <button type="button" data-idmeja="<?= $row["idmeja"]; ?>" data-start-time="03:00" data-end-time="04:00" onclick="toggleTimeRange(this)" data-date="">03:00-04:00</button>
                           <br>
                           <input type="hidden" id="selectedDate" name="selectedDate" value="">
                           <input type="hidden" id="jmulai" name="jmulai" value="">
@@ -309,39 +309,39 @@ if (isset($_POST["pesan"])) {
 
 
     <script>
-      var selectedIdlap;
+      var selectedidmeja;
       var selectedTimeRanges = [];
       var clickedButton;
 
-      function handlePesanButtonClick(idlap) {
-        console.log('Tombol Pesan diklik untuk lapangan dengan ID:', idlap);
+      function handlePesanButtonClick(idmeja) {
+        console.log('Tombol Pesan diklik untuk lapangan dengan ID:', idmeja);
         // Dapatkan tanggal yang sudah dipilih
-        var selectedDate = $('#pesanModal' + idlap + ' #bookingDate').val();
+        var selectedDate = $('#pesanModal' + idmeja + ' #bookingDate').val();
 
         // Set data-date pada tombol-tombol sesuai dengan tanggal yang dipilih
-        updateButtonsForDate(selectedDate, idlap);
+        updateButtonsForDate(selectedDate, idmeja);
 
         // Perbarui tombol-tombol berdasarkan tanggal yang sudah dipesan
-        checkAllTimes(selectedDate, idlap);
+        checkAllTimes(selectedDate, idmeja);
 
-        // Sekarang Anda dapat menggunakan idlap sesuai kebutuhan, misalnya untuk mengambil data dari backend
+        // Sekarang Anda dapat menggunakan idmeja sesuai kebutuhan, misalnya untuk mengambil data dari backend
         // atau melakukan tindakan lain yang diperlukan.
 
         // Contoh: Jika Anda ingin memperbarui data tanggal yang sudah dipesan saat tombol Pesan diklik
-        getBookedDates(idlap);
+        getBookedDates(idmeja);
       }
 
 
 
-      function toggleTimeRange(clickedButton, idlap) {
+      function toggleTimeRange(clickedButton, idmeja) {
         console.log('Button clicked:', clickedButton);
-        var idlap = clickedButton.getAttribute('data-idlap');
-        clickedButton.idlap = idlap;
-        var selectedDate = $('#pesanModal' + idlap + ' #bookingDate').val();
+        var idmeja = clickedButton.getAttribute('data-idmeja');
+        clickedButton.idmeja = idmeja;
+        var selectedDate = $('#pesanModal' + idmeja + ' #bookingDate').val();
         console.log('Selected Date:', selectedDate);
 
-        var bookingDateValue = $('#pesanModal' + idlap + ' #bookingDate').val();
-        console.log('Isi elemen #pesanModal' + idlap + ' #bookingDate:', bookingDateValue);
+        var bookingDateValue = $('#pesanModal' + idmeja + ' #bookingDate').val();
+        console.log('Isi elemen #pesanModal' + idmeja + ' #bookingDate:', bookingDateValue);
 
         var startTime = clickedButton.getAttribute('data-start-time');
         var endTime = clickedButton.getAttribute('data-end-time');
@@ -352,7 +352,7 @@ if (isset($_POST["pesan"])) {
           alert('Pilih tanggal terlebih dahulu.');
           return;
         }
-        updateButtonsForDate(idlap);
+        updateButtonsForDate(idmeja);
 
         var today = new Date().toISOString().split('T')[0];
         var isToday = selectedDate === today;
@@ -417,8 +417,8 @@ if (isset($_POST["pesan"])) {
       }
 
       function submitBookingForm() {
-        var idlap = clickedButton.idlap;
-        var bookingDate = $('#pesanModal' + idlap + ' #bookingDate').val();
+        var idmeja = clickedButton.idmeja;
+        var bookingDate = $('#pesanModal' + idmeja + ' #bookingDate').val();
 
         var currentDate = new Date();
         var currentTime = currentDate.toTimeString().split(' ')[0]; // Ambil jam dari waktu saat ini
@@ -429,10 +429,10 @@ if (isset($_POST["pesan"])) {
         console.log('Nilai bookingDate:', bookingDate);
         var startTime = $('#jmulai').val();
         var endTime = $('#jhabis').val();
-        var hargaText = $('#pesanModal<?= $row["idlap"]; ?> #harga').text().replace(/[^\d]/g, '');
+        var hargaText = $('#pesanModal<?= $row["idmeja"]; ?> #harga').text().replace(/[^\d]/g, '');
         var harga = parseInt(hargaText, 10);
         var iduser = <?= $_SESSION["id_user"]; ?>;
-        console.log('Isi elemen #pesanModal' + idlap + ' #bookingDate:', $('#pesanModal' + idlap + ' #bookingDate').val());
+        console.log('Isi elemen #pesanModal' + idmeja + ' #bookingDate:', $('#pesanModal' + idmeja + ' #bookingDate').val());
 
         $.ajax({
           url: 'backend.php?action=saveBooking',
@@ -442,7 +442,7 @@ if (isset($_POST["pesan"])) {
             startTime: startTime,
             endTime: endTime,
             harga: harga,
-            idlap: idlap,
+            idmeja: idmeja,
             iduser: iduser,
           },
           success: function(data, textStatus, xhr) {
@@ -473,7 +473,7 @@ if (isset($_POST["pesan"])) {
               startTime: startTime,
               endTime: endTime,
               harga: harga,
-              idlap: idlap,
+              idmeja: idmeja,
               iduser: iduser
             });
           }
@@ -490,16 +490,16 @@ if (isset($_POST["pesan"])) {
 
       $(document).ready(function() {
         <?php foreach ($lapangan as $row) : ?>
-          var idlap = <?= $row["idlap"]; ?>;
-          updateButtonsForDate(idlap);
+          var idmeja = <?= $row["idmeja"]; ?>;
+          updateButtonsForDate(idmeja);
         <?php endforeach ?>
       });
 
 
 
-      function updateButtonsForDate(idlap) {
-        var buttons = $('#pesanModal' + idlap + ' button[data-start-time]');
-        var selectedDate = $('#pesanModal' + idlap + ' #bookingDate').val();
+      function updateButtonsForDate(idmeja) {
+        var buttons = $('#pesanModal' + idmeja + ' button[data-start-time]');
+        var selectedDate = $('#pesanModal' + idmeja + ' #bookingDate').val();
 
         buttons.each(function() {
           var startTime = $(this).attr('data-start-time');
@@ -516,8 +516,8 @@ if (isset($_POST["pesan"])) {
 
 
 
-      function checkAllTimes(selectedDate, idlap) {
-        var buttons = $('#pesanModal' + idlap + ' button[data-start-time]');
+      function checkAllTimes(selectedDate, idmeja) {
+        var buttons = $('#pesanModal' + idmeja + ' button[data-start-time]');
         buttons.each(function() {
           var startTime = $(this).attr('data-start-time');
 
@@ -560,9 +560,9 @@ if (isset($_POST["pesan"])) {
       }
 
 
-      function getBookedDates(idlap) {
+      function getBookedDates(idmeja) {
         $.ajax({
-          url: 'backend.php?action=getBookedDates&idlap=' + idlap,
+          url: 'backend.php?action=getBookedDates&idmeja=' + idmeja,
           method: 'GET',
           success: function(data) {
             console.log('Data tanggal yang sudah dipesan:', data.dates);
@@ -576,7 +576,7 @@ if (isset($_POST["pesan"])) {
             });
 
             // Perbarui tombol-tombol setelah mendapatkan data tanggal yang sudah dipesan
-            updateButtonsForDate(idlap);
+            updateButtonsForDate(idmeja);
           },
           error: function(error) {
             console.error('Error saat mengambil tanggal yang sudah dipesan:', error);
@@ -589,18 +589,18 @@ if (isset($_POST["pesan"])) {
 
       $(document).on('change', '#bookingDate', function() {
         var selectedDate = $(this).val();
-        var idlap = $(this).closest('.modal').attr('id').replace('pesanModal', '');
+        var idmeja = $(this).closest('.modal').attr('id').replace('pesanModal', '');
         document.getElementById('selectedDate').value = selectedDate;
 
         // After updating the selected date, call the functions to update buttons and check all times
-        updateButtonsForDate(idlap);
-        checkAllTimes(idlap);
+        updateButtonsForDate(idmeja);
+        checkAllTimes(idmeja);
       });
 
       getBookedDates(function(bookedDates) {
         // Update this line
-        updateButtonsForDate(selectedIdlap);
-        checkAllTimes(selectedIdlap);
+        updateButtonsForDate(selectedidmeja);
+        checkAllTimes(selectedidmeja);
       });
 
 

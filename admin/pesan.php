@@ -7,12 +7,11 @@ if ($role !== 'Admin') {
 };
 
 
-$pesan = query("SELECT sewa.idsewa,sewa.harga,user.nama_lengkap,sewa.tgl_pesan,sewa.jmulai,sewa.jhabis,sewa.tot,bayar.bukti,bayar.konfirmasi
+$pesan = query("SELECT meja.nm,sewa.idsewa,sewa.harga,user.nama_lengkap,sewa.tgl_pesan,sewa.jmulai,sewa.jhabis,sewa.tot,bayar.bukti,bayar.konfirmasi
 FROM sewa
 JOIN user ON sewa.iduser = user.id_user
-JOIN bayar ON sewa.idsewa = bayar.idsewa");
-
-
+JOIN bayar ON sewa.idsewa = bayar.idsewa
+JOIN meja on sewa.idmeja = meja.idmeja");
 ?>
 
 <link rel="stylesheet" href="../css/form.css">
@@ -40,6 +39,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
               <tr>
                 <th> No <span class="icon-arrow"></span></th>
                 <th> NamaCust <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Meja <span class="icon-arrow">&UpArrow;</span></th>
                 <th> TglPesan <span class="icon-arrow">&UpArrow;</span></th>
                 <th> JamMulai <span class="icon-arrow">&UpArrow;</span></th>
                 <th> JamAkhir <span class="icon-arrow">&UpArrow;</span></th>
@@ -56,6 +56,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $row["nama_lengkap"]; ?></td>
+                  <td><?= $row["nm"]; ?></td>
                   <td><?= $row["tgl_pesan"]; ?></td>
                   <td><?= $row["jmulai"]; ?></td>
                   <td><?= $row["jhabis"]; ?></td>
@@ -133,6 +134,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
         <tr>
           <th scope="col" style="text-align: center; vertical-align: middle;">No</th>
           <th scope="col" style="text-align: center; vertical-align: middle;">NamaCust</th>
+          <th scope="col" style="text-align: center; vertical-align: middle;">Meja</th>
           <th scope="col" style="text-align: center; vertical-align: middle;">TglPesan</th>
           <th scope="col" style="text-align: center; vertical-align: middle;">JamMulai</th>
           <th scope="col" style="text-align: center; vertical-align: middle;">JamAkhir</th>
@@ -149,6 +151,7 @@ JOIN bayar ON sewa.idsewa = bayar.idsewa");
           <tr>
             <td style="text-align: center; vertical-align: middle;"><?= $i++; ?></td>
             <td style="text-align: center; vertical-align: middle;"><?= $row["nama_lengkap"]; ?></td>
+            <td style="text-align: center; vertical-align: middle;"><?= $row["nm"]; ?></td>
             <td style="text-align: center; vertical-align: middle;"><?= $row["tgl_pesan"]; ?></td>
             <td style="text-align: center; vertical-align: middle;"><?= $row["jmulai"]; ?></td>
             <td style="text-align: center; vertical-align: middle;"><?= $row["jhabis"]; ?></td>

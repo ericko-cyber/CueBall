@@ -7,7 +7,7 @@ if ($role !== 'Admin') {
 
 // Pagination
 
-$lapangan = query("SELECT * FROM lapangan");
+$lapangan = query("SELECT * FROM meja");
 
 if (isset($_POST["simpan"])) {
   if (tambahLpg($_POST) > 0) {
@@ -51,7 +51,7 @@ if (isset($_POST["edit"])) {
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="tambahModalLabel">Tambah Lapangan</h5>
+            <h5 class="modal-title" id="tambahModalLabel">Tambah Meja</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form action="" method="post" enctype="multipart/form-data">
@@ -60,7 +60,7 @@ if (isset($_POST["edit"])) {
               <div class="row justify-content-center align-items-center">
                 <div class="col">
                   <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Nama Lapangan</label>
+                    <label for="exampleInputPassword1" class="form-label">Nama Meja</label>
                     <input type="text" name="lapangan" class="form-control" id="exampleInputPassword1">
                   </div>
                 </div>
@@ -88,7 +88,7 @@ if (isset($_POST["edit"])) {
 
     <main class="table">
       <section class="table__header mt-5">
-        <h1 style="margin-left:10px;">Data Lapangan</h1>
+        <h1 style="margin-left:10px;">Data Meja</h1>
         <div class="input-group">
           <input type="search" name="search" id="searchInput" oninput="searchTable()" placeholder="Search Data...">
         </div>
@@ -100,7 +100,7 @@ if (isset($_POST["edit"])) {
           <thead>
             <tr>
               <th> No <span class="icon-arrow">&UpArrow;</span></th>
-              <th> Nama Lapangan <span class="icon-arrow">&UpArrow;</span></th>
+              <th> Nama Meja <span class="icon-arrow">&UpArrow;</span></th>
               <th> Harga <span class="icon-arrow">&UpArrow;</span></th>
               <th> Keterangan <span class="icon-arrow">&UpArrow;</span></th>
               <th> Foto <span class="icon-arrow">&UpArrow;</span></th>
@@ -117,8 +117,8 @@ if (isset($_POST["edit"])) {
                 <td><?= $row["ket"]; ?></td>
                 <td><img src="./img/<?= $row["foto"]; ?>" id="imglap" width="100" height="100"></td>
                 <td>
-                  <button class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal<?= $row["idlap"]; ?>">Edit</button>
-                  <a href="admin/kontrol/hapusLpg.php?id=<?= $row["idlap"]; ?>" class="btn btn-danger">Hapus</a>
+                  <button class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal<?= $row["idmeja"]; ?>">Edit</button>
+                  <a href="admin/kontrol/hapusLpg.php?id=<?= $row["idmeja"]; ?>" class="btn btn-danger">Hapus</a>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -127,15 +127,15 @@ if (isset($_POST["edit"])) {
       </section>
     </main>
     <?php foreach ($lapangan as $row) : ?>
-      <div class="modal fade" id="editModal<?= $row["idlap"]; ?>" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
+      <div class="modal fade" id="editModal<?= $row["idmeja"]; ?>" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="tambahModalLabel">Edit Lapangan <?= $row["nm"]; ?></h5>
+              <h5 class="modal-title" id="tambahModalLabel">Edit Meja <?= $row["nm"]; ?></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" enctype="multipart/form-data">
-              <input type="hidden" name="idlap" class="form-control" id="exampleInputPassword1" value="<?= $row["idlap"]; ?>">
+              <input type="hidden" name="idmeja" class="form-control" id="exampleInputPassword1" value="<?= $row["idmeja"]; ?>">
               <input type="hidden" name="fotoLama" class="form-control" id="exampleInputPassword1" value="<?= $row["foto"]; ?>">
               <div class="modal-body">
                 <!-- konten form modal -->
@@ -145,7 +145,7 @@ if (isset($_POST["edit"])) {
                   </div>
                   <div class="col">
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Nama Lapangan</label>
+                      <label for="exampleInputPassword1" class="form-label">Nama Meja</label>
                       <input type="text" name="lapangan" class="form-control" id="exampleInputPassword1" value="<?= $row["nm"]; ?>">
                     </div>
                   </div>
