@@ -495,7 +495,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p>+62 821-3927-6104</p>
               </div>
             </div>
           </div>
@@ -534,7 +534,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               Krajan Barat, Sumbersari<br>
               Jember <br><br>
               <i class="bi bi-phone"></i>
-              <strong>Phone:</strong><br>
+              <strong>Phone: +62 821-3927-6104</strong><br>
               <i class="bx bxl-instagram"></i>
               <strong>Instagram:</strong> @basecampbilliard21<br>
             </p>
@@ -564,8 +564,8 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
             <h4>Opening Hours</h4>
             <p>Everyday | 12:00 PM - 04:00 AM </p>
             <div class="social-links mt-3">
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#https://wa.me/6285704478791" class="google-plus"><i class="bx bxl-whatsapp"></i></a>
+              <a href="https://instagram.com/basecampbilliard21?igshid=YzAwZjE1ZTI0Zg==" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://wa.me/6282139276104" class="google-plus"><i class="bx bxl-whatsapp"></i></a>
 
             </div>
           </div>
