@@ -326,3 +326,8 @@ button:hover {
    height: 200px; /* Set your desired height */
 }
 
+@media only screen and (max-width: 767px) {
+   .mb-3 img {
+     height: 100px; /* Atur tinggi gambar untuk tampilan mobile */
+   }
+ }
