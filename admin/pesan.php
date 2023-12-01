@@ -7,7 +7,7 @@ if ($role !== 'Admin') {
 };
 
 
-$pesan = query("SELECT meja.nm,sewa.idsewa,sewa.harga,user.nama_lengkap,sewa.tgl_pesan,sewa.jmulai,sewa.jhabis,sewa.tot,bayar.bukti,bayar.konfirmasi
+$pesan = query("SELECT meja.nm, sewa.idsewa, sewa.harga,user.nama_lengkap,sewa.tgl_pesan,sewa.jmulai,sewa.jhabis,sewa.tot,bayar.bukti,bayar.konfirmasi
 FROM sewa
 JOIN user ON sewa.iduser = user.id_user
 JOIN bayar ON sewa.idsewa = bayar.idsewa
@@ -28,7 +28,7 @@ JOIN meja on sewa.idmeja = meja.idmeja");
         <section class="table__header mt-5">
           <h1 style="margin-left:10px;">Data Pesanan</h1>
           <div class="input-group">
-            <input type="search" name="search" id="searchInput" oninput="searchTable()" placeholder="Search Data...">
+            <input type="search" class="form-control rounded" id="searchInput" aria-label="Search" aria-describedby="search-addon" placeholder="Search Data...">
           </div>
         </section>
         <hr>
@@ -50,7 +50,7 @@ JOIN meja on sewa.idmeja = meja.idmeja");
                 <th> action <span class="icon-arrow">&UpArrow;</span></th>
               </tr>
             </thead>
-            <tbody  id="searchResults">
+            <tbody id="searchResults">
               <?php $i = 1; ?>
               <?php foreach ($pesan as $row) : ?>
                 <tr>
@@ -83,9 +83,9 @@ JOIN meja on sewa.idmeja = meja.idmeja");
                     ?>
                   </td>
                 </tr>
+                <?php endforeach; ?>
             </tbody>
         </section>
-      <?php endforeach; ?>
       </table>
       </main>
       <?php foreach ($pesan as $row) : ?>
@@ -128,6 +128,7 @@ JOIN meja on sewa.idmeja = meja.idmeja");
         </div>
     </div>
   <?php endforeach; ?>
+
   <div style="display: none;">
     <table class="table table-striped mt-3" id="print">
       <thead class="table" style="background-color:#9cd203 ;">
@@ -164,7 +165,37 @@ JOIN meja on sewa.idmeja = meja.idmeja");
       </tbody>
     </table>
   </div>
+
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const searchInput = document.getElementById("searchInput");
+      const rows = document.querySelectorAll("#searchResults tr");
+
+      searchInput.addEventListener("input", function() {
+        const searchQuery = searchInput.value.toLowerCase();
+
+        rows.forEach((row) => {
+          const cells = row.getElementsByTagName("td");
+          let rowContainsQuery = false;
+
+          for (let i = 0; i < cells.length; i++) {
+            const cellText = cells[i].textContent.toLowerCase();
+
+            if (cellText.includes(searchQuery)) {
+              rowContainsQuery = true;
+              break;
+            }
+          }
+
+          if (rowContainsQuery) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        });
+      });
+    });
+
     function printTable() {
       var printContents = document.getElementById("print").outerHTML;
       var originalContents = document.body.innerHTML;
@@ -172,34 +203,4 @@ JOIN meja on sewa.idmeja = meja.idmeja");
       window.print();
       document.body.innerHTML = originalContents;
     }
-
-    document.addEventListener("DOMContentLoaded", function() {
-          const searchInput = document.getElementById("searchInput");
-          const rows = document.querySelectorAll("#searchResults tr");
-
-          searchInput.addEventListener("input", function() {
-            const searchQuery = searchInput.value.toLowerCase();
-
-            rows.forEach((row) => {
-              const cells = row.getElementsByTagName("td");
-              let rowContainsQuery = false;
-
-              for (let i = 0; i < cells.length; i++) {
-                const cellText = cells[i].textContent.toLowerCase();
-
-                if (cellText.includes(searchQuery)) {
-                  rowContainsQuery = true;
-                  break;
-                }
-              }
-
-              if (rowContainsQuery) {
-                row.style.display = "";
-              } else {
-                row.style.display = "none";
-              }
-            });
-          });
-        });
-
   </script>
