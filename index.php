@@ -295,7 +295,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
     <!-- End About Us Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
+    <section id="services" class="services section-bg" style="padding-top: 100px;">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -331,9 +331,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               <h4><a href="">Tempat Parkir</a></h4>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
     <!-- End Services Section -->
@@ -357,7 +355,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
 
 
     <!-- ======= Table Section ======= -->
-    <section id="table" class="table">
+    <section id="table" class="table" style="padding-bottom: 10px;">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Table</h2>
@@ -367,7 +365,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-md-3 col-6">
-            <div class="box">
+            <div class="custom-class box">
               <h3>Small Table</h3>
               <h4>12k<span>/hour</span></h4>
               <ul>
@@ -389,7 +387,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
           </div>
 
           <div class="col-md-3 col-6">
-            <div class="box">
+            <div class="custom-class box">
               <h3>Big Table</h3>
               <h4>25k<span>/hour</span></h4>
               <ul>
@@ -475,7 +473,6 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         </div>
 
         <div class="row">
-
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
