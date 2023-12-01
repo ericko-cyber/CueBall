@@ -25,25 +25,25 @@ if (isset($_POST["login"])) {
 
   // Periksa login dan verifikasi untuk admin
   if ($adminRow && password_verify($password, $adminRow[0]['password'])) {
-      // set session untuk admin
-      $_SESSION['id_user'] = $adminRow[0]['id_user'];
-      $_SESSION['username'] = $adminRow[0]['username'];
-      $_SESSION['nama'] = $adminRow[0]['nama'];
-      $_SESSION['phone'] = $adminRow[0]['phone']; 
-      $_SESSION['email'] = $adminRow[0]['email'];  
-      $_SESSION['role'] = "Admin";
-      header("Location: admin.php");
-      die(); // Pastikan untuk berhenti setelah melakukan redirect
+    // set session untuk admin
+    $_SESSION['id_user'] = $adminRow[0]['id_user'];
+    $_SESSION['username'] = $adminRow[0]['username'];
+    $_SESSION['nama'] = $adminRow[0]['nama'];
+    $_SESSION['phone'] = $adminRow[0]['phone'];
+    $_SESSION['email'] = $adminRow[0]['email'];
+    $_SESSION['role'] = "Admin";
+    header("Location: admin.php");
+    die(); // Pastikan untuk berhenti setelah melakukan redirect
   } elseif ($userRow && $userRow[0]["account_activation_hash"] === NULL && password_verify($password, $userRow[0]['password'])) {
-      // Periksa login dan verifikasi untuk user
-      // set session untuk user
-      $_SESSION['email'] = $userRow[0]['email'];
-      $_SESSION['id_user'] = $userRow[0]['id_user'];
-      $_SESSION['role'] = "User";
-      header("Location: index.php");
-      die(); // Pastikan untuk berhenti setelah melakukan redirect
+    // Periksa login dan verifikasi untuk user
+    // set session untuk user
+    $_SESSION['email'] = $userRow[0]['email'];
+    $_SESSION['id_user'] = $userRow[0]['id_user'];
+    $_SESSION['role'] = "User";
+    header("Location: index.php");
+    die(); // Pastikan untuk berhenti setelah melakukan redirect
   } else {
-      echo "<div class='alert alert-warning'>Username atau Password salah</div>";
+    echo "<div class='alert alert-warning'>Username atau Password salah</div>";
   }
 
   echo "<div class='alert alert-warning'>Verifikasi Terlebih Dahulu atau Email Tidak Ditemukan</div>";
@@ -58,6 +58,7 @@ if (isset($_POST["login"])) {
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Login Sport Center</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/login.css">
