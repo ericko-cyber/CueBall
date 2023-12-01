@@ -290,7 +290,6 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
             </ul>
           </div>
         </div>
-
       </div>
     </section>
     <!-- End About Us Section -->
@@ -363,7 +362,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
 
         <div class="section-title">
           <h2>Table</h2>
-          <p>Kami menyediakan 2 jenis meja yang dapat kamu pilih, dengan harga terjankau serta kualitas yang selalu
+          <p>Kami menyediakan 2 jenis meja yang dapat kamu pilih, dengan harga terjangkau serta kualitas yang selalu
             terjaga.</p>
         </div>
 
