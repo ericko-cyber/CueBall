@@ -598,6 +598,16 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/menu.js" defer></script>
+
+  <!--document.addEventListener("DOMContentLoaded", function () {
+  var mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+  var mobileNav = document.querySelector('.navbar-mobile ul');
+
+  mobileNavToggle.addEventListener('click', function () {
+    mobileNav.classList.toggle('show');
+  });
+});-->
+
 </body>
 <script>
   feather.replace();

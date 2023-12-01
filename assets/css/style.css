@@ -329,6 +329,13 @@ h6 {
   .navbar ul {
     display: none;
   }
+  .navbar-mobile ul{
+    display: none;
+  }
+}
+
+.navbar-mobile ul.show {
+  display: block;
 }
 
 .navbar-mobile {
