@@ -156,10 +156,10 @@ if (isset($_POST["pesan"])) {
   </div>
   <!-- End Navbar -->
 
-  <section class="lapangan" id="lapangan" style="margin-top: 9%">
+  <section class="lapangan" id="lapangan" style="margin-top: 20px">
     <div class="container">
       <main class="contain" data-aos="fade-right" data-aos-duration="1000">
-        <h2 class="text-head" style=" color:#ccc; margin-bottom: 50px"> Choose <span>Your</span> Table! </h2>
+        <h2 class="text-head" style=" color:#ccc; margin-bottom: 30px"> Choose <span>Your</span> Table! </h2>
         <div class="row row-cols-1 row-cols-md-4">
           <?php foreach ($lapangan as $row) : ?>
             <div class="col" style="padding-bottom: 10px;">
@@ -190,7 +190,7 @@ if (isset($_POST["pesan"])) {
                         <div class="mb-3">
                           <img src="../img/<?= $row["foto"]; ?>" alt="gambar lapangan" class="img-fluid" style="left: 20%; position: relative;">
                         </div>
-                        <div class="text-center">
+                        <div class="text-left">
                           <h6 name="harga" class="form-control" id="harga">Harga : <?= $row["harga"]; ?></h6>
                         </div>
                         <div class="col">
