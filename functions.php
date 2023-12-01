@@ -3,8 +3,8 @@
 $autoload["libraries"] = array('email', 'session');
 
 // $conn = mysqli_connect("mifa.myhost.id", "mifamyho_cueball", "WSImif2023", "mifamyho_cueball");
-// $conn = mysqli_connect("localhost", "root", "", "db_futsal");
-$conn = mysqli_connect("localhost", "cueballm_billiard","cueballmifak4", "cueballm_billiard");
+$conn = mysqli_connect("localhost", "root", "", "db_futsal");
+//$conn = mysqli_connect("localhost", "cueballm_billiard","cueballmifak4", "cueballm_billiard");
 
 // functions.php
 
@@ -20,21 +20,22 @@ function query($query)
   return $rows;
 }
 
-function getAdminProfile() {
+function getAdminProfile()
+{
   global $conn;
 
   // Assuming you have a table named 'admin' with columns 'id', 'username', and others
-  $sql = "SELECT * FROM admin WHERE id_user = ".$_SESSION['id_user']; // You should modify this query based on your actual table structure
+  $sql = "SELECT * FROM admin WHERE id_user = " . $_SESSION['id_user']; // You should modify this query based on your actual table structure
 
   $result = mysqli_query($conn, $sql);
 
   if ($result) {
-      $profile = mysqli_fetch_assoc($result);
-      mysqli_free_result($result);
-      mysqli_close($conn);
-      return $profile;
+    $profile = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $profile;
   } else {
-      die("Error retrieving admin profile: " . mysqli_error($conn));
+    die("Error retrieving admin profile: " . mysqli_error($conn));
   }
 }
 
@@ -112,13 +113,15 @@ function daftar($data)
     return false;
   }
 
-$sql= "INSERT INTO user (email,password,hp,jenis_kelamin,nama_lengkap,alamat,foto,account_activation_hash) VALUES ('?','?','?','?','?','?','?','?')";
+  $sql = "INSERT INTO user (email,password,hp,jenis_kelamin,nama_lengkap,alamat,foto,account_activation_hash) VALUES ('?','?','?','?','?','?','?','?')";
 
-  $stmt->bind_param("ssss",
-                  $_POST["name"],
-                  $_POST["email"],
-                  $password_hash,
-                  $activation_token_hash);
+  $stmt->bind_param(
+    "ssss",
+    $_POST["name"],
+    $_POST["email"],
+    $password_hash,
+    $activation_token_hash
+  );
 
   // mysqli_query($conn, "INSERT INTO user (email,password,hp,jenis_kelamin,nama_lengkap,alamat,foto,account_activation_hash) VALUES ('$username','$password','$hp','$gender','$nama','$alamat','$upload','$activation_token_hash')");
   return mysqli_affected_rows($conn);
@@ -157,8 +160,8 @@ function editAdmin($data)
 
   $id = $_SESSION["id_user"];
   $username = $data["username"];
-  $plainPassword = $data["password"]; 
-  $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT); 
+  $plainPassword = $data["password"];
+  $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
   $nama = $data["nama"];
   $hp = $data["hp"];
   $email = $data["email"];
@@ -209,7 +212,7 @@ function bayar($data)
   }
 
   mysqli_query($conn, "INSERT INTO bayar (idsewa,bukti,konfirmasi) VALUES ('$idsewa','$upload','Sudah Bayar')");
-  
+
   mysqli_query($conn, "UPDATE sewa SET status = 'Sudah Bayar' WHERE idsewa = '$idsewa'");
 
   return mysqli_affected_rows($conn);
@@ -456,16 +459,16 @@ function konfirmasimkn($idpesan)
 }
 
 
-function checkEmailExists($email){
-      global $conn;
-        $email = $conn->real_escape_string($email);
+function checkEmailExists($email)
+{
+  global $conn;
+  $email = $conn->real_escape_string($email);
 
-        $query = "SELECT * FROM user WHERE email = '$email'";
-        $result = $conn->query($query);
+  $query = "SELECT * FROM user WHERE email = '$email'";
+  $result = $conn->query($query);
 
-        if ($result->num_rows > 0) {
-            return true; // Email ada di database
-        }
-        return false; // Email tidak ditemukan di database
+  if ($result->num_rows > 0) {
+    return true; // Email ada di database
+  }
+  return false; // Email tidak ditemukan di database
 }
-?>
