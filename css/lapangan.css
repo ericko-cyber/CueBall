@@ -326,14 +326,3 @@ button:hover {
    height: 200px; /* Set your desired height */
 }
 
-@media only screen and (max-width: 767px) {
-   .mb-3 img {
-     height: 100px; /* Atur tinggi gambar untuk tampilan mobile */
-   }
- }
-
- @media (max-width: 768px) {
-   .card {
-     max-height: 400px; /* Sesuaikan tinggi maksimum sesuai kebutuhan di tampilan mobile */
-   }
- }
