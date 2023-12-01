@@ -1231,7 +1231,7 @@ section {
   padding-top: 40px;
 }
 
-.box {
+.custom-class.box {
   display: flex;
   flex-direction: column;
   justify-content: center;

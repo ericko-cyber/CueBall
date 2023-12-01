@@ -2,7 +2,6 @@
 // session_start();
 include_once(__DIR__ . '/../functions.php');
 include_once(__DIR__ . '/../session.php');
-include_once(__DIR__ . '/../database.php');
 if ($role !== 'Admin') {
   header("location: ../login.php");
 }

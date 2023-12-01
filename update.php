@@ -6,11 +6,6 @@ if ($role !== 'User') {
     header("location:../login.php");
 }
 
-
-
-// ... (kode setelahnya tetap sama)
-
-
 // skrip-pembaruan.php
 
 // Sertakan file koneksi database Anda
