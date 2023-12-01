@@ -1,9 +1,20 @@
 <?php
 
+// $host = "localhost";
+// $dbname = "db_futsal";
+// $username = "root";
+// $password = "";
+
 $host = "localhost";
-$dbname = "db_futsal";
-$username = "root";
-$password = "";
+$dbname = "cueballm_billiard";
+$username = "cueballm_billiard";
+$password = "cueballmifak4";
+
+
+// $host = "mifa.myhost.id";
+// $dbname = "mifamyho_cueball";
+// $username = "mifamyho_cueball";
+// $password = "WSImif2023";
 
 $mysqli = new mysqli(hostname: $host,
                      username: $username,
