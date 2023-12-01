@@ -73,8 +73,8 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
   <script src="https://unpkg.com/feather-icons"></script>
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/logo.png" rel="icon">
+  <link href="assets/img/logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -107,7 +107,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
       <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
       <h1 class="logo me-auto"><a href="index.html">BASECAMP</a></h1>
       <nav id="navbar" class="navbar">
-        <ul>
+      <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
@@ -598,7 +598,6 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/menu.js" defer></script>
-
 </body>
 <script>
   feather.replace();
