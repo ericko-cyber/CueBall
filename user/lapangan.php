@@ -224,7 +224,7 @@ if (isset($_POST["pesan"])) {
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                      <button type="submit" class="btn btn-inti">Pesan</button>
+                      <button type="submit" class="btn btn-inti btn btn-warning">Pesan</button>
                     </div>
                   </form>
                 </div>
