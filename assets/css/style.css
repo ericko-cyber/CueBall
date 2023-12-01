@@ -1225,19 +1225,20 @@ section {
 /*--------------------------------------------------------------
 # Table
 --------------------------------------------------------------*/
-.custom-class {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-}
-
 .table {
   margin: 0;
   padding: 0;
   padding-top: 40px;
 }
 
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
 
 .table .row {
   display: flex;
@@ -1254,7 +1255,6 @@ section {
   border-top: 4px solid #FFBB35;
   border-radius: 5px;
 }
-
 
 .table h3 {
   font-weight: 500;
@@ -1352,15 +1352,6 @@ section {
 }
 
 @media (max-width: 767px) {
-  .custom-class {
-    width: 40%;
-    /* Mengisi lebar layar pada mode mobile */
-    margin: 0 auto 30px auto;
-    /* Menambahkan ruang di bawah setiap elemen pada mode mobile */
-  }
-}
-
-@media (max-width: 767px) {
   .table .box {
     max-width: 80%;
     margin: 0 auto 30px auto;
@@ -1382,7 +1373,7 @@ section {
 }
 
 .section-title {
-  padding-top: 70px;
+  padding-top: 30px;
 }
 
 .product_section {
