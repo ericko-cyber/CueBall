@@ -53,7 +53,7 @@ CREATE TABLE `bayar` (
   `idbayar` int(11) NOT NULL,
   `idsewa` int(11) NOT NULL,
   `bukti` text NOT NULL,
-  `tgl_upload` date NOT NULL DEFAULT current_timestamp(),
+  `tgl_upload` timestamp NOT NULL DEFAULT current_timestamp(),
   `konfirmasi` varchar(50) NOT NULL DEFAULT 'Belum'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -132,7 +132,7 @@ INSERT INTO `keranjang` (`idkeranjang`, `iduser`, `nama`, `harga`, `gambar`, `ju
 --
 
 CREATE TABLE `lapangan` (
-  `idlap` int(11) NOT NULL,
+  `idmeja` int(11) NOT NULL,
   `nm` varchar(35) NOT NULL,
   `ket` text NOT NULL,
   `harga` int(11) NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE `lapangan` (
 -- Dumping data for table `lapangan`
 --
 
-INSERT INTO `lapangan` (`idlap`, `nm`, `ket`, `harga`, `foto`) VALUES
+INSERT INTO `lapangan` (`idmeja`, `nm`, `ket`, `harga`, `foto`) VALUES
 (51, 'Meja Besar 01', '', 25000, '65642d267cb08.jpeg'),
 (52, 'Meja Kecil 01', '', 12000, '65642d39be277.jpeg'),
 (53, 'Meja Besar 02', '', 25000, '65654cb29f99d.jpeg'),
@@ -189,7 +189,7 @@ INSERT INTO `makanan` (`idmakanan`, `nm`, `harga`, `foto`) VALUES
 
 CREATE TABLE `pengeluaran` (
   `idp` int(11) NOT NULL,
-  `tgl` date NOT NULL,
+  `tgl` timestamp NOT NULL DEFAULT current_timestamp(),
   `keterangan` varchar(255) NOT NULL,
   `pengeluaran` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -230,7 +230,7 @@ INSERT INTO `pesan` (`idpesan`, `iduser`, `tgl_pesan`, `nama`, `hp`, `meja`, `fo
 CREATE TABLE `sewa` (
   `idsewa` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
-  `idlap` int(11) NOT NULL,
+  `idmeja` int(11) NOT NULL,
   `tgl_pesan` timestamp NOT NULL DEFAULT current_timestamp(),
   `jmulai` varchar(11) NOT NULL,
   `jhabis` varchar(11) NOT NULL,
@@ -243,7 +243,7 @@ CREATE TABLE `sewa` (
 -- Dumping data for table `sewa`
 --
 
-INSERT INTO `sewa` (`idsewa`, `iduser`, `idlap`, `tgl_pesan`, `jmulai`, `jhabis`, `harga`, `tot`, `status`) VALUES
+INSERT INTO `sewa` (`idsewa`, `iduser`, `idmeja`, `tgl_pesan`, `jmulai`, `jhabis`, `harga`, `tot`, `status`) VALUES
 (244, 127, 51, '2023-11-27 05:49:37', '12:00', '14:00', 25000, '50000', 'Dikonfirmasi'),
 (248, 127, 52, '2023-12-28 01:21:16', '12:00', '14:00', 12000, '24000', 'Dikonfirmasi'),
 (249, 127, 51, '2023-11-28 01:25:47', '16:00', '19:00', 25000, '75000', 'Dikonfirmasi'),
@@ -309,7 +309,7 @@ ALTER TABLE `keranjang`
 -- Indexes for table `lapangan`
 --
 ALTER TABLE `lapangan`
-  ADD PRIMARY KEY (`idlap`);
+  ADD PRIMARY KEY (`idmeja`);
 
 --
 -- Indexes for table `makanan`
@@ -375,7 +375,7 @@ ALTER TABLE `keranjang`
 -- AUTO_INCREMENT for table `lapangan`
 --
 ALTER TABLE `lapangan`
-  MODIFY `idlap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `idmeja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `makanan`
