@@ -32,8 +32,9 @@ if (isset($_POST["edit"])) {
                 <form action="" method="post">
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="account-general">
-                            <div class="card-body media align-items-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt class="d-block ui-w-80">
+                            <div class="card-body media align-items-center" style="display: flex; align-items: center;">
+                                <img src="../logo.png" style="width: 10%;">
+                                <span style="margin-left: 20px; font-size: 30px; font-weight: 600; color: #fff;">BASECAMP BILLIARD</span>
                             </div>
                             <hr class="border-light m-0" style="width: 140%;">
                             <div class="card-body">

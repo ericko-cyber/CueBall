@@ -56,7 +56,7 @@ $row_countp = mysqli_num_rows($result);
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="../logo.png" class="logo" style="width: 80px;" alt="">
+                    <img src="../logo.png" class="logo" style="width: 50px;" alt="">
                 </span>
 
                 <div class="text logo-text">
@@ -127,21 +127,6 @@ $row_countp = mysqli_num_rows($result);
                             <span class="text nav-text">Pengeluaran</span>
                         </a>
                     </li>
-                    <!-- <li class="nav-link">
-                        <a href="#sidemenu1" data-bs-toggle="collapse" aria-current="page">
-                            <i class='bx bxs-report icon'></i>
-                            <span class="text nav-text">Laporan</span>
-                        </a>
-                    </li>
-                    <ul class="collapse " id="sidemenu1" data-bs-parent="#menu">
-                        <li class="nav-link drop">
-                            <a class=" nav-text text-white" href="index.php?page=pemasukan">Pemasukan</a>
-                        </li>
-                        <li class="nav-link drop">
-                            <a class=" nav-text text-white" href="index.php?page=pengeluaran">Pengeluaran</a>
-                        </li>
-                    </ul> -->
-
                 </ul>
             </div>
             <div class="bottom-content">
