@@ -3,8 +3,8 @@
 $autoload["libraries"] = array('email', 'session');
 
 // $conn = mysqli_connect("mifa.myhost.id", "mifamyho_cueball", "WSImif2023", "mifamyho_cueball");
-// $conn = mysqli_connect("localhost", "root", "", "db_billiard");
-$conn = mysqli_connect("localhost", "cueballm_billiard","cueballmifak4", "cueballm_billiard");
+$conn = mysqli_connect("localhost", "root", "", "db_billiard");
+// $conn = mysqli_connect("localhost", "cueballm_billiard","cueballmifak4", "cueballm_billiard");
 
 // functions.php
 

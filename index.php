@@ -106,7 +106,6 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
     <div class="container d-flex align-items-center">
       <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
       <h1 class="logo me-auto"><a href="index.html">BASECAMP</a></h1>
-
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
@@ -290,12 +289,13 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
             </ul>
           </div>
         </div>
+
       </div>
     </section>
     <!-- End About Us Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg" style="padding-top: 100px;">
+    <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -331,7 +331,9 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               <h4><a href="">Tempat Parkir</a></h4>
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
     <!-- End Services Section -->
@@ -355,17 +357,18 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
 
 
     <!-- ======= Table Section ======= -->
-    <section id="table" class="table" style="padding-bottom: 10px;">
+    <section id="table" class="table">
       <div class="container" data-aos="fade-up">
+
         <div class="section-title">
           <h2>Table</h2>
-          <p>Kami menyediakan 2 jenis meja yang dapat kamu pilih, dengan harga terjangkau serta kualitas yang selalu
+          <p>Kami menyediakan 2 jenis meja yang dapat kamu pilih, dengan harga terjankau serta kualitas yang selalu
             terjaga.</p>
         </div>
 
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-md-3 col-6">
-            <div class="custom-class box">
+        <div class="row">
+          <div class="col-md-6 custom-class" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
               <h3>Small Table</h3>
               <h4>12k<span>/hour</span></h4>
               <ul>
@@ -386,8 +389,9 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
             </div>
           </div>
 
-          <div class="col-md-3 col-6">
-            <div class="custom-class box">
+
+          <div class="col-md-6 custom-class" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
               <h3>Big Table</h3>
               <h4>25k<span>/hour</span></h4>
               <ul>
@@ -473,6 +477,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         </div>
 
         <div class="row">
+
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
