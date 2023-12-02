@@ -108,9 +108,9 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
         <img src="assets/img/logo.png" alt="" style="margin-right: 10px;" width="7%" class="img-fluid"></a>
         <h1 class="logo me-auto"><a href="index.html">BASECAMP</a></h1>
       </div>
-      <nav id="navbar" class="navbar" style="padding-left: 20%;">
+      <nav id="navbar" class="navbar" style="padding-left: 18%;">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero" style="">Home</a></li>
+          <li><a class="nav-link scrollto active" href="#hero" >Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li class="dropdown"><a href="#table"><span>Book</span><i class="bi bi-chevron-down"></i></a>
@@ -350,7 +350,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               Register sekarang!</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Call To Action</a>
+            <a class="cta-btn align-middle" href="login.php">Call To Action</a>
           </div>
         </div>
 
