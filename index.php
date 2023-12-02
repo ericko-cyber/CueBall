@@ -104,11 +104,13 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
-      <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
-      <h1 class="logo me-auto"><a href="index.html">BASECAMP</a></h1>
-      <nav id="navbar" class="navbar">
-      <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+      <div style="display: flex; align-items: center;">
+        <img src="assets/img/logo.png" alt="" style="margin-right: 10px;" width="7%" class="img-fluid"></a>
+        <h1 class="logo me-auto"><a href="index.html">BASECAMP</a></h1>
+      </div>
+      <nav id="navbar" class="navbar" style="padding-left: 20%;">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero" style="">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li class="dropdown"><a href="#table"><span>Book</span><i class="bi bi-chevron-down"></i></a>
@@ -461,7 +463,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               }
         ?>
           </div>
-          </section>
+        </section>
       </div>
     </section>
 
@@ -520,7 +522,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
       </div>
     </div>
   </div>
-  
+
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
