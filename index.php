@@ -110,7 +110,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
       </div>
       <nav id="navbar" class="navbar" style="padding-left: 18%;">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero" >Home</a></li>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li class="dropdown"><a href="#table"><span>Book</span><i class="bi bi-chevron-down"></i></a>
@@ -413,10 +413,12 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </section>
     <!-- End Table Section -->
+
 
     <!-- ======= Beverage and Snack Section ======= -->
     <section id="fnb" class="fnb section-bg">

@@ -8,6 +8,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 body {
   font-family: "Open Sans", sans-serif;
   color: black;
@@ -139,7 +140,7 @@ h6 {
 }
 
 #header .logo a {
-  margin-right: 100px;
+  margin-right: 0px;
   color: #fff;
 }
 
@@ -1240,7 +1241,8 @@ section {
   padding-top: 40px;
 }
 
-.custom-class.box {
+.table .box .custom-class {
+  display: -webkit-flex; /* Prefix untuk WebKit (Chrome, Safari, Opera) */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1249,20 +1251,29 @@ section {
   height: 100%;
 }
 
+
+
 .table .row {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* Jika ingin membuatnya berada di tengah secara vertikal pada seluruh viewport height */
 }
 
 .table .box {
+  flex: 1; /* Memberikan elemen proporsi yang sama */
   padding: 60px 40px;
   box-shadow: 0 3px 20px -2px rgba(20, 45, 100, 0.1);
   background: #040404;
   border-top: 4px solid #FFBB35;
   border-radius: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .table .row {
+    flex-direction: column; /* Mengubah arah tata letak menjadi vertikal */
+    height: auto; /* Menghilangkan tinggi yang diatur sebelumnya */
+  }
 }
 
 .table h3 {
