@@ -57,8 +57,8 @@ if (isset($_POST["pesan"])) {
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../assets/img/logo.png" rel="icon">
+  <link href="../assets/img/logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -170,7 +170,7 @@ if (isset($_POST["pesan"])) {
                   <p class="card-text"><?= $row["ket"]; ?></p>
                   <p class="card-price"><?= $row["harga"]; ?></p>
                   <!-- <a href="jadwal.php?id=<?= $row["idmeja"]; ?>" type="button" class="btn btn-secondary">Jadwal</a> -->
-                  <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#pesanModal<?= $row["idmeja"]; ?>" onclick="handlePesanButtonClick(<?= $row["idmeja"]; ?>)" style="background-color: #ffbb35;">Pesan</button>
+                  <button type="button" class="btn btn-inti" data-bs-toggle="modal" data-bs-target="#pesanModal<?= $row["idmeja"]; ?>" onclick="handlePesanButtonClick(<?= $row["idmeja"]; ?>)" style="background-color: #ffbb35;">Book</button>
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@ if (isset($_POST["pesan"])) {
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="pesanModalLabel<?= $row["idmeja"]; ?>">Pesan <?= $row["nm"]; ?></h5>
+                    <h5 class="modal-title" id="pesanModalLabel<?= $row["idmeja"]; ?>">Book <?= $row["nm"]; ?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form id="bookingForm">
@@ -223,8 +223,8 @@ if (isset($_POST["pesan"])) {
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                      <button type="submit" class="btn btn-inti btn btn-warning">Pesan</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn btn-inti btn btn-warning">Book</button>
                     </div>
                   </form>
                 </div>
@@ -254,7 +254,7 @@ if (isset($_POST["pesan"])) {
                 Krajan Barat, Sumbersari<br>
                 Jember <br><br>
                 <i class="bi bi-phone"></i>
-                <strong>Phone:</strong><br>
+                <strong>Phone: +62 821-3927-6104</strong><br>
                 <i class="bx bxl-instagram"></i>
                 <strong>Instagram:</strong> @basecampbilliard21<br>
               </p>
@@ -263,18 +263,18 @@ if (isset($_POST["pesan"])) {
             <div class="col-lg-3 col-md-6 footer-links">
               <h4>Quick Links</h4>
               <ul>
-                <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#table">Book</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contact</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="../index.php">Home</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="../index.php">About us</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="../index.php">Services</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="../index.php">Book</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="../index.php">Contact</a></li>
               </ul>
             </div>
 
             <div class="col-lg-3 col-md-6 footer-links">
               <h4>Our Services</h4>
               <ul>
-                <li><i class="bx bx-chevron-right"></i> <a href="#table">Table</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="lapangan.php">Table</a></li>
                 <li><i class="bx bx-chevron-right"></i> <a href="#fnb">Beverage</a></li>
                 <li><i class="bx bx-chevron-right"></i> <a href="#fnb">Snack</a></li>
               </ul>
@@ -284,8 +284,8 @@ if (isset($_POST["pesan"])) {
               <h4>Opening Hours</h4>
               <p>Everyday | 12:00 PM - 04:00 AM </p>
               <div class="social-links mt-3">
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#https://wa.me/6285704478791" class="google-plus"><i class="bx bxl-whatsapp"></i></a>
+              <a href="https://instagram.com/basecampbilliard21?igshid=YzAwZjE1ZTI0Zg==" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://wa.me/6282139276104" class="google-plus"><i class="bx bxl-whatsapp"></i></a>
               </div>
             </div>
 

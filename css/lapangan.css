@@ -331,3 +331,7 @@ button:hover {
      height: 100px; /* Atur tinggi gambar untuk tampilan mobile */
    }
  }
+
+ .footer-links a {
+   text-decoration: none;
+ }
