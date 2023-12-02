@@ -448,7 +448,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
                           <?php
                           if (isset($_SESSION['id_user'])) {
                             // jika user telah login, tampilkan tombol profil dan sembunyikan tombol login
-                            echo '<input type="submit" class="btn btn-warning" value="add to cart" name="add_to_cart">';
+                            echo '<input type="submit" class="btn btn-warning" value="Add to Cart" name="add_to_cart">';
                           } else {
                             // jika user belum login, tampilkan tombol login dan sembunyikan tombol profil
                             echo '<a href="login.php" class="btn btn-warning">Add to Cart</a>';

@@ -188,7 +188,7 @@ $row_countp = mysqli_num_rows($result);
                     break;
             }
         } else {
-            include 'admin/setting.php';
+            include 'admin/home.php';
         }
         ?>
     </section>

@@ -275,8 +275,8 @@ if (isset($_POST["pesan"])) {
               <h4>Our Services</h4>
               <ul>
                 <li><i class="bx bx-chevron-right"></i> <a href="lapangan.php">Table</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#fnb">Beverage</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#fnb">Snack</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="../index.php">Beverage</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="../index.php">Snack</a></li>
               </ul>
             </div>
 
