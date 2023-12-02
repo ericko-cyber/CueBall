@@ -34,7 +34,7 @@ if (isset($_POST["edit"])) {
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body media align-items-center" style="display: flex; align-items: center;">
                                 <img src="../logo.png" style="width: 10%;">
-                                <span style="margin-left: 20px; font-size: 30px; font-weight: 600; color: #fff;">BASECAMP BILLIARD</span>
+                                <span style="margin-left: 20px; font-size: 30px; font-weight: 600; color: #fff;">Edit Profile Admin</span>
                             </div>
                             <hr class="border-light m-0" style="width: 140%;">
                             <div class="card-body">

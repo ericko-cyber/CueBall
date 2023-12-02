@@ -48,7 +48,9 @@ $row_countp = mysqli_num_rows($result);
 
 
 
-    <title>Dashboard Sidebar Menu</title>
+    <title>Dashboard Admin</title>
+    <link href="assets/img/logo.png" rel="icon">
+  <link href="assets/img/logo.png" rel="apple-touch-icon">
 </head>
 
 <body>

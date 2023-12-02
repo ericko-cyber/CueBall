@@ -33,6 +33,8 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 
 <head>
     <title>Reset Password</title>
+    <link href="../assets/img/logo.png" rel="icon">
+    <link href="../assets/img/logo.png" rel="apple-touch-icon">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
