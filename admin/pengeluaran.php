@@ -77,11 +77,12 @@ if (isset($_POST["simpan"])) {
             <input type="search" class="form-control rounded" id="searchInput" aria-label="Search" aria-describedby="search-addon" placeholder="Search Data...">
         </div>
     </section>
-    <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;">Download</button>
     <hr>
-    <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah</button>
+    <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;"><i style="font-size: 20px;" class="bi bi-file-pdf"></i></button>
+    <button class="btn btn-inti btn btn-warning" onclick="exportToExcel()" style="margin-left: 10px;"><i style="font-size: 20px;" class="bi bi-filetype-xls"></i></button> <br>
+    <button class="btn btn-inti btn btn-warning" style="margin-left: 28px; margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah</button>
     <section class="table__body">
-        <table id="dataTable">
+        <table id="dataTable" class="table">
             <thead>
                 <tr>
                     <th> No <span class="icon-arrow">&UpArrow;</span></th>
@@ -105,7 +106,7 @@ if (isset($_POST["simpan"])) {
                     $i++;
                     ?>
                 <?php endforeach; ?>
-                <tr>
+                <tr class="">
                     <th scope="row" colspan="3">Total</th>
                     <td><?= $totalPengeluaran; ?></td>
                 </tr>
@@ -147,6 +148,7 @@ if (isset($_POST["simpan"])) {
         window.print();
         document.body.innerHTML = originalContents;
     }
+
     document.addEventListener("DOMContentLoaded", function() {
         const searchInput = document.getElementById("searchInput");
         const rows = document.querySelectorAll("#searchResults tr");
@@ -175,4 +177,10 @@ if (isset($_POST["simpan"])) {
             });
         });
     });
+
+    function exportToExcel() {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("table.table"));
+    }
 </script>
+<script src="/admin/table2excel.js"></script>

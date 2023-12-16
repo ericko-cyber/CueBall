@@ -32,22 +32,23 @@ JOIN meja on sewa.idmeja = meja.idmeja");
           </div>
         </section>
         <hr>
-        <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;">Download</button>
+        <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;"><i style="font-size: 20px;" class="bi bi-file-pdf"></i></button>
+        <button class="btn btn-inti btn btn-warning" onclick="exportToExcel()" style="margin-left: 10px;"><i style="font-size: 20px;" class="bi bi-filetype-xls"></i></button>
         <section class="table__body">
-          <table>
+          <table class="table">
             <thead>
               <tr>
                 <th> No <span class="icon-arrow"></span></th>
-                <th> NamaCust <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Nama Cust <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Meja <span class="icon-arrow">&UpArrow;</span></th>
-                <th> TglPesan <span class="icon-arrow">&UpArrow;</span></th>
-                <th> JamMulai <span class="icon-arrow">&UpArrow;</span></th>
-                <th> JamAkhir <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Tgl Pesan <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Jam Mulai <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Jam Akhir <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Harga <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Total <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Bukti <span class="icon-arrow">&UpArrow;</span></th>
-                <th> konfirmasi <span class="icon-arrow">&UpArrow;</span></th>
-                <th> action <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Konfirmasi <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Action <span class="icon-arrow">&UpArrow;</span></th>
               </tr>
             </thead>
             <tbody id="searchResults">
@@ -60,8 +61,8 @@ JOIN meja on sewa.idmeja = meja.idmeja");
                   <td><?= $row["tgl_pesan"]; ?></td>
                   <td><?= $row["jmulai"]; ?></td>
                   <td><?= $row["jhabis"]; ?></td>
-                  <td><span>Rp.</span><?= $row["harga"]; ?></td>
-                  <td><span>Rp.</span><?= $row["tot"]; ?></td>
+                  <td><?= $row["harga"]; ?></td>
+                  <td><?= $row["tot"]; ?></td>
                   <td><img src="../img/<?= $row["bukti"]; ?>" id="imglap" width="100" height="100"></td>
                   <td><?= $row["konfirmasi"]; ?></td>
                   <td>
@@ -83,10 +84,10 @@ JOIN meja on sewa.idmeja = meja.idmeja");
                     ?>
                   </td>
                 </tr>
-                <?php endforeach; ?>
+              <?php endforeach; ?>
             </tbody>
         </section>
-      </table>
+        </table>
       </main>
       <?php foreach ($pesan as $row) : ?>
         <div class="modal fade" id="konfirmasiModal<?= $row["idsewa"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
@@ -203,4 +204,10 @@ JOIN meja on sewa.idmeja = meja.idmeja");
       window.print();
       document.body.innerHTML = originalContents;
     }
+
+    function exportToExcel() {
+      var table2excel = new Table2Excel();
+      table2excel.export(document.querySelectorAll("table.table"));
+    }
   </script>
+  <script src="/admin/table2excel.js"></script>

@@ -83,7 +83,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
 <div class="container-fluid pt-1">
   <div class="row removable">
     <div class="col-xl-3 col-sm-6">
-      <div class="card bg-gradient-white mb-4" style="background: linear-gradient(to right, #DBE9F3, #5175A7);">
+      <div class="card bg-gradient-white mb-4" style="background: linear-gradient(to right, #FFBB35, #DBE9F3);">
         <div class="card-body p-4">
           <div class="row">
             <div class="col-8">
@@ -95,7 +95,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <div class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
                 <i class="ni ni-app text-lg opacity-10" aria-hidden="true"></i>
               </div>
             </div>
@@ -104,7 +104,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
       </div>
     </div>
     <div class="col-xl-3 col-sm-6">
-      <div class="card mb-4" style="background: linear-gradient(to right, #DBE9F3, #5175A7);">
+      <div class="card mb-4" style="background: linear-gradient(to right, #FFBB35, #DBE9F3);">
         <div class="card-body p-4">
           <div class="row">
             <div class="col-8">
@@ -116,7 +116,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <div class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
                 <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
               </div>
             </div>
@@ -125,7 +125,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
       </div>
     </div>
     <div class="col-xl-3 col-sm-6">
-      <div class="card mb-4" style="background: linear-gradient(to right, #DBE9F3, #5175A7);">
+      <div class="card mb-4" style="background: linear-gradient(to right, #FFBB35, #DBE9F3);">
         <div class="card-body p-4">
           <div class="row">
             <div class="col-8">
@@ -137,7 +137,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <div class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
                 <i class="ni ni-shop text-lg opacity-10" aria-hidden="true"></i>
               </div>
             </div>
@@ -146,7 +146,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
       </div>
     </div>
     <div class="col-xl-3 col-sm-6">
-      <div class="card mb-4" style="background: linear-gradient(to right, #DBE9F3, #5175A7);">
+      <div class="card mb-4" style="background: linear-gradient(to right, #FFBB35, #DBE9F3);">
         <div class="card-body p-4">
           <div class="row">
             <div class="col-8">
@@ -158,7 +158,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <div class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
                 <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
               </div>
             </div>
@@ -215,7 +215,7 @@ while ($rowTotalpesan = $resultTotalpesan->fetch_assoc()) {
       type: 'pie',
       data: data,
       options: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: {

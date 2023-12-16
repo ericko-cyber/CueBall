@@ -21,7 +21,6 @@ JOIN bayarmkn ON pesan.idpesan = bayarmkn.idpesan ");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/form.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -41,26 +40,26 @@ JOIN bayarmkn ON pesan.idpesan = bayarmkn.idpesan ");
           <section class="table__header mt-5">
             <h1 style="margin-left:10px;">Data Pesanan Makanan</h1>
             <div class="input-group">
-              <input type="search"  class="form-control rounded" id="searchInput" aria-label="Search" aria-describedby="search-addon"  placeholder="Search Data...">
-              <!-- <input type="search" class="form-control rounded" id="searchInput" placeholder="Search" aria-label="Search" aria-describedby="search-addon" /> -->
+              <input type="search" class="form-control rounded" id="searchInput" aria-label="Search" aria-describedby="search-addon" placeholder="Search Data...">
             </div>
           </section>
           <hr>
-          <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" onclick="printTable()">Download</button>
+          <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;"><i style="font-size: 20px;" class="bi bi-file-pdf"></i></button>
+          <button class="btn btn-inti btn btn-warning" onclick="exportToExcel()" style="margin-left: 10px;"><i style="font-size: 20px;" class="bi bi-filetype-xls"></i></button>
           <section class="table__body">
-            <table>
+            <table class="table">
               <thead>
                 <tr>
                   <th> No <span class="icon-arrow"></span></th>
-                  <th> NamaCust <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> TglPesan <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> Nama Cust <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> Tgl Pesan <span class="icon-arrow">&UpArrow;</span></th>
                   <th> HP <span class="icon-arrow">&UpArrow;</span></th>
                   <th> Ket Meja <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> TotalProduk <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> TotalHarga <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> Total Produk <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> Total Harga <span class="icon-arrow">&UpArrow;</span></th>
                   <th> Bukti <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> konfirmasi <span class="icon-arrow">&UpArrow;</span></th>
-                  <th> action <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> Konfirmasi <span class="icon-arrow">&UpArrow;</span></th>
+                  <th> Action <span class="icon-arrow">&UpArrow;</span></th>
                   <th></th>
                 </tr>
               </thead>
@@ -86,7 +85,7 @@ JOIN bayarmkn ON pesan.idpesan = bayarmkn.idpesan ");
                       } else {
                         // tampilkan tombol Detail
                         echo ' <button type="button" class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#konfirmasiModal' . $idpesan . '">
-                    Konfirmaasi
+                    Konfirmasi
                   </button>
                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal' . $idpesan . '">
                     Hapus
@@ -102,7 +101,7 @@ JOIN bayarmkn ON pesan.idpesan = bayarmkn.idpesan ");
           </table>
         </main>
       </div>
-      
+
       <?php foreach ($pesan as $row) : ?>
         <div class="modal fade" id="hapusModal<?= $row["idpesan"]; ?>" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -207,13 +206,19 @@ JOIN bayarmkn ON pesan.idpesan = bayarmkn.idpesan ");
         });
 
         function printTable() {
-      var printContents = document.getElementById("print").outerHTML;
-      var originalContents = document.body.innerHTML;
-      document.body.innerHTML = printContents;
-      window.print();
-      document.body.innerHTML = originalContents;
-    }
+          var printContents = document.getElementById("print").outerHTML;
+          var originalContents = document.body.innerHTML;
+          document.body.innerHTML = printContents;
+          window.print();
+          document.body.innerHTML = originalContents;
+        }
+
+        function exportToExcel() {
+          var table2excel = new Table2Excel();
+          table2excel.export(document.querySelectorAll("table.table"));
+        }
       </script>
+      <script src="/admin/table2excel.js"></script>
 </body>
 
 </html>
