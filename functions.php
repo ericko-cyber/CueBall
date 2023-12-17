@@ -136,17 +136,20 @@ function edit($data)
   $nama = $data["nama_lengkap"];
   $hp = $data["hp"];
   $gender = $data["jenis_kelamin"];
+  $gambarLama =  $data["fotoLama"];
+
   //Upload Gambar
-  $upload = upload();
-  if (!$upload) {
-    return false;
+  if ($_FILES["foto"]["error"] === 4) {
+    $gambar = $gambarLama;
+  } else {
+    $gambar = upload();
   }
 
   $query = "UPDATE user SET email = '$username', 
   nama_lengkap = '$nama',
   hp = '$hp',
   jenis_kelamin = '$gender',
-  foto = '$upload'
+  foto = '$gambar'
   WHERE id_user = '$userid'
   ";
 
