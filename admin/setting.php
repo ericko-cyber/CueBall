@@ -40,33 +40,33 @@ if (isset($_POST["edit"])) {
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="form-label text-white">Username</label>
-                                    <input type="text" name="username" class="form-control mb-1" value="<?= isset($_POST['username']) ? $_POST['username'] : $_SESSION["username"]; ?>">
+                                    <input type="text" name="username" class="form-control mb-1" value="<?= isset($_POST['username']) ? $_POST['username'] : $_SESSION["username"]; ?>" <?php echo ($_SESSION['username'] === 'admin@admin') ? 'readonly' : ''; ?> required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-white">Nama Lengkap</label>
-                                    <input type="text" name="nama" class="form-control" value="<?= isset($_POST['nama']) ? $_POST['nama'] : $_SESSION["nama"]; ?>">
+                                    <input type="text" name="nama" class="form-control" value="<?= isset($_POST['nama']) ? $_POST['nama'] : $_SESSION["nama"]; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-white">No Hp</label>
-                                    <input type="text" name="hp" class="form-control" value="<?= isset($_POST['hp']) ? $_POST['hp'] : $_SESSION["phone"]; ?>">
+                                    <input type="text" name="hp" class="form-control" value="<?= isset($_POST['hp']) ? $_POST['hp'] : $_SESSION["phone"]; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-white">Email</label>
-                                    <input type="email" name="email" class="form-control" value="<?= isset($_POST['email']) ? $_POST['email'] : $_SESSION["email"]; ?>">
+                                    <input type="email" name="email" class="form-control" value="<?= isset($_POST['email']) ? $_POST['email'] : $_SESSION["email"]; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-white">New password / Old password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="***********">
+                                    <input type="password" name="password" class="form-control" placeholder="***********" required>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
-        <div class="text-right mt-3 p-2">
-            <button type="submit" name="edit" id="edit" class="btn btn-primary">Update akun</button>&nbsp;&nbsp;
-            <a href="admin/kontrol/hapusAdmin.php?id=<?= $_SESSION["id_user"]; ?>" class="btn btn-danger">Hapus akun</a>
-        </div>
+            <div class="text-right mt-3 p-2">
+                <button type="submit" name="edit" id="edit" class="btn btn-primary">Update akun</button>&nbsp;&nbsp;
+                <a href="admin/kontrol/hapusAdmin.php?id=<?= $_SESSION["id_user"]; ?>" class="btn btn-danger">Hapus akun</a>
+            </div>
         </form>
-    </div>
+        </div>
 </main>

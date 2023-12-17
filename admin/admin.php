@@ -102,18 +102,18 @@ if (isset($_POST["simpan"])) {
   <section class="table__header mt-5">
     <h1 style="margin-left:10px;">Data Admin</h1>
     <div class="input-group">
-    <input type="search" name="search" id="searchInput" oninput="searchTable()" placeholder="Search Data...">
+      <input type="search" name="search" id="searchInput" oninput="searchTable()" placeholder="Search Data...">
     </div>
   </section>
   <hr>
   <?php
   if (isset($_SESSION['username']) && $_SESSION['username'] == 'admin@admin') {
-    ?>
-        <!-- Tombol "Tambah" hanya akan muncul jika username adalah "admin@admin" -->
-        <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah</button>
-    <?php
-    }
-    ?>
+  ?>
+    <!-- Tombol "Tambah" hanya akan muncul jika username adalah "admin@admin" -->
+    <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah</button>
+  <?php
+  }
+  ?>
   <section class="table__body">
     <table>
       <thead>
@@ -123,7 +123,9 @@ if (isset($_POST["simpan"])) {
           <th> Nama Lengkap <span class="icon-arrow">&UpArrow;</span></th>
           <th> Email <span class="icon-arrow">&UpArrow;</span></th>
           <th> No HP <span class="icon-arrow">&UpArrow;</span></th>
-          <!-- <th> aksi <span class="icon-arrow">&UpArrow;</span></th> -->
+          <?php if ($_SESSION['username'] === 'admin@admin') : ?>
+            <th>Aksi <span class="icon-arrow">&UpArrow;</span></th>
+          <?php endif; ?>
         </tr>
       </thead>
       <tbody id="dataTable">
@@ -135,16 +137,11 @@ if (isset($_POST["simpan"])) {
             <td><?= $row["nama"]; ?></td>
             <td><?= $row["email"]; ?></td>
             <td><?= $row["phone"]; ?> </td>
-            <!-- <td>
-              <button class="btn btn-inti btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" data-userid="<?= $row["id_user"]; ?>">Edit</button>
-              <a href="admin/kontrol/hapusAdmin.php?id=<?= $row["id_user"]; ?>" class="btn btn-danger">Hapus</a>
-            </td> -->
-
-            <!-- Edit Modal -->
-
-
-
-            <!-- End Modal Tambah -->
+            <td>
+              <?php if ($_SESSION['username'] === 'admin@admin') : ?>
+                <a href="admin/kontrol/hapusAdmin.php?id=<?= $row["id_user"]; ?>" class="btn btn-danger">Hapus</a>
+              <?php endif; ?>
+            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -201,24 +198,24 @@ if (isset($_POST["simpan"])) {
 
 <!-- Tambahkan ini di bagian head atau sebelum penutup tag body -->
 <script>
-function searchTable() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("searchInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("dataTable");
-  tr = table.getElementsByTagName("tr");
+  function searchTable() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("dataTable");
+    tr = table.getElementsByTagName("tr");
 
-  for (i = 0; i < tr.length; i++) {
-    var found = false;
-    td = tr[i].getElementsByTagName("td");
-    for (var j = 0; j < td.length; j++) {
-      txtValue = td[j].textContent || td[j].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        found = true;
-        break;
+    for (i = 0; i < tr.length; i++) {
+      var found = false;
+      td = tr[i].getElementsByTagName("td");
+      for (var j = 0; j < td.length; j++) {
+        txtValue = td[j].textContent || td[j].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          found = true;
+          break;
+        }
       }
+      tr[i].style.display = found ? "" : "none";
     }
-    tr[i].style.display = found ? "" : "none";
   }
-}
 </script>
