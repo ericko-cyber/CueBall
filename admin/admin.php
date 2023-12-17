@@ -106,7 +106,14 @@ if (isset($_POST["simpan"])) {
     </div>
   </section>
   <hr>
-  <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah</button>
+  <?php
+  if (isset($_SESSION['username']) && $_SESSION['username'] == 'admin@admin') {
+    ?>
+        <!-- Tombol "Tambah" hanya akan muncul jika username adalah "admin@admin" -->
+        <button class="btn btn-inti btn btn-warning" style="margin-left: 28px;" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah</button>
+    <?php
+    }
+    ?>
   <section class="table__body">
     <table>
       <thead>
