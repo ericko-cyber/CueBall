@@ -218,6 +218,8 @@ function bayar($data)
 
   mysqli_query($conn, "UPDATE sewa SET status = 'Sudah Bayar' WHERE idsewa = '$idsewa'");
 
+  mysqli_query($conn, "UPDATE jam_sewa SET status = 'Sudah Bayar' WHERE idsewa = '$idsewa'");
+
   return mysqli_affected_rows($conn);
 }
 function uploadbayar()

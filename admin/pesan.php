@@ -7,7 +7,7 @@ if ($role !== 'Admin') {
 };
 
 
-$pesan = query("SELECT meja.nm, sewa.idsewa, sewa.harga,user.nama_lengkap,sewa.tgl_pesan,sewa.jmulai,sewa.jhabis,sewa.tot,bayar.bukti,bayar.konfirmasi
+$pesan = query("SELECT meja.nm, sewa.idsewa, sewa.harga,user.nama_lengkap,sewa.tgl_pesan,sewa.jam,sewa.tot,bayar.bukti,bayar.konfirmasi
 FROM sewa
 JOIN user ON sewa.iduser = user.id_user
 JOIN bayar ON sewa.idsewa = bayar.idsewa
@@ -32,23 +32,24 @@ JOIN meja on sewa.idmeja = meja.idmeja");
           </div>
         </section>
         <hr>
-        <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;"><i style="font-size: 20px;" class="bi bi-file-pdf"></i></button>
-        <button class="btn btn-inti btn btn-warning" onclick="exportToExcel()" style="margin-left: 10px;"><i style="font-size: 20px;" class="bi bi-filetype-xls"></i></button>
+        <?php if ($_SESSION['username'] === 'admin@admin') : ?>
+          <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;"><i style="font-size: 20px;" class="bi bi-file-pdf"></i></button>
+          <button class="btn btn-inti btn btn-warning" onclick="exportToExcel()" style="margin-left: 10px;"><i style="font-size: 20px;" class="bi bi-filetype-xls"></i></button>
+        <?php endif; ?>
         <section class="table__body">
           <table class="table">
             <thead>
               <tr>
-                <th> No <span class="icon-arrow"></span></th>
-                <th> Nama Cust <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Meja <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Tgl Pesan <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Jam Mulai <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Jam Akhir <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Harga <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Total <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Bukti <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Konfirmasi <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Action <span class="icon-arrow">&UpArrow;</span></th>
+                <th> No<span class="icon-arrow"></span></th>
+                <th> Nama Cust<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Meja<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Tgl Pesan<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Jam Bermain<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Harga<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Total<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Bukti<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Konfirmasi<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Action<span class="icon-arrow">&UpArrow;</span></th>
               </tr>
             </thead>
             <tbody id="searchResults">
@@ -59,8 +60,7 @@ JOIN meja on sewa.idmeja = meja.idmeja");
                   <td><?= $row["nama_lengkap"]; ?></td>
                   <td><?= $row["nm"]; ?></td>
                   <td><?= $row["tgl_pesan"]; ?></td>
-                  <td><?= $row["jmulai"]; ?></td>
-                  <td><?= $row["jhabis"]; ?></td>
+                  <td><?= $row["jam"]; ?></td>
                   <td><?= $row["harga"]; ?></td>
                   <td><?= $row["tot"]; ?></td>
                   <td><img src="../img/<?= $row["bukti"]; ?>" id="imglap" width="100" height="100"></td>

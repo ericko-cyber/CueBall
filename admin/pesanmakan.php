@@ -44,8 +44,10 @@ JOIN bayarmkn ON pesan.idpesan = bayarmkn.idpesan ");
             </div>
           </section>
           <hr>
+          <?php if ($_SESSION['username'] === 'admin@admin') : ?>
           <button class="btn btn-inti btn btn-warning" onclick="printTable()" style="margin-left: 28px;"><i style="font-size: 20px;" class="bi bi-file-pdf"></i></button>
           <button class="btn btn-inti btn btn-warning" onclick="exportToExcel()" style="margin-left: 10px;"><i style="font-size: 20px;" class="bi bi-filetype-xls"></i></button>
+        <?php endif; ?>
           <section class="table__body">
             <table class="table">
               <thead>
