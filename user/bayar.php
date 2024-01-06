@@ -228,32 +228,32 @@ if (isset($_POST["bayar"])) {
                       <!-- End Modal Detail -->
 
                       <!-- Modal Hapus -->
-                      <div class="modal fade" id="hapusModal<?= $row["idsewa"]; ?>" tabindex="-1" aria-labelledby="profilModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus Data</h5>
-                            </div>
-                            <div class="modal-body">
-                              <p>Anda yakin ingin menghapus data ini?</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                              <a href="./controller/hapus.php?id=<?= $row["idsewa"] ?>" class="btn btn-danger">Hapus</a>
-                            </div>
+                      <!-- End Modal Hapus -->
+                    </td>
+                    <div class="modal fade" id="hapusModal<?= $row["idsewa"]; ?>" tabindex="-1" aria-labelledby="profilModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus Data</h5>
+                          </div>
+                          <div class="modal-body">
+                            <p>Anda yakin ingin menghapus data ini?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <a href="./controller/hapus.php?id=<?= $row["idsewa"] ?>" class="btn btn-danger">Hapus</a>
                           </div>
                         </div>
                       </div>
-                      <!-- End Modal Hapus -->
-                    </td>
+                    </div>
                   </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-      </form>
-    </div>
-    </div>
-  </section>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
+      </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   <script>

@@ -424,7 +424,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
     <section id="fnb" class="fnb section-bg">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title" style="margin-top: 30px;">
+        <div class="section-title" style="margin-top: 50px;">
           <h2>Beverage <span>and</span> Snack</h2>
           <p>Di sela-sela bermainmu, kamu juga bisa memesan makanan dan minuman yang telah kami sediakan.</p>
         </div>
