@@ -172,7 +172,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `makanan`");
                 <p><?= $profil["email"]; ?></p>
                 <p><?= $profil["hp"]; ?></p>
                 <p><?= $profil["alamat"]; ?></p>
-                <a href="logout.php" class="btn btn-danger">Logout</a>
+                <a href="logoutuser.php" class="btn btn-danger">Logout</a>
                 <a href="" data-bs-toggle="modal" data-bs-target="#editProfil" class="btn btn-success">Edit Profil</a>
               </div>
             </div>
